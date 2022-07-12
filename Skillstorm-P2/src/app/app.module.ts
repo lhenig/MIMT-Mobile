@@ -14,7 +14,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AppComponent,
     UserPageComponent,
     PlanPageComponent,
-    DevicePageComponent
+    DevicePageComponent,
     LandingPageComponent,
     PageNotFoundComponent
   ],

@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { Router } from '@angular/router';
 import { Plan } from '../models/plan.model';
 import { PlanService } from '../services/plan.service';
-=======
->>>>>>> d98b5e5a68c1aab5a13529749268c417e290d67a
 
 @Component({
   selector: 'app-plan-page',
@@ -12,7 +9,6 @@ import { PlanService } from '../services/plan.service';
   styleUrls: ['./plan-page.component.css']
 })
 export class PlanPageComponent implements OnInit {
-<<<<<<< HEAD
   PlanList: Plan[] = [];
 
   constructor(private planService: PlanService, private router: Router) { }
@@ -24,12 +20,6 @@ export class PlanPageComponent implements OnInit {
         this.PlanList = data.body;
       }
     });
-=======
-
-  constructor() { }
-
-  ngOnInit(): void {
->>>>>>> d98b5e5a68c1aab5a13529749268c417e290d67a
   }
 
 }
