@@ -7,7 +7,8 @@ export class User {
     plans: Array<string>;
     devices: Array<string>;
 
-    constructor(id: number,
+    constructor(
+        id: number,
         name: string,
         email: string,
         plans: Array<string>,
