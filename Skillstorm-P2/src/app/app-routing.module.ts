@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OwnerListComponent } from './owner-list/owner-list.component';
+import { DevicePageComponent } from './device-page/device-page.component';
+import { PlanPageComponent } from './plan-page/plan-page.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 const routes: Routes = [
   {
-    path: "owners", component: OwnerListComponent
+    path: "user", component: UserPageComponent
   },
+  {
+    path: "plans", component: PlanPageComponent
+  },
+  {
+    path: "devices", component: DevicePageComponent
+  }
 ];
 
 @NgModule({

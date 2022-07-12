@@ -5,11 +5,10 @@
       <!-- MILES BOILERPLATE -->
       <div>
         <h1>Zulmak Time!</h1>
-      </div>
-      <a [routerLink]="['/owners']">View Owners</a> | 
-      <!-- User Profile (w/ user service) -->
-      <!-- Plans (w/ plan service) -->
-      <!-- Devices (w/ device service) -->
+      </div>| 
+      <a [routerLink]="['/user']">User Profile</a> | 
+      <a [routerLink]="['/plans']">View Our Plans</a> | 
+      <a [routerLink]="['/devices']">View Our Devices</a>
       <router-outlet></router-outlet>
     </div>
   </div>
@@ -22,13 +21,5 @@
   </svg>
 
 </div>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <router-outlet></router-outlet>

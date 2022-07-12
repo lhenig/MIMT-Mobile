@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OwnerListComponent } from './owner-list.component';
+import { DevicePageComponent } from './device-page.component';
 
-describe('OwnerListComponent', () => {
-  let component: OwnerListComponent;
-  let fixture: ComponentFixture<OwnerListComponent>;
+describe('DevicePageComponent', () => {
+  let component: DevicePageComponent;
+  let fixture: ComponentFixture<DevicePageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OwnerListComponent ]
+      declarations: [ DevicePageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OwnerListComponent);
+    fixture = TestBed.createComponent(DevicePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
