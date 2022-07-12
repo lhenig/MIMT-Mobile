@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { PlanPageComponent } from './plan-page/plan-page.component';
 import { DevicePageComponent } from './device-page/device-page.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { DevicePageComponent } from './device-page/device-page.component';
     UserPageComponent,
     PlanPageComponent,
     DevicePageComponent
+    LandingPageComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
