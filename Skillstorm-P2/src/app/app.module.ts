@@ -8,6 +8,8 @@ import { PlanPageComponent } from './plan-page/plan-page.component';
 import { DevicePageComponent } from './device-page/device-page.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserInfoComponent } from './user-info/user-info.component';
+import { UsersPlansComponent } from './users-plans/users-plans.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     PlanPageComponent,
     DevicePageComponent,
     LandingPageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    UserInfoComponent,
+    UsersPlansComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,11 @@
+.button-container{
+    margin-top: 3vh;
+    display: flex;
+    justify-content: center;
+}
+.total-container{
+    display: flex;
+    justify-content: right;
+    margin-top: 3vh;
+    margin-right :5vw;
+}

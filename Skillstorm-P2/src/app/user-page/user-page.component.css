@@ -1,0 +1,10 @@
+.grid-divide{
+    display: grid;
+    grid-template-columns: 22vw 70vw;
+    margin-top: 4vh;
+}
+.profile-header{
+    margin-top: 4vh;
+    display:flex;
+    justify-content: center;
+}
