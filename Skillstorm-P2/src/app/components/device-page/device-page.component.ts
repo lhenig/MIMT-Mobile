@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { Device } from '../models/device.model';
-import { DeviceService } from '../services/device.service';
+import { Device } from 'src/app/models/device.model';
+import { DeviceService } from 'src/app/services/device.service';
+
 
 @Component({
   selector: 'app-device-page',

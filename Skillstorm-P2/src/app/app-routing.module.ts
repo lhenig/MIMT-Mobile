@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DevicePageComponent } from './device-page/device-page.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PlanPageComponent } from './plan-page/plan-page.component';
-import { UserPageComponent } from './user-page/user-page.component';
+import { DevicePageComponent } from './components/device-page/device-page.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PlanPageComponent } from './components/plan-page/plan-page.component';
+import { UserPageComponent } from './components/user-page/user-page.component';
+
 
 
 const routes: Routes = [
