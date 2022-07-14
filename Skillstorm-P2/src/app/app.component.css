@@ -1,0 +1,16 @@
+.nav-bar-container{
+    display: flex;
+    align-items:flex-start;
+
+    width:100vw;
+}
+.nav-bar-item{
+    margin: 20px;
+
+}
+.padding-left{
+    margin-left: 10vw;
+}
+.nav-bar-container.navbar-custom .navbar-nav .nav-link {
+    color: rgba(168, 21, 21, 0.5);
+}
