@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Plan } from '../models/plan.model';
-import { PlanService } from '../services/plan.service';
+import { Plan } from 'src/app/models/plan.model';
+import { PlanService } from 'src/app/services/plan.service';
+
+
 
 @Component({
   selector: 'app-plan-page',

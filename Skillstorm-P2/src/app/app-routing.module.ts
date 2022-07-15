@@ -16,7 +16,7 @@ const routes: Routes = [
     path: 'landing', component: LandingPageComponent
   },
   {
-    path: 'plans', component: PlanPageComponent
+    path: 'planCreation', component: PlanPageComponent
   },
   {
     path: 'device', component: DevicePageComponent
