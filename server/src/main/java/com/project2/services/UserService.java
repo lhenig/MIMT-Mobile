@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import com.project2.beans.User;
-import com.project2.data.repository;
+import com.project2.data.Repository;
 
 @Service
-public class service {
+public class UserService {
+	
 	@Autowired
-	private repository repo;
+	private Repository repo;
 	
 	public List<User> findByName(String name){
 		return repo.findByUserName(name);

@@ -16,20 +16,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.project2.beans.User;
-import com.project2.data.repository;
+import com.project2.data.Repository;
+
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "/api")
 public class UserController {
   @Autowired
-  repository repo;
+  Repository repo;
   
   @GetMapping("/users")
   public ResponseEntity<List<User>> getUsers() {
-    List<User> tutorialData = repo.findAll();
-    if (!tutorialData.isEmpty()) {
-      return new ResponseEntity<>(tutorialData, HttpStatus.OK);
+    List<User> userData = repo.findAll();
+    if (!userData.isEmpty()) {
+      return new ResponseEntity<>(userData, HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -46,11 +47,11 @@ public class UserController {
     }
   }
   @PutMapping("/users/{id}")
-  public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User tutorial) {
-    Optional<User> tutorialData = repo.findById(id);
-    if (tutorialData.isPresent()) {
-      User _user = tutorialData.get();
-      _user.setUserName(tutorial.getUserName());
+  public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
+    Optional<User> userData = repo.findById(id);
+    if (userData.isPresent()) {
+      User _user = userData.get();
+      _user.setUserName(user.getUserName());
       return new ResponseEntity<>(repo.save(_user), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
