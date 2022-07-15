@@ -28,7 +28,7 @@ public class UserController {
   
   @GetMapping("/users")
   public ResponseEntity<List<User>> getUsers() {
-    List<User> userData = repo.findAll();
+    List<User> userData = repo.findAllUsers();
     if (!userData.isEmpty()) {
       return new ResponseEntity<>(userData, HttpStatus.OK);
     } else {

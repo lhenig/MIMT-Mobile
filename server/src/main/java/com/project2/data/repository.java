@@ -8,8 +8,10 @@ import java.util.List;
 
 public interface Repository extends JpaRepository<User, Integer>{
 	
+	
 	public List<User> findByUserName(String userName);
 
-	
+	@Query( " SELECT u FROM User u")
+	public List<User> findAllUsers();
 	
 }
