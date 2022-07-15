@@ -11,7 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   //need to worry about user id being leaked
-  findUser(id: number): Observable<HttpResponse<User>> {
+  findUser(user: User): Observable<HttpResponse<User>> {
     return this.http.get<User>(this.url, {observe: 'response'});
   }
 

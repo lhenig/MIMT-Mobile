@@ -10,6 +10,9 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UsersPlansComponent } from './components/users-plans/users-plans.component';
+import { UserLoginComponent } from './components/user-login/user-login.component';
+import { FormsModule } from '@angular/forms';
+import { UserSignupComponent } from './user-signup/user-signup.component';
 
 @NgModule({
   declarations: [
@@ -20,12 +23,15 @@ import { UsersPlansComponent } from './components/users-plans/users-plans.compon
     LandingPageComponent,
     PageNotFoundComponent,
     UserInfoComponent,
-    UsersPlansComponent
+    UsersPlansComponent,
+    UserLoginComponent,
+    UserSignupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
