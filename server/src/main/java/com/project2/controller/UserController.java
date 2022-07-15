@@ -39,7 +39,7 @@ public class UserController {
   public ResponseEntity<User> createUser(@RequestBody User user) {
     try {
       User _user = repo
-          .save(new User(user.getName()));
+          .save(new User(user.getUserName()));
       return new ResponseEntity<>(_user, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -50,7 +50,7 @@ public class UserController {
     Optional<User> tutorialData = repo.findById(id);
     if (tutorialData.isPresent()) {
       User _user = tutorialData.get();
-      _user.setName(tutorial.getName());
+      _user.setUserName(tutorial.getUserName());
       return new ResponseEntity<>(repo.save(_user), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -75,11 +75,11 @@ public class UserController {
     }
   }
   
-  @GetMapping("/users/{name}")
-  public ResponseEntity<List<User>> findByName(@PathVariable("name") String name){
+  @GetMapping("/users/{user_name}")
+  public ResponseEntity<List<User>> findByName(@PathVariable("user_name") String name){
 	  
 	  try {
-		  List<User> users = repo.findByName(name);
+		  List<User> users = repo.findByUserName(name);
 		  if(users.isEmpty()) {
 			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		  }

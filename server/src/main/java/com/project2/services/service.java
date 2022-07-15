@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.project2.beans.User;
 import com.project2.data.repository;
 
@@ -16,7 +15,7 @@ public class service {
 	private repository repo;
 	
 	public List<User> findByName(String name){
-		return repo.findByName(name);
+		return repo.findByUserName(name);
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)

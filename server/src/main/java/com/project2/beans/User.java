@@ -1,7 +1,6 @@
 package com.project2.beans;
 
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,33 +18,30 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "name")
-	private String name;
+	@Column(name = "userName")
+	private String userName;
 
 	@Column(name = "email")
 	private String email;
-
-	@Column(name = "plans")
-	private String plans;
-
-	@Column(name = "devices")
-	private String devices;
 	
+	@Column(name = "pass_key")
+	private String password;
+
 	public User() {}
 	
 	public User(String name) {
 		super();
-		this.name = name;
+		this.userName = name;
 	}
 	
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -54,26 +50,16 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPlans() {
-		return plans;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPlans(String plans) {
-		this.plans = plans;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getDevices() {
-		return devices;
-	}
-
-	public void setDevices(String devices) {
-		this.devices = devices;
-	}
-
-	
-	
 	public String toString() {
-		return "User [id=" + id + ", name= " + name + "]/n";
+		return "User [id=" + id + ", name= " + userName + "]/n";
 	}
 
 	

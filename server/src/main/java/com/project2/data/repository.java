@@ -7,7 +7,7 @@ import com.project2.beans.User;
 import java.util.List;
 
 public interface repository extends JpaRepository<User, Integer>{
-	public List<User> findByName(String name);
+	public List<User> findByUserName(String userName);
 
 	
 	
