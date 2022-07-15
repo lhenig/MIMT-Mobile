@@ -18,12 +18,12 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit(): void {
     //put 1 here so it would be quiet, NEED CHANGED
-    this.userService.findUser(1).subscribe((data)=>{
-      if (data.body != null) {
-        //STUFF WITH DATA HERE
-        // this.User = data.body;
-      }
-    })
+    // this.userService.findUser(User).subscribe((data)=>{
+    //   if (data.body != null) {
+    //     //STUFF WITH DATA HERE
+    //     // this.User = data.body;
+    //   }
+    // })
   }
 
 }

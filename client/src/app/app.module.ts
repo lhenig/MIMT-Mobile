@@ -12,7 +12,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UsersPlansComponent } from './components/users-plans/users-plans.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { FormsModule } from '@angular/forms';
-import { UserSignupComponent } from './user-signup/user-signup.component';
+import { UserSignupComponent } from './components/user-signup/user-signup.component';
 
 @NgModule({
   declarations: [
