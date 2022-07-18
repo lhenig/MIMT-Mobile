@@ -15,8 +15,8 @@ public class UserService {
 	@Autowired
 	private Repository repo;
 	
-	public List<User> findByName(String name){
-		return repo.findByUserName(name);
+	public List<User> findByName(int id){
+		return repo.findById(id);
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)

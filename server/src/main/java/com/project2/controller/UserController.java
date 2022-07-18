@@ -48,9 +48,10 @@ public class UserController {
   }
   @PutMapping("/users/{id}")
   public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
-    Optional<User> userData = repo.findById(id);
-    if (userData.isPresent()) {
-      User _user = userData.get();
+    List<User> userData = repo.findById(id);
+    Optional<User> _userData = userData.stream().findFirst();
+    if (_userData.isPresent()) {
+      User _user = _userData.get();
       _user.setUserName(user.getUserName());
       return new ResponseEntity<>(repo.save(_user), HttpStatus.OK);
     } else {
@@ -76,11 +77,11 @@ public class UserController {
     }
   }
   
-  @GetMapping("/users/{user_name}")
-  public ResponseEntity<List<User>> findByName(@PathVariable("user_name") String name){
+  @GetMapping("/users/{id}")
+  public ResponseEntity<List<User>> findByName(@PathVariable("id") int id){
 	  
 	  try {
-		  List<User> users = repo.findByUserName(name);
+		  List<User> users = repo.findById(id);
 		  if(users.isEmpty()) {
 			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		  }

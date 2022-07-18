@@ -7,7 +7,7 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  url: string = ""; //dunno yet
+  url: string = "http://localhost:8080/"; //dunno yet
   constructor(private http: HttpClient) { }
 
   //need to worry about user id being leaked
