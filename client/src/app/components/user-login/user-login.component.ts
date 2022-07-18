@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { AppService } from 'src/app/services/app.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,22 +10,17 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-  user: User = new User ("", "", "", [], []); 
+  credentials = {name: '', password: ''};
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private app: AppService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  get(): void {
-    if (this.user.name.trim() != "" && this.user.email != "") {
-      //send the forms values
-      this.userService.findUser(this.user).subscribe(data => {
-        let route = this.router.config.find(r => r.path === 'users');
-        if (route) {
-          this.router.navigateByUrl('/users');
-        }
-      });
-    }
+  login() {
+    this.app.authenticate(this.credentials, () => {
+      this.router.navigateByUrl('/');
+    });
+    return false;
   }
 }
