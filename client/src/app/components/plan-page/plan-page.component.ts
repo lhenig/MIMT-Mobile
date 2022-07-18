@@ -4,7 +4,6 @@ import { Plan } from 'src/app/models/plan.model';
 import { PlanService } from 'src/app/services/plan.service';
 
 
-
 @Component({
   selector: 'app-plan-page',
   templateUrl: './plan-page.component.html',
