@@ -46,6 +46,7 @@ public class UserController {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+  
   @PutMapping("/{id}")
   public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
     List<User> userData = repo.findById(id);
