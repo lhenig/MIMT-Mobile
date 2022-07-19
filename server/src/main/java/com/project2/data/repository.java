@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface Repository extends JpaRepository<User, Integer>{
 	
 	
-	public List<User> findById(int id);
+	public User findById(int id);
 	
 
 	@Query( " SELECT u FROM User u")
