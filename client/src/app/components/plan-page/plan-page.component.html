@@ -1,5 +1,126 @@
-<p>plan-page works!</p>
+<div class="plan-page-container">
+    <h1 class="page-header">
+        Plan Creation
+    </h1>
+    <div class="device-creation-container">
+            <div class="image-container">
+                <div class="image-item">
+                    <div class="image-text">
+                        Mimt MOBLE: call with confidence!
+                    </div>
+                </div>
+            </div>
+            <div class="devices-info">
+                <form class="form-inline form-container shadow">
+                    <div class="form-item-container">   
+                        <div class="form-labels">
+                            <div>
+                                Phone Number:
+                            </div>
+                            <div>
+                                Phone Model:
+                            </div>
+                        </div>
+                        <i class="bi bi-phone"></i>
+                        <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber">
+                        <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel">
+                    </div>
+                    <div class="form-item-container">   
+                        <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber">
+                        <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel">
+                    </div>
+                    <div class="form-item-container">   
+                        <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber">
+                        <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel">
+                    </div>
+                    <div class="form-item-container">   
+                        <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber">
+                        <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel">
+                    </div>
+                    <div class="form-item-container">   
+                        <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber">
+                        <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel">
+                    </div>
 
-<div id="plans">
-    {{PlanList}}
+                  </form>
+            </div>
+        </div>
+        <div class="num-devices container">
+                <div class="device-items shadow card">
+                <h2>How many devices do you need?</h2>
+                    <div class="center-this">
+                            <div>
+                                <input type="number" id="quantity" name="quantity" min="1" max="12" value="1">
+                            </div>
+                            <div>
+                                &nbsp; Max of (12)
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="plan-card-container">
+                <section class="pricing">
+                    <div class="container">
+                      <div class="row">
+                        <!-- Free Tier -->
+                        <div class="col-lg-4">
+                          <div class="card mb-5 mb-lg-0">
+                            <div class="card-body">
+                              <h5 class="card-title text-muted text-uppercase text-center">Mimt MINIMAL</h5>
+                              <h6 class="card-price text-center">$20.99<span class="period">/month</span></h6>
+                              <hr>
+                              <ul class="fa-ul">
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>One Device Max</strong></li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
+                              </ul>
+                              <div class="d-grid">
+                                <a href="#" class="btn btn-primary text-uppercase">SELECT</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Free Tier -->
+                        <div class="col-lg-4">
+                            <div class="card mb-5 mb-lg-0">
+                              <div class="card-body">
+                                <h5 class="card-title text-muted text-uppercase text-center">Mimt Basic</h5>
+                                <h6 class="card-price text-center">$60.99<span class="period">/month</span></h6>
+                                <hr>
+                                <ul class="fa-ul">
+                                  <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Five Devices Max</strong></li>
+                                  <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
+                                </ul>
+                                <div class="d-grid">
+                                  <a href="#" class="btn btn-primary text-uppercase">SELECT</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>                        
+                        <!-- Free Tier -->
+                        <div class="col-lg-4">
+                            <div class="card mb-5 mb-lg-0">
+                              <div class="card-body">
+                                <h5 class="card-title text-muted text-uppercase text-center">Mimt Ultra</h5>
+                                <h6 class="card-price text-center">$110.99<span class="period">/month</span></h6>
+                                <hr>
+                                <ul class="fa-ul">
+                                  <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Twelve Device Max</strong></li>
+                                  <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
+                                </ul>
+                                <div class="d-grid">
+                                  <a href="#" class="btn btn-primary text-uppercase">SELECT</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>                        
+                      </div>
+                    </div>
+                </section>
+            
+    </div>
+    
+    <div id="plans">
+        {{PlanList}}
+    </div>
 </div>
+
