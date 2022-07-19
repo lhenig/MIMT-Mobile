@@ -21,7 +21,7 @@ import com.project2.data.Repository;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/user")
 public class UserController {
   @Autowired
   Repository repo;
@@ -46,7 +46,7 @@ public class UserController {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
-  @PutMapping("/users/{id}")
+  @PutMapping("/{id}")
   public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
     List<User> userData = repo.findById(id);
     Optional<User> _userData = userData.stream().findFirst();
@@ -58,7 +58,7 @@ public class UserController {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
-  @DeleteMapping("/user/{id}")
+  @DeleteMapping("/{id}")
   public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") int id) {
     try {
       repo.deleteById(id);
@@ -77,7 +77,7 @@ public class UserController {
     }
   }
   
-  @GetMapping("/users/{id}")
+  @GetMapping("/{id}")
   public ResponseEntity<List<User>> findByName(@PathVariable("id") int id){
 	  
 	  try {

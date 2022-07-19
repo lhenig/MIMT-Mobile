@@ -7,12 +7,12 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  url: string = "http://localhost:8080/"; //dunno yet
+  url: string = "http://localhost:8080/user"; //dunno yet
   constructor(private http: HttpClient) { }
 
   //need to worry about user id being leaked
   findUser(id: number): Observable<HttpResponse<User>> {
-    return this.http.get<User>(this.url, {observe: 'response'});
+    return this.http.get<User>(this.url + "/" + id, {observe: 'response'});
   }
 
   //might have to tweak the arguments for these
