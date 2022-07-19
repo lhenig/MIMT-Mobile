@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserPageComponent implements OnInit {
   //not sure how to do with login so I'm gonna wait on this one
-  User!: User;
+  User?: User;
   // User.id: number;
 
   constructor(private userService: UserService, private router: Router) { }
@@ -24,9 +24,10 @@ export class UserPageComponent implements OnInit {
       if (data.body != null) {
         console.log(data.body);
         //STUFF WITH DATA HERE
-        // this.User = data.body;
+        this.User = data.body;
       }
     })
+
   }
 
 }

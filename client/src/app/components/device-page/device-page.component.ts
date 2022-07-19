@@ -15,12 +15,12 @@ export class DevicePageComponent implements OnInit {
   constructor(private deviceService: DeviceService, private router: Router) { }
 
   ngOnInit(): void {
-    this.deviceService.findAllDevices().subscribe((data) => {
-      //console.log("body: " + data.body);
-      if (data.body != null) {
-        this.DeviceList = data.body;
-      }
-    });
+    // this.deviceService.findAllDevices().subscribe((data) => {
+    //   //console.log("body: " + data.body);
+    //   if (data.body != null) {
+    //     this.DeviceList = data.body;
+    //   }
+    // });
   }
 
 }
