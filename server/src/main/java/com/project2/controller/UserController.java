@@ -49,9 +49,9 @@ public class UserController {
   @PutMapping("/{id}")
   public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
     User userData = repo.findById(id);
-    if (userData == null) {
-      user.setUserName(user.getUserName());
-      return new ResponseEntity<>(repo.save(user), HttpStatus.OK);
+    if (userData != null) {
+      userData.setUserName(user.getUserName());
+      return new ResponseEntity<>(repo.save(userData), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

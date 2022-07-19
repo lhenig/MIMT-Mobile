@@ -13,7 +13,7 @@ public interface Repository extends JpaRepository<User, Integer>{
 	public User findById(int id);
 	
 
-	@Query( " SELECT u FROM User u")
+	@Query( "SELECT u FROM User u")
 	public List<User> findAllUsers();
 
 	
