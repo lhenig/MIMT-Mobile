@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserClass {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,9 +27,9 @@ public class User {
 	@Column(name = "pass_key")
 	private String password;
 
-	public User() {}
+	public UserClass() {}
 	
-	public User(String name) {
+	public UserClass(String name) {
 		super();
 		this.userName = name;
 	}
@@ -59,7 +59,7 @@ public class User {
 	}
 
 	public String toString() {
-		return "User [id=" + id + ", name= " + userName + "]/n";
+		return "UserClass [id=" + id + ", name= " + userName + "]/n";
 	}
 
 	

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.project2.beans.User;
+import com.project2.beans.UserClass;
 import com.project2.data.Repository;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -26,8 +26,8 @@ public class UserController {
   Repository repo;
   
   @GetMapping("/users")
-  public ResponseEntity<List<User>> getUsers() {
-    List<User> userData = repo.findAllUsers();
+  public ResponseEntity<List<UserClass>> getUsers() {
+    List<UserClass> userData = repo.findAllUsers();
     if (!userData.isEmpty()) {
       return new ResponseEntity<>(userData, HttpStatus.OK);
     } else {
@@ -36,10 +36,10 @@ public class UserController {
   }
   
   @PostMapping("/users")
-  public ResponseEntity<User> createUser(@RequestBody User user) {
+  public ResponseEntity<UserClass> createUser(@RequestBody UserClass user) {
     try {
-      User _user = repo
-          .save(new User(user.getUserName()));
+      UserClass _user = repo
+          .save(new UserClass(user.getUserName()));
       return new ResponseEntity<>(_user, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -47,8 +47,8 @@ public class UserController {
   }
   
   @PutMapping("/{id}")
-  public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
-    User userData = repo.findById(id);
+  public ResponseEntity<UserClass> updateUser(@PathVariable("id") int id, @RequestBody UserClass user) {
+    UserClass userData = repo.findById(id);
     if (userData != null) {
       userData.setUserName(user.getUserName());
       return new ResponseEntity<>(repo.save(userData), HttpStatus.OK);
@@ -76,14 +76,14 @@ public class UserController {
   }
   
   @GetMapping("/{id}")
-  public ResponseEntity<User> findByName(@PathVariable("id") int id){
+  public ResponseEntity<UserClass> findByName(@PathVariable("id") int id){
 	  
 	  try {
-		  User users = repo.findById(id);
+		  UserClass users = repo.findById(id);
 		  if(users == null) {
 			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		  }
-		  return new ResponseEntity<User>(users, HttpStatus.OK);
+		  return new ResponseEntity<UserClass>(users, HttpStatus.OK);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }

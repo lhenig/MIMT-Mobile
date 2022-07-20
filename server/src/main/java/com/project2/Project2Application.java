@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 
-import com.project2.beans.User;
+import com.project2.beans.UserClass;
 import com.project2.data.Repository;
 
 @SpringBootApplication

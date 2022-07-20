@@ -3,18 +3,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import com.project2.beans.User;
+import com.project2.beans.UserClass;
 import java.util.List;
 import java.util.Optional;
 
-public interface Repository extends JpaRepository<User, Integer>{
+public interface Repository extends JpaRepository<UserClass, Integer>{
 	
 	
-	public User findById(int id);
+	public UserClass findById(int id);
 	
 
-	@Query( "SELECT u FROM User u")
-	public List<User> findAllUsers();
+	@Query( "SELECT u FROM UserClass u")
+	public List<UserClass> findAllUsers();
+
+
+	public UserClass findByUserName(String userName);
 
 	
 	
