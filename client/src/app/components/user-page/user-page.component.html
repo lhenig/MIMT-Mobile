@@ -1,10 +1,11 @@
 <h1 class="profile-header">Profile Page Header (dont like this)</h1>
+<div id="user"> 
+    {{User?.userName}} 
+</div>
 <div class="grid-divide">
 
-    <app-user-info></app-user-info>
-    <app-users-plans></app-users-plans>
+    <app-user-info [User]="this.User"></app-user-info>
+    <app-users-plans [User]="this.User"></app-users-plans>
 </div>
 
-<div id="user"> 
-    <!-- {{User}}  -->
-</div>
+

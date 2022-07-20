@@ -15,7 +15,7 @@ public class UserService {
 	@Autowired
 	private Repository repo;
 	
-	public List<User> findByName(int id){
+	public User findByName(int id){
 		return repo.findById(id);
 	}
 	

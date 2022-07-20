@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project2.beans.User;
 import com.project2.data.Repository;
 
-
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "/user")
@@ -49,12 +48,10 @@ public class UserController {
   
   @PutMapping("/{id}")
   public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
-    List<User> userData = repo.findById(id);
-    Optional<User> _userData = userData.stream().findFirst();
-    if (_userData.isPresent()) {
-      User _user = _userData.get();
-      _user.setUserName(user.getUserName());
-      return new ResponseEntity<>(repo.save(_user), HttpStatus.OK);
+    User userData = repo.findById(id);
+    if (userData != null) {
+      userData.setUserName(user.getUserName());
+      return new ResponseEntity<>(repo.save(userData), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -79,14 +76,14 @@ public class UserController {
   }
   
   @GetMapping("/{id}")
-  public ResponseEntity<List<User>> findByName(@PathVariable("id") int id){
+  public ResponseEntity<User> findByName(@PathVariable("id") int id){
 	  
 	  try {
-		  List<User> users = repo.findById(id);
-		  if(users.isEmpty()) {
+		  User users = repo.findById(id);
+		  if(users == null) {
 			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		  }
-		  return new ResponseEntity<>(users, HttpStatus.OK);
+		  return new ResponseEntity<User>(users, HttpStatus.OK);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
