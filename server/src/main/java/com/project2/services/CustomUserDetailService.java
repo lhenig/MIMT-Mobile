@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.project2.beans.UserClass;
 import com.project2.data.Repository;
 
+
 @Service
 public class CustomUserDetailService implements UserDetailsService {
 
@@ -18,14 +19,25 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        final UserClass _user = repo.findByUserName(userName);
+         UserClass _user = repo.findByUserName(userName);
+         
         if (_user == null) {
             throw new UsernameNotFoundException("test");
         }
-        System.out.println("username: " + _user.getUserName());
-        UserDetails user = User.withUsername(_user.getUserName()).password(_user.getPassword()).authorities("USER").build();
-        return user;
+        
+        // Have to sign in as Kevin to Delete anything
+        else if(_user.getUserName().equals("Kevin")) {
+            UserDetails user = User.withUsername(_user.getUserName()).password(_user.getPassword()).authorities("ADMIN").build();
+            System.out.println(_user.getUserName() + " has signed in" + user.getAuthorities());
+            return user;
+        }
+        else{
+            UserDetails user = User.withUsername(_user.getUserName()).password(_user.getPassword()).authorities("USER").build();
+            return user;
+        }
+        
     }
 
+    
     
 }

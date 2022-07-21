@@ -10,12 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+
 @Entity
 @Table(name = "users")
 public class UserClass {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name = "userName")
@@ -27,13 +30,18 @@ public class UserClass {
 	@Column(name = "pass_key")
 	private String password;
 
+	
+
 	public UserClass() {}
 	
-	public UserClass(String name) {
+	
+	public UserClass(String name, String email, String password) {
 		super();
 		this.userName = name;
+		this.email = email;
+		this.password = password;
 	}
-	
+
 	public String getUserName() {
 		return userName;
 	}
