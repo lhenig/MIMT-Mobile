@@ -15,15 +15,12 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		System.out.println("configuring");
 		http.csrf().disable().cors().and()
-				.httpBasic()
-				.and()
+				
 				.authorizeRequests()
-				.antMatchers("/user/**").permitAll()
-				.anyRequest().authenticated();
+				.antMatchers("/user/**").hasAnyAuthority("USER","ADMIN")
+				.anyRequest().authenticated().and().formLogin();
 		// for logout you would send a post request to
 		// http://localhost:8080/spring-mvc/logout
 	}
-
-
 
 }

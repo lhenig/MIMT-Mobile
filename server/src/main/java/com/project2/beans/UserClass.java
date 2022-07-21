@@ -42,6 +42,11 @@ public class UserClass {
 		this.password = password;
 	}
 
+	// @PreAuthorize("hasAuthority('ADMIN')")
+	public int getId(){
+		return id;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
