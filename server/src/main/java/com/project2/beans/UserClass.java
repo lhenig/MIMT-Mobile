@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
+@EnableGlobalMethodSecurity(jsr250Enabled = false, prePostEnabled = true, securedEnabled = false)
 @Entity
 @Table(name = "users")
 public class UserClass {
@@ -42,7 +43,7 @@ public class UserClass {
 		this.password = password;
 	}
 
-	// @PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public int getId(){
 		return id;
 	}
