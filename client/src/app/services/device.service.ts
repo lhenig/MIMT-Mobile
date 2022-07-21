@@ -7,14 +7,14 @@ import { Device } from '../models/device.model';
   providedIn: 'root'
 })
 export class DeviceService {
-  url: string = ""; //dunno yet
+  url: string = "http://localhost:8080/devices"; //dunno yet
   constructor(private http: HttpClient) { }
 
   findAllDevices(): Observable<HttpResponse<Device[]>> {
     return this.http.get<Device[]>(this.url, {observe: 'response'});
   }
 
-  findOneDevice(id: number): Observable<HttpResponse<Device>> {
+  findDevicesByUser(userId: number): Observable<HttpResponse<Device>> {
     return this.http.get<Device>(this.url, {observe: 'response'});
   }
   

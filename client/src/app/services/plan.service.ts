@@ -7,14 +7,14 @@ import { Plan } from '../models/plan.model';
   providedIn: 'root'
 })
 export class PlanService {
-  url: string = ""; //dunno yet
+  url: string = "http://localhost:8080/plans"; //dunno yet
   constructor(private http: HttpClient) { }
 
   findAllPlans(): Observable<HttpResponse<Plan[]>> {
     return this.http.get<Plan[]>(this.url, {observe: 'response'});
   }
 
-  findOnePlan(id: number): Observable<HttpResponse<Plan>> {
+  findPlanByDevice(deviceId: number): Observable<HttpResponse<Plan>> {
     return this.http.get<Plan>(this.url, {observe: 'response'});
   }
   
