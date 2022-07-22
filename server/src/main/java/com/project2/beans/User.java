@@ -28,12 +28,14 @@ public class User {
 	private String password;
 
 	public User() {}
-	
-	public User(String name) {
-		super();
-		this.userName = name;
+
+	public User(int id, String userName, String email, String password) {
+		this.id = id;
+		this.userName = userName;
+		this.email = email;
+		this.password = password;
 	}
-	
+
 	public String getUserName() {
 		return userName;
 	}
@@ -58,11 +60,9 @@ public class User {
 		this.password = password;
 	}
 
+	@Override
 	public String toString() {
-		return "User [id=" + id + ", name= " + userName + "]/n";
+		return "User [email=" + email + ", id=" + id + ", password=" + password + ", userName=" + userName + "]";
 	}
 
-	
-
-	
 }
