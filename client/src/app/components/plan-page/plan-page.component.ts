@@ -15,12 +15,12 @@ export class PlanPageComponent implements OnInit {
   constructor(private planService: PlanService, private router: Router) { }
 
   ngOnInit(): void {
-    this.planService.findAllPlans().subscribe((data) => {
-      //console.log("body: " + data.body);
-      if (data.body != null) {
-        this.PlanList = data.body;
-      }
-    });
+    // this.planService.findAllPlans().subscribe((data) => {
+    //   //console.log("body: " + data.body);
+    //   if (data.body != null) {
+    //     this.PlanList = data.body;
+    //   }
+    // });
   }
 
 }
