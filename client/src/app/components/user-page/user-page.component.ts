@@ -24,7 +24,7 @@ export class UserPageComponent implements OnInit {
     //put 1 here so it would be quiet, NEED CHANGED
 
     
-    this.userService.findUser(2).subscribe((data)=>{
+    this.userService.findUser(4).subscribe((data)=>{
       if (data.body != null) {
         console.log(data.body);
         //STUFF WITH DATA HERE
@@ -33,13 +33,14 @@ export class UserPageComponent implements OnInit {
       }
     })
 
-    this.deviceService.findDevicesByUser(2).subscribe((data)=>{
-      if (data.body != null) {
-        console.log(data.body);
-        //STUFF WITH DATA HERE
-        this.Devices?.push(data.body);
-      }
-    })
+    // // this ones gonna be weird
+    // this.deviceService.findDevicesByUser(1).subscribe((data)=>{
+    //   if (data.body != null) {
+    //     console.log(data.body);
+    //     //STUFF WITH DATA HERE
+    //     this.Devices?.push(data.body);
+    //   }
+    // })
 
   }
 

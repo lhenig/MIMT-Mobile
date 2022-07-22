@@ -8,7 +8,7 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  url: string = environment.apiUrl+"/user"; //dunno yet
+  url: string = environment.apiUrl+"/user";
   constructor(private http: HttpClient) { }
 
   //need to worry about user id being leaked

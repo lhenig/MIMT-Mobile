@@ -15,10 +15,15 @@ export class DeviceService {
     return this.http.get<Device[]>(this.url, {observe: 'response'});
   }
 
+  //THIS NEEDS TWEAKING, NEED NEW ROUTES ON BACKEND
   findDevicesByUser(userId: number): Observable<HttpResponse<Device>> {
-    return this.http.get<Device>(this.url, {observe: 'response'});
+    return this.http.get<Device>(this.url + `/byUser/${userId}`, {observe: 'response'});
   }
   
+  findDeviceById(deviceId: number): Observable<HttpResponse<Device>> {
+    return this.http.get<Device>(this.url + `?id=${deviceId}`, {observe: 'response'});
+  }
+
   //might not need all CRUD for devices
   saveDevice(device: Device): Observable<HttpResponse<Device>> {
     return this.http.post<Device>(this.url, device, {observe: 'response'});

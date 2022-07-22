@@ -15,8 +15,13 @@ export class PlanService {
     return this.http.get<Plan[]>(this.url, {observe: 'response'});
   }
 
+  //THIS NEEDS TWEAKING, NEEDS NEW ROUTES ON BACKEND
   findPlanByDevice(deviceId: number): Observable<HttpResponse<Plan>> {
-    return this.http.get<Plan>(this.url, {observe: 'response'});
+    return this.http.get<Plan>(this.url + `/byDevice/${deviceId}`, {observe: 'response'});
+  }
+
+  findPlanById(planId: number): Observable<HttpResponse<Plan>> {
+    return this.http.get<Plan>(this.url + `?id=${planId}`, {observe: 'response'});
   }
   
   //might not need all CRUD for plans
