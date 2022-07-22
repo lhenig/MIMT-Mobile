@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { UserSignupComponent } from './components/user-signup/user-signup.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AppService } from './services/app.service';
+import { ListItemComponent } from './components/list-item/list-item.component';
 
 //need to override intercept
 @Injectable()
@@ -45,7 +46,8 @@ const routes: Routes = [
     UserInfoComponent,
     UsersPlansComponent,
     UserLoginComponent,
-    UserSignupComponent
+    UserSignupComponent,
+    ListItemComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

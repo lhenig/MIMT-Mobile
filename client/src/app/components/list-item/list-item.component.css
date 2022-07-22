@@ -1,0 +1,10 @@
+.form-item{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.input-square{
+    border:solid;
+    border-radius: 1px;
+    padding: 10px;
+    
+}

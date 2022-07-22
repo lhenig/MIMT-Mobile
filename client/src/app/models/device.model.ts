@@ -2,15 +2,19 @@ export class Device {
 
     //SUBJECT TO CHANGE
     id: number;
-    name: string;
-    
+    deviceName: string;
+    phoneNumber: string;
+    planId: number;
 
     constructor(
         id: number,
-        name: string,
+        deviceName: string,
+        phoneNumber: string,
+        planId: number
         ) {
             this.id = id;
-            this.name = name;
-            
+            this.deviceName = deviceName;
+            this.phoneNumber = phoneNumber;
+            this.planId = planId;
         }
 }

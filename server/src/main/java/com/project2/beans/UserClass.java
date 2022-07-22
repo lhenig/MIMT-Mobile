@@ -31,21 +31,12 @@ public class UserClass {
 	@Column(name = "pass_key")
 	private String password;
 
-	
-
 	public UserClass() {}
-	
-	
-	public UserClass(String name, String email, String password) {
-		super();
-		this.userName = name;
+
+	public UserClass(String userName, String email, String password) {
+		this.userName = userName;
 		this.email = email;
 		this.password = password;
-	}
-
-	@PreAuthorize("hasAuthority('ADMIN')")
-	public int getId(){
-		return id;
 	}
 
 	public String getUserName() {
@@ -72,11 +63,9 @@ public class UserClass {
 		this.password = password;
 	}
 
+	@Override
 	public String toString() {
-		return "UserClass [id=" + id + ", name= " + userName + "]/n";
+		return "User [email=" + email + ", id=" + id + ", password=" + password + ", userName=" + userName + "]";
 	}
 
-	
-
-	
 }

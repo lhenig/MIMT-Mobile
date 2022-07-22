@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-signup.component.css']
 })
 export class UserSignupComponent implements OnInit {
-  newUser: User = new User ("", "", "", [], []); 
+  newUser: User = new User (1, "", "", [], []); 
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -17,7 +17,7 @@ export class UserSignupComponent implements OnInit {
   }
 
   create(): void {
-    if (this.newUser.name.trim() != "" && this.newUser.email != "") {
+    if (this.newUser.userName.trim() != "" && this.newUser.email != "") {
       //send the forms values
       this.userService.saveUser(this.newUser).subscribe(data => {
         let route = this.router.config.find(r => r.path === 'users');

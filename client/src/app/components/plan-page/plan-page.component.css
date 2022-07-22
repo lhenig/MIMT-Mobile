@@ -36,7 +36,7 @@
 }
 .plan-page-container{
     background-image: linear-gradient(176deg, #ffffff 70%, #00b7ff calc(70% + 2px));
-    height: 94vh;
+    height: 94.4vh;
 }
 .device-creation-container{
     display: grid;
@@ -51,7 +51,7 @@
 
 }
 .devices-info{
-    padding-top: 4vh;
+    padding-top: .5vh;
     padding-left: 3vw;
     display: flex;
     align-items: flex-start;
@@ -97,7 +97,7 @@
     border-color: rgb(196, 196, 196);;
 }
 .plan-card-container{
-    margin-top: 4vh;
+    margin-top: 2vh;
     display: flex;
     justify-content: space-around;
     width:1000;
@@ -166,5 +166,66 @@
     border: solid;
     border-width: 1px;
     border-color: #d4d4d4;
-    border-radius: 10px;
+    border-radius: 17px;
+  }
+  .selected{
+    border-width: 2px;
+    border-color: rgb(64, 185, 255);
+  }
+  .pin-to-bottom{
+    position:absolute;
+    left:25%;
+    bottom: 35px;
+  }
+
+  .minus-button{
+    margin-right: 15px;
+    border:solid;
+    border-color: #00b7ff;
+    border-radius: 20px;
+    border-width: 2px;
+    background-color: #00b7ff;
+    color: white;
+
+    padding-top:0px;
+    padding-bottom: 3px;
+    padding-left: 9px;
+    padding-right: 9px;
+    user-select: none;
+  }
+  .minus-button:hover{
+    background-color: #5dd1ff;
+  }
+  .plus-button{
+    margin-left: 15px;
+    border:solid;
+    border-color: #00b7ff;
+    border-radius: 20px;
+    border-width: 2px;
+    background-color: #00b7ff;
+
+    padding-top:0px;
+    padding-bottom: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    user-select: none;
+    color: white;
+  }
+  .plus-button:hover{
+    background-color: #5dd1ff;
+  }
+  .submit-button{
+    position: absolute;
+    right: 230px;
+    bottom: 50%;
+  }
+  .button-styling{
+    background-color: #00b7ff;
+    color: white;
+    padding: 10px 20px;
+    border: solid;
+    border-radius: 20px;
+  }
+  .button-styling:hover{
+    background-color:#5dd1ff
   }
