@@ -10,6 +10,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UsersPlansComponent } from './components/users-plans/users-plans.component';
+import { ListItemComponent } from './components/list-item/list-item.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UsersPlansComponent } from './components/users-plans/users-plans.compon
     LandingPageComponent,
     PageNotFoundComponent,
     UserInfoComponent,
-    UsersPlansComponent
+    UsersPlansComponent,
+    ListItemComponent
   ],
   imports: [
     BrowserModule,

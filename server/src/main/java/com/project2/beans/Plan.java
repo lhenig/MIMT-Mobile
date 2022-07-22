@@ -22,14 +22,22 @@ public class Plan {
     private String planName;
 
     @Column(name = "device_limit")
-    private int deviceLimit;   
+    private int deviceLimit;  
+    
+    @Column(name="price")
+    private int price;
+
+    @Column(name="user_id")
+    private int userId;
 
     public Plan() {};
 
-    public Plan( String planName, int deviceLimit) {
-        super();
+    public Plan(int id, String planName, int deviceLimit, int price, int userId) {
+        this.id = id;
         this.planName = planName;
         this.deviceLimit = deviceLimit;
+        this.price = price;
+        this.userId = userId;
     }
 
     public String getPlanName() {
@@ -47,11 +55,30 @@ public class Plan {
     public void setDeviceLimit(int deviceLimit) {
         this.deviceLimit = deviceLimit;
     }
+    
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     @Override
     public String toString() {
-		return "Plan: [id=" + id + ", name= " + planName + ", Device Limit=" + deviceLimit + "]/n";
-	}
+        return "Plan [deviceLimit=" + deviceLimit + ", id=" + id + ", planName=" + planName + ", price=" + price
+                + ", userId=" + userId + "]";
+    }
+
+    
 
     
 }

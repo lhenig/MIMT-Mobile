@@ -1,4 +1,5 @@
 import { Device } from "./device.model";
+import { Plan } from "./plan.model";
 
 export class User {
 
@@ -6,20 +7,20 @@ export class User {
     id: number;
     userName: string;
     email: string;
+    plans: Array<Plan>;
     devices: Array<Device>;
-    monthlyBill: number;
 
     constructor(
         id: number,
         userName: string,
         email: string,
-        devices: Array<Device>,
-        monthlyBill: number
+        plans: Array<Plan>,
+        devices: Array<Device>
         ) {
             this.id = id;
             this.userName = userName;
             this.email = email;
-            this.devices = devices;
-            this.monthlyBill = monthlyBill;
+            this.plans = plans;
+            this.devices = devices
         }
 }
