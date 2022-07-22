@@ -27,8 +27,7 @@ public class Device {
     @Column(name = "plan_id")
     private int planId;
 
-    public Device(int id, String deviceName, String phoneNumber, int planId) {
-        this.id = id;
+    public Device(String deviceName, String phoneNumber, int planId) {
         this.deviceName = deviceName;
         this.phoneNumber = phoneNumber;
         this.planId = planId;

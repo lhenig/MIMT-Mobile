@@ -32,8 +32,7 @@ public class Plan {
 
     public Plan() {};
 
-    public Plan(int id, String planName, int deviceLimit, int price, int userId) {
-        this.id = id;
+    public Plan(String planName, int deviceLimit, int price, int userId) {
         this.planName = planName;
         this.deviceLimit = deviceLimit;
         this.price = price;
