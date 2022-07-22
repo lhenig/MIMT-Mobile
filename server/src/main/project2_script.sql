@@ -12,15 +12,15 @@ create table users(
 create table plans(
 	id int auto_increment primary key,
     plan_name varchar(45),
-    device_limit int
+    device_limit int,
+    user_id int,
+    foreign key (user_id) references users(id)
 );
 
 create table devices(
 	id int auto_increment primary key,
     device_name varchar(45),
-    user_id int,
     plan_id int,
-	foreign key (user_id) references users(id),
     foreign key (plan_id) references plans(id)
 );
 
@@ -34,26 +34,26 @@ insert into users(user_name, email, pass_key)
 values("Logan", "Logan@gmail.com", "test3");
 
 insert into users(user_name, email, pass_key)
-values("Kevin", "Kevin@gmail.com", "test4");
+values("Kevin", "Kevin@gmail.com", "$2a$16$XFmlcOtGSeF3kJnbdElD5eUPWO0zcUE05zhkmo.EAxT8Fh/4iT6dO");
 
-insert into plans(plan_name, device_limit)
-values("Basic", 5);
+insert into plans(plan_name, device_limit, user_id)
+values("Basic", 5, 2);
 
-insert into plans(plan_name, device_limit)
-values("Cooler", 7);
+insert into plans(plan_name, device_limit, user_id)
+values("Cooler", 7, 2);
 
-insert into plans(plan_name, device_limit)
-values("Minimal", 9);
+insert into plans(plan_name, device_limit, user_id)
+values("Minimal", 9, 1);
 
-insert into devices(device_name, user_id, plan_id)
-values("Galaxy S20", 1, 3);
+insert into devices(device_name, plan_id)
+values("Galaxy S20", 1);
 
-insert into devices(device_name, user_id, plan_id)
-values("Galaxy S10", 1, 2);
+insert into devices(device_name, plan_id)
+values("Galaxy S10", 2);
 
-insert into devices(device_name, user_id, plan_id)
-values("Iphone 10", 2, 1);
+insert into devices(device_name, plan_id)
+values("Iphone 10", 3);
 
-insert into devices(device_name, user_id, plan_id)
-values("Iphone 13", 2, 2);
+insert into devices(device_name, plan_id)
+values("Iphone 13", 3);
 

@@ -17,34 +17,50 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.project2.beans.UserClass;
-import com.project2.data.Repository;
+import com.project2.services.UserService;
 
 @EnableGlobalMethodSecurity(jsr250Enabled = false, prePostEnabled = true, securedEnabled = false)
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
+
   @Autowired
-  Repository repo;
+  UserService userService;
   
-  
+  // Just for testing
   @GetMapping("/users")
   public ResponseEntity<List<UserClass>> getUsers() {
-    List<UserClass> userData = repo.findAllUsers();
+    List<UserClass> userData = userService.findAllUsers();
     if (!userData.isEmpty()) {
       return new ResponseEntity<>(userData, HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
+
+    
+  @GetMapping("/{id}")
+  public ResponseEntity<UserClass> findById(@PathVariable("id") int id){
+	  
+	  try {
+		  UserClass users = userService.findById(id);
+		  if(users == null) {
+			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		  }
+		  return new ResponseEntity<UserClass>(users, HttpStatus.OK);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
   
   
   @PostMapping("/users")
   public ResponseEntity<UserClass> createUser(@RequestBody UserClass user) {
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(7);
     try {
-      UserClass _user = repo
-          .save(new UserClass(user.getUserName(), user.getEmail(), encoder.encode(user.getPassword())));
+      UserClass _user = userService
+          .add(new UserClass(user.getUserName(), user.getEmail(), encoder.encode(user.getPassword())));
       return new ResponseEntity<>(_user, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -53,10 +69,10 @@ public class UserController {
   
   @PutMapping("/{id}")
   public ResponseEntity<UserClass> updateUser(@PathVariable("id") int id, @RequestBody UserClass user) {
-    UserClass userData = repo.findById(id);
+    UserClass userData = userService.findById(id);
     if (userData != null) {
       userData.setUserName(user.getUserName());
-      return new ResponseEntity<>(repo.save(userData), HttpStatus.OK);
+      return new ResponseEntity<>(userService.add(userData), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -66,37 +82,25 @@ public class UserController {
   @DeleteMapping("/{id}")
   public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") int id) {
     try {
-      repo.deleteById(id);
+      userService.delete(id);
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     } catch (Exception e) {
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
-  @PreAuthorize("hasAuthority('ADMIN')")
-  @DeleteMapping("/user")
-  public ResponseEntity<HttpStatus> deleteAllUsers() {
-    try {
-      repo.deleteAll();
-      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-  }
+
+  // @PreAuthorize("hasAuthority('ADMIN')")
+  // @DeleteMapping("/user")
+  // public ResponseEntity<HttpStatus> deleteAllUsers() {
+  //   try {
+  //     userService.deleteAll();
+  //     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  //   } catch (Exception e) {
+  //     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+  //   }
+  // }
   
-  
-  @GetMapping("/{id}")
-  public ResponseEntity<UserClass> findByName(@PathVariable("id") int id){
-	  
-	  try {
-		  UserClass users = repo.findById(id);
-		  if(users == null) {
-			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		  }
-		  return new ResponseEntity<UserClass>(users, HttpStatus.OK);
-	    } catch (Exception e) {
-	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
-	  }
+
   
   
 }

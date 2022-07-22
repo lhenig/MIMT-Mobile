@@ -11,9 +11,10 @@ import { finalize } from 'rxjs/operators'; //'finally' is deprecated
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  credentials = {name: '', password: ''}
   title = 'Skillstorm-P2';//has to match server
   constructor(private app: AppService, private http: HttpClient, private router: Router){
-    this.app.authenticate(undefined, undefined);
+    this.app.authenticate(this.credentials);
   }
 
   //might need to change this later
