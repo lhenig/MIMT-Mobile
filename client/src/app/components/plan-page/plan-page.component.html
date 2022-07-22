@@ -21,43 +21,40 @@
                                 Phone Model:
                             </div>
                         </div>
-                        <i class="bi bi-phone"></i>
-                        <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber">
-                        <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel">
+                        <form id="my-form">
+                          <app-list-item *ngFor="let phone of phones"></app-list-item>
+                        </form>
                     </div>
-                    <div class="form-item-container">   
-                        <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber">
-                        <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel">
-                    </div>
-                    <div class="form-item-container">   
-                        <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber">
-                        <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel">
-                    </div>
-                    <div class="form-item-container">   
-                        <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber">
-                        <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel">
-                    </div>
-                    <div class="form-item-container">   
-                        <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber">
-                        <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel">
-                    </div>
+                    
 
                   </form>
             </div>
         </div>
+        <div class="pin-to-bottom">
         <div class="num-devices container">
-                <div class="device-items shadow card">
+            <div class="device-items shadow card">
                 <h2>How many devices do you need?</h2>
-                    <div class="center-this">
-                            <div>
-                                <input type="number" id="quantity" name="quantity" min="1" max="12" value="1">
-                            </div>
-                            <div>
-                                &nbsp; Max of (12)
-                            </div>
+                <div class="center-this">
+                    <div>
+                        <span class="minus-button" (click)="decr()">-</span>
+                        <span id="curPhones">1</span>
+                        <span class="plus-button" (click)="incr()">+</span>
+                    </div>
+                    <div>
+                      <span>
+                        &nbsp; Max of (
+                      </span>
+                      <span id="maxPhones">
+                        1
+                      </span>
+                      <span>
+                        )
+                      </span>
+                        
                     </div>
                 </div>
             </div>
+        </div>
             <div class="plan-card-container">
                 <section class="pricing">
                     <div class="container">
@@ -65,7 +62,7 @@
                         <!-- Free Tier -->
                         <div class="col-lg-4">
                           <div class="card mb-5 mb-lg-0">
-                            <div class="card-body">
+                            <div class="card-body" id="plan1">
                               <h5 class="card-title text-muted text-uppercase text-center">Mimt MINIMAL</h5>
                               <h6 class="card-price text-center">$20.99<span class="period">/month</span></h6>
                               <hr>
@@ -74,7 +71,7 @@
                                 <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
                               </ul>
                               <div class="d-grid">
-                                <a href="#" class="btn btn-primary text-uppercase">SELECT</a>
+                                <a (click)="selectPlan('MINIMAL')" class="btn btn-primary text-uppercase">SELECT</a>
                               </div>
                             </div>
                           </div>
@@ -82,7 +79,7 @@
                         <!-- Free Tier -->
                         <div class="col-lg-4">
                             <div class="card mb-5 mb-lg-0">
-                              <div class="card-body">
+                              <div class="card-body" id="plan2">
                                 <h5 class="card-title text-muted text-uppercase text-center">Mimt Basic</h5>
                                 <h6 class="card-price text-center">$60.99<span class="period">/month</span></h6>
                                 <hr>
@@ -91,7 +88,7 @@
                                   <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
                                 </ul>
                                 <div class="d-grid">
-                                  <a href="#" class="btn btn-primary text-uppercase">SELECT</a>
+                                  <a (click)="selectPlan('BASIC')" class="btn btn-primary text-uppercase">SELECT</a>
                                 </div>
                               </div>
                             </div>
@@ -99,7 +96,7 @@
                         <!-- Free Tier -->
                         <div class="col-lg-4">
                             <div class="card mb-5 mb-lg-0">
-                              <div class="card-body">
+                              <div class="card-body" id="plan3">
                                 <h5 class="card-title text-muted text-uppercase text-center">Mimt Ultra</h5>
                                 <h6 class="card-price text-center">$110.99<span class="period">/month</span></h6>
                                 <hr>
@@ -108,16 +105,21 @@
                                   <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
                                 </ul>
                                 <div class="d-grid">
-                                  <a href="#" class="btn btn-primary text-uppercase">SELECT</a>
+                                  <a (click)="selectPlan('ULTRA')" class="btn btn-primary text-uppercase">SELECT</a>
                                 </div>
                               </div>
                             </div>
                           </div>                        
                       </div>
                     </div>
-                </section>
-            
-    </div>
+                  </section>
+              </div>
+            </div>
+            <div class="submit-button">
+                <button class="button-styling" (click)="submitPlan()">
+                  Create Plan
+                </button>
+            </div>
     
     <div id="plans">
         {{PlanList}}
