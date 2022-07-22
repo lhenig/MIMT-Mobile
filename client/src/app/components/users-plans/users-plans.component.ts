@@ -12,7 +12,8 @@ import { PlanService } from 'src/app/services/plan.service';
   styleUrls: ['./users-plans.component.css']
 })
 export class UsersPlansComponent implements OnInit {
-  Devices?: Device[]=[];
+  Plan?: Plan;
+  Device?: Device;
 
   @Input() User?: User;
 
@@ -20,12 +21,19 @@ export class UsersPlansComponent implements OnInit {
 
   //CHANGE THIS
   ngOnInit(): void {
-    // this.deviceService.findDevicesByUser(1).subscribe((data) => {
-    //   if (data.body != null) {
-    //     console.log(data.body);
-    //     //STUFF WITH DATA HERE
-    //     this.Devices?.push(data.body);
-    // }});
+    this.planService.findPlanById(2).subscribe((data) => {
+      if (data.body != null) {
+        console.log(data.body);
+        //STUFF WITH DATA HERE
+        this.Plan = data.body;
+    }});
+
+    this.deviceService.findDeviceById(2).subscribe((data) => {
+      if (data.body != null) {
+        console.log(data.body);
+        //STUFF WITH DATA HERE
+        this.Device = data.body;
+    }});
   };
   
 

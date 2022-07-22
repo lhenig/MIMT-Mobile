@@ -8,7 +8,7 @@ import { Plan } from '../models/plan.model';
   providedIn: 'root'
 })
 export class PlanService {
-  url: string = environment.apiUrl+"/plans"; //dunno yet
+  url: string = environment.apiUrl+"/plan"; //dunno yet
   constructor(private http: HttpClient) { }
 
   findAllPlans(): Observable<HttpResponse<Plan[]>> {
@@ -16,12 +16,12 @@ export class PlanService {
   }
 
   //THIS NEEDS TWEAKING, NEEDS NEW ROUTES ON BACKEND
-  findPlanByDevice(deviceId: number): Observable<HttpResponse<Plan>> {
-    return this.http.get<Plan>(this.url + `/byDevice/${deviceId}`, {observe: 'response'});
+  findPlanByUser(userName: string): Observable<HttpResponse<Plan>> {
+    return this.http.get<Plan>(this.url + `/byUser/${userName}`, {observe: 'response'});
   }
 
   findPlanById(planId: number): Observable<HttpResponse<Plan>> {
-    return this.http.get<Plan>(this.url + `?id=${planId}`, {observe: 'response'});
+    return this.http.get<Plan>(this.url + `/${planId}`, {observe: 'response'});
   }
   
   //might not need all CRUD for plans

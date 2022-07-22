@@ -8,7 +8,7 @@ import { Device } from '../models/device.model';
   providedIn: 'root'
 })
 export class DeviceService {
-  url: string = environment.apiUrl+"/devices"; //dunno yet
+  url: string = environment.apiUrl+"/device"; //dunno yet
   constructor(private http: HttpClient) { }
 
   findAllDevices(): Observable<HttpResponse<Device[]>> {
@@ -16,12 +16,12 @@ export class DeviceService {
   }
 
   //THIS NEEDS TWEAKING, NEED NEW ROUTES ON BACKEND
-  findDevicesByUser(userId: number): Observable<HttpResponse<Device>> {
-    return this.http.get<Device>(this.url + `/byUser/${userId}`, {observe: 'response'});
+  findDevicesByPlan(planId: number): Observable<HttpResponse<Device>> {
+    return this.http.get<Device>(this.url + `/byPlan/${planId}`, {observe: 'response'});
   }
   
   findDeviceById(deviceId: number): Observable<HttpResponse<Device>> {
-    return this.http.get<Device>(this.url + `?id=${deviceId}`, {observe: 'response'});
+    return this.http.get<Device>(this.url + `/${deviceId}`, {observe: 'response'});
   }
 
   //might not need all CRUD for devices
