@@ -12,7 +12,7 @@ export class UserService {
 
   //need to worry about user id being leaked
   findUser(id: number): Observable<HttpResponse<User>> {
-    return this.http.get<User>(this.url + "/" + id, {observe: 'response'});
+    return this.http.get<User>(this.url + "/" + id, {observe: 'response',withCredentials: true});
   }
 
   

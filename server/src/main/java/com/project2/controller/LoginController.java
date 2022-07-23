@@ -17,35 +17,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.project2.beans.UserClass;
 import com.project2.data.UserRepository;
+import com.project2.services.UserServiceV1;
+
+import me.shib.java.rest.client.lib.ServiceResponse;
 
 // Not working but leaving just in case
 
 @EnableGlobalMethodSecurity(jsr250Enabled = false, prePostEnabled = true, securedEnabled = false)
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController
-@RequestMapping(value = "/login1")
+@RequestMapping(value = "/login")
 public class LoginController {
   @Autowired
-  UserRepository repo;
-  
+  UserServiceV1 userServiceImpl;
+
   @Autowired
   DaoAuthenticationProvider authProvider;
-  
 
-  @PostMapping
-  public ResponseEntity<?> authenticateUser(@RequestBody String user) {
-    DaoAuthenticationProvider authentication = authProvider;
-    try {
-      UserClass _user = repo.findByUserName(user);
-      System.out.println("User: " + _user);
-      return new ResponseEntity<String>("User: " + _user, HttpStatus.ACCEPTED);
-    } catch (Exception e) {
-      return new ResponseEntity<String>("null", HttpStatus.INTERNAL_SERVER_ERROR);
+  @PostMapping(value = "/")
+  @ResponseBody
+  public ResponseEntity<?> processLogin(@RequestBody UserClass user) {
+    
+    if (user != null) {
+      return new ResponseEntity<>(user, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
-  
 
 }

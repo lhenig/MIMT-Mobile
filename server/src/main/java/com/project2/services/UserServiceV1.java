@@ -10,7 +10,7 @@ import com.project2.beans.UserClass;
 import com.project2.data.UserRepository;
 
 @Service
-public class UserService {
+public class UserServiceV1 {
 	
 	@Autowired
 	private UserRepository repo;

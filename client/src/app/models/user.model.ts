@@ -4,11 +4,11 @@ import { Plan } from "./plan.model";
 export class User {
 
     //SUBJECT TO CHANGE
-    id: number;
-    userName: string;
-    email: string;
-    plans: Array<Plan>;
-    devices: Array<Device>;
+    id!: number;
+    userName!: string;
+    email!: string;
+    plans!: Array<Plan>;
+    devices!: Array<Device>;
 
     constructor(
         id: number,
@@ -23,4 +23,5 @@ export class User {
             this.plans = plans;
             this.devices = devices
         }
+        
 }

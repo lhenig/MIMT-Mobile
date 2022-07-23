@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.project2.beans.UserClass;
-import com.project2.services.UserService;
+import com.project2.services.UserServiceV1;
 
 @EnableGlobalMethodSecurity(jsr250Enabled = false, prePostEnabled = true, securedEnabled = false)
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
@@ -26,7 +26,7 @@ import com.project2.services.UserService;
 public class UserController {
 
   @Autowired
-  UserService userService;
+  UserServiceV1 userService;
   
   // Just for testing
   @GetMapping("/users")
