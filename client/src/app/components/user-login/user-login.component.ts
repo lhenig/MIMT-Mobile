@@ -21,7 +21,7 @@ export class UserLoginComponent implements OnInit {
 
   login(): void{
     this.app.authenticate(this.credentials).subscribe((data) => {
-      console.log(data.body + " logged");
+      
       this.router.navigateByUrl('/');
     });
     

@@ -1,6 +1,10 @@
 package com.project2.controller;
 
 import java.util.List;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.project2.beans.UserClass;
 import com.project2.services.UserServiceV1;
@@ -29,9 +34,10 @@ public class UserController {
   UserServiceV1 userService;
   
   // Just for testing
-  @GetMapping("/users")
-  public ResponseEntity<List<UserClass>> getUsers() {
+  @GetMapping("/authed")
+  public ResponseEntity<List<UserClass>> getUsers(HttpServletResponse response) {
     List<UserClass> userData = userService.findAllUsers();
+    response.getHeader("cookie");
     if (!userData.isEmpty()) {
       return new ResponseEntity<>(userData, HttpStatus.OK);
     } else {
@@ -40,11 +46,11 @@ public class UserController {
   }
 
     
-  @GetMapping("/{id}")
-  public ResponseEntity<UserClass> findById(@PathVariable("id") int id){
+  @GetMapping("/{name}")
+  public ResponseEntity<UserClass> findById(@PathVariable("name") String name){
 	  
 	  try {
-		  UserClass users = userService.findById(id);
+		  UserClass users = userService.findByName(name);
 		  if(users == null) {
 			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		  }
@@ -54,8 +60,10 @@ public class UserController {
 	    }
 	  }
   
-  
-  @PostMapping("/users")
+
+
+
+  @PostMapping("/newuser")
   public ResponseEntity<UserClass> createUser(@RequestBody UserClass user) {
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(7);
     try {

@@ -1,4 +1,4 @@
-<!-- <div class="container text-center">
+<div class="container text-center">
     <div>
         <h1>Registration - Sign Up</h1>
     </div>
@@ -7,7 +7,7 @@
         <div class="form-group row">
             <label for="Name" class="control-label col-4 col-form-label">Name: </label>
             
-                <input [(ngModel)]="newUser.name" type="text" class="form-control" name="Name" id="Name" required minlength="0" maxlength="50" #Name="ngModel"/>
+                <input [(ngModel)]="credentials.name" type="text" class="form-control" name="Name" id="Name" required minlength="0" maxlength="50" #Name="ngModel"/>
                 <div class="alert" *ngIf="Name.invalid && (Name.dirty || Name.touched)"> 
                     <div *ngIf="Name.errors?.['required']">Name is required</div>   
                 </div>
@@ -17,14 +17,14 @@
         <div class="control-label form-group row">
             <label for="Email" class="col-4 col-form-label">Email: </label>
             
-                <input [(ngModel)]="newUser.email" type="Email" name="Email" class="form-control" required #Email="ngModel"/>
+                <input [(ngModel)]="credentials.email" type="Email" name="Email" class="form-control" required #Email="ngModel"/>
             
         </div>
          
         <div class="control-label form-group row">
             <label for="Password" class="col-4 col-form-label">Password: </label>
             
-                <input [(ngModel)]="newUser.password" type="password" class="form-control" name="Password" id="Password" required minlength="6" maxlength="20" #Password="ngModel"/>
+                <input [(ngModel)]="credentials.password" type="password" class="form-control" name="Password" id="Password" required minlength="6" maxlength="20" #Password="ngModel"/>
                 <div class="alert" *ngIf="Password.invalid && (Password.dirty || Password.touched)"> 
                     <div *ngIf="Password.errors?.['required']">Password is required</div>   
                 </div>
@@ -35,4 +35,4 @@
         </div>
     </div>
     </form>
-</div> -->
+</div>

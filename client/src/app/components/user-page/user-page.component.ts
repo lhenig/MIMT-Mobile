@@ -20,7 +20,7 @@ export class UserPageComponent implements OnInit {
     //put 1 here so it would be quiet, NEED CHANGED
 
     
-    this.userService.findUser(2).subscribe((data)=>{
+    this.userService.findUser().subscribe((data)=>{
       if (data.body != null) {
         console.log(data.body);
         //STUFF WITH DATA HERE

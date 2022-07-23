@@ -11,14 +11,14 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   //need to worry about user id being leaked
-  findUser(id: number): Observable<HttpResponse<User>> {
-    return this.http.get<User>(this.url + "/" + id, {observe: 'response',withCredentials: true});
+  findUser(): Observable<HttpResponse<User>> {
+    return this.http.get<User>(this.url + "/" + localStorage.getItem("name"), {observe: 'response',withCredentials: true});
   }
 
   
   //might have to tweak the arguments for these
   saveUser(user: User): Observable<HttpResponse<User>> {
-    return this.http.post<User>(this.url, user, {observe: 'response'});
+    return this.http.post<User>(this.url + "/newuser", user, {observe: 'response'});
   }
 
   updateUser(user: User): Observable<HttpResponse<User>> {

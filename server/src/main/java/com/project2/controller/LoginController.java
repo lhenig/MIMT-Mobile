@@ -1,6 +1,8 @@
 package com.project2.controller;
 
 import java.util.List;
+
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,23 +32,31 @@ import me.shib.java.rest.client.lib.ServiceResponse;
 @EnableGlobalMethodSecurity(jsr250Enabled = false, prePostEnabled = true, securedEnabled = false)
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController
-@RequestMapping(value = "/login")
+@RequestMapping(value = "/auth")
 public class LoginController {
   @Autowired
-  UserServiceV1 userServiceImpl;
+  UserServiceV1 userService;
 
-  @Autowired
-  DaoAuthenticationProvider authProvider;
 
-  @PostMapping(value = "/")
-  @ResponseBody
-  public ResponseEntity<?> processLogin(@RequestBody UserClass user) {
+  @GetMapping("/success")
+  public ResponseEntity<String> loginSuccess(){
+	  
+	  
+		 
+		  return new ResponseEntity<String>("Authenticated", HttpStatus.OK);
+	    
+	  }
+  
+
+  // @PostMapping(value = "/success")
+  // public ResponseEntity<UserClass> processLogin(@RequestBody UserClass user) {
     
-    if (user != null) {
-      return new ResponseEntity<>(user, HttpStatus.OK);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-  }
+  //   if (user != null) {
+  //     UserClass _user = userService.findByName(user.getUserName());
+  //     return new ResponseEntity<UserClass>(_user, HttpStatus.OK);
+  //   } else {
+  //     return new ResponseEntity<UserClass>(HttpStatus.NOT_FOUND);
+  //   }
+  // }
 
 }

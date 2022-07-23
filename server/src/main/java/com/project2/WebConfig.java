@@ -43,18 +43,21 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		System.out.println("configuring");
+		
 		http
 		.sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(1);
+		
 		http
 			.cors()
 		.and()
 			.authorizeRequests()
+			.antMatchers("/user/newuser").anonymous()
 			.antMatchers("/**").hasAnyAuthority("USER", "ADMIN")
 			.anyRequest().authenticated()
 		.and()
 			.formLogin()
-				.defaultSuccessUrl("/user/users").permitAll()
+				.defaultSuccessUrl("/user/authed").permitAll()
 			.and()
 				.logout().logoutUrl("/logout").deleteCookies("JSESSIONID");
 
