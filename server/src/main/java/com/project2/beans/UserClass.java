@@ -31,6 +31,7 @@ public class UserClass {
 	@Column(name = "pass_key")
 	private String password;
 
+	public UserClass() {}
 
 	public UserClass(String userName, String email, String password) {
 		this.userName = userName;
@@ -38,10 +39,6 @@ public class UserClass {
 		this.password = password;
 	}
 
-	public int getId() {
-		return id;
-	}
-	
 	public String getUserName() {
 		return userName;
 	}
