@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { AppService } from 'src/app/services/app.service';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -17,9 +18,7 @@ export class UserPageComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    //put 1 here so it would be quiet, NEED CHANGED
 
-    
     this.userService.findUser().subscribe((data)=>{
       if (data.body != null) {
         console.log(data.body);
@@ -27,7 +26,7 @@ export class UserPageComponent implements OnInit {
         this.User = data.body;
       }
     })
-
+    
   }
 
 }

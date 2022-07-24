@@ -8,7 +8,7 @@ import { User } from "../models/user.model";
   })
 export class AppService {
     
-  authenticated = false;
+  // authenticated = false;
   url: string = "http://localhost:8080/login";
 
   constructor(private http:HttpClient) {}
@@ -17,7 +17,7 @@ export class AppService {
 
         // Stores name for other components to use. Functions on other components only work if authenticated
         localStorage.setItem('name', credentials.name);
-    
+        
         // Format that backend receives login credentials
         const formData = new FormData();
         formData.append('username', credentials.name);

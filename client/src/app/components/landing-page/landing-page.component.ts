@@ -14,11 +14,9 @@ export class LandingPageComponent implements OnInit {
 
   constructor(private app: AppService, private http: HttpClient) {
     //can change this
-    http.get('resource').subscribe(data => this.greeting = data);
+    // http.get('resource').subscribe(data => this.greeting = data);
   }
 
   ngOnInit(): void {
   }
-
-  authenticated() { return this.app.authenticated; }
 }
