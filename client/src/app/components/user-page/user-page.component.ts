@@ -4,6 +4,7 @@ import { Device } from 'src/app/models/device.model';
 import { User } from 'src/app/models/user.model';
 import { DeviceService } from 'src/app/services/device.service';
 import { PlanService } from 'src/app/services/plan.service';
+import { AppService } from 'src/app/services/app.service';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -21,10 +22,8 @@ export class UserPageComponent implements OnInit {
   constructor(private userService: UserService, private deviceService: DeviceService, private router: Router) { }
 
   ngOnInit(): void {
-    //put 1 here so it would be quiet, NEED CHANGED
 
-    
-    this.userService.findUser(4).subscribe((data)=>{
+    this.userService.findUser().subscribe((data)=>{
       if (data.body != null) {
         console.log(data.body);
         //STUFF WITH DATA HERE
@@ -32,16 +31,7 @@ export class UserPageComponent implements OnInit {
         
       }
     })
-
-    // // this ones gonna be weird
-    // this.deviceService.findDevicesByUser(1).subscribe((data)=>{
-    //   if (data.body != null) {
-    //     console.log(data.body);
-    //     //STUFF WITH DATA HERE
-    //     this.Devices?.push(data.body);
-    //   }
-    // })
-
+    
   }
 
 }

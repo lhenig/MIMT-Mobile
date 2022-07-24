@@ -21,25 +21,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import com.project2.beans.UserClass;
+
+import com.project2.beans.Plan;
+import com.project2.beans.Plan;
+import com.project2.services.PlanService;
 import com.project2.services.UserServiceV1;
 
 @EnableGlobalMethodSecurity(jsr250Enabled = false, prePostEnabled = true, securedEnabled = false)
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController
-@RequestMapping(value = "/user")
-public class UserController {
+@RequestMapping(value = "/plans")
+public class PlanController {
 
   @Autowired
-  UserServiceV1 userService;
+  PlanService planService;
   
   // Just for testing
   @GetMapping("/authed")
-  public ResponseEntity<List<UserClass>> getUsers(HttpServletResponse response) {
-    List<UserClass> userData = userService.findAllUsers();
+  public ResponseEntity<List<Plan>> getUsers(HttpServletResponse response) {
+    List<Plan> planData = planService.findAllPlans();
     response.getHeader("cookie");
-    if (!userData.isEmpty()) {
-      return new ResponseEntity<>(userData, HttpStatus.OK);
+    if (!planData.isEmpty()) {
+      return new ResponseEntity<>(planData, HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -47,14 +50,14 @@ public class UserController {
 
     
   @GetMapping("/{name}")
-  public ResponseEntity<UserClass> findById(@PathVariable("name") String name){
+  public ResponseEntity<Plan> findById(@PathVariable("name") String name){
 	  
 	  try {
-		  UserClass users = userService.findByName(name);
+		  Plan users = planService.findByName(name);
 		  if(users == null) {
 			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		  }
-		  return new ResponseEntity<UserClass>(users, HttpStatus.OK);
+		  return new ResponseEntity<Plan>(users, HttpStatus.OK);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
@@ -63,34 +66,32 @@ public class UserController {
 
 
 
-  @PostMapping("/newuser")
-  public ResponseEntity<UserClass> createUser(@RequestBody UserClass user) {
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(7);
+  @PostMapping("/newplan")
+  public ResponseEntity<Plan> createUser(@RequestBody Plan plan) {
     try {
-      UserClass _user = userService
-          .add(new UserClass(user.getUserName(), user.getEmail(), encoder.encode(user.getPassword())));
-      return new ResponseEntity<>(_user, HttpStatus.CREATED);
+      Plan _plan = planService
+          .add(new Plan(plan.getPlanName(), plan.getDeviceLimit(), plan.getPrice(), plan.getUserId()));
+      return new ResponseEntity<>(_plan, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
   
   @PutMapping("/{id}")
-  public ResponseEntity<UserClass> updateUser(@PathVariable("id") int id, @RequestBody UserClass user) {
-    UserClass userData = userService.findById(id);
-    if (userData != null) {
-      userData.setUserName(user.getUserName());
-      return new ResponseEntity<>(userService.add(userData), HttpStatus.OK);
+  public ResponseEntity<Plan> updatePlan(@PathVariable("id") int id, @RequestBody Plan plan) {
+    Plan planData = planService.findById(id);
+    if (planData != null) {
+        planData.setPlanName(plan.getPlanName());
+      return new ResponseEntity<>(planService.add(planData), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
 
-  @PreAuthorize("hasAuthority('ADMIN')")
   @DeleteMapping("/{id}")
   public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") int id) {
     try {
-      userService.delete(id);
+        planService.delete(id);
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     } catch (Exception e) {
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

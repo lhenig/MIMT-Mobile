@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  title = 'Demo';
+  greeting = {};
+
+  constructor(private app: AppService, private http: HttpClient) {
+    //can change this
+    // http.get('resource').subscribe(data => this.greeting = data);
+  }
 
   ngOnInit(): void {
   }
-
 }

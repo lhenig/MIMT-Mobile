@@ -1,0 +1,31 @@
+<div class="container text-center">
+    <div>
+        <h1>Login</h1>
+    </div>
+    <form (ngSubmit)="login(); userForm.reset()" #userForm>
+    <div class="m-3">        
+        <div class="control-label form-group row">
+            <label for="UserName" class="col-4 col-form-label">User Name: </label>
+            
+                <input [(ngModel)]="credentials.name" type="UserName" name="UserName" class="form-control" required #UserName="ngModel"/>
+            
+        </div>
+         
+        <div class="control-label form-group row">
+            <label for="Password" class="col-4 col-form-label">Password: </label>
+            
+                <input [(ngModel)]="credentials.password" type="password" class="form-control" name="Password" id="Password" required minlength="6" maxlength="20" #Password="ngModel"/>
+                <div class="alert" *ngIf="Password.invalid && (Password.dirty || Password.touched)"> 
+                    <div *ngIf="Password.errors?.['required']">Password is required</div>   
+                </div>
+        </div>
+        
+        <div>
+            <button type="submit" class="btn btn-primary" value="Post">Sign Up</button>
+        </div>
+        <!-- <div class="alert alert-danger" [hidden]="!error">
+            There was a problem logging in. Please try again.
+        </div> -->
+    </div>
+    </form>
+</div>
