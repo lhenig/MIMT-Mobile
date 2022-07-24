@@ -16,6 +16,7 @@ import { UserSignupComponent } from './components/user-signup/user-signup.compon
 import { RouterModule, Routes } from '@angular/router';
 import { AppService } from './services/app.service';
 import { ListItemComponent } from './components/list-item/list-item.component';
+import { CookieService } from 'ngx-cookie-service';
 
 //need to override intercept
 @Injectable()
@@ -56,7 +57,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [AppService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
+  providers: [AppService, CookieService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

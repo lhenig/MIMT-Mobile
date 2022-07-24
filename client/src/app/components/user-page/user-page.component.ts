@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
-import { AppService } from 'src/app/services/app.service';
 import { UserService } from 'src/app/services/user.service';
+// import { AppService } from 'src/app/services/app.service';
 
 
 @Component({
@@ -15,18 +15,17 @@ export class UserPageComponent implements OnInit {
   User?: User;
   // User.id: number;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private router: Router, private userService: UserService) { }
 
-  ngOnInit(): void {
-
+  ngOnInit() {
     this.userService.findUser().subscribe((data)=>{
       if (data.body != null) {
         console.log(data.body);
         //STUFF WITH DATA HERE
         this.User = data.body;
       }
-    })
-    
+    });
+    console.log(this.User);
   }
 
 }
