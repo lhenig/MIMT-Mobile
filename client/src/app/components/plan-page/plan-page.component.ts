@@ -2,7 +2,9 @@ import { LiteralMapExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Plan } from 'src/app/models/plan.model';
+import { User } from 'src/app/models/user.model';
 import { PlanService } from 'src/app/services/plan.service';
+import { UserStateService } from 'src/app/services/user-state.service';
 
 
 
@@ -12,12 +14,14 @@ import { PlanService } from 'src/app/services/plan.service';
   styleUrls: ['./plan-page.component.css']
 })
 export class PlanPageComponent implements OnInit {
+  User?: User;
   userId = JSON.parse(localStorage.getItem('userId') || '{}');
+  
   Plan: Plan = new Plan("noplan", 0, 0.0, this.userId);
   mimtPlan: string = "noplan";
   phones: string[] = [""];
   
-  constructor(private planService: PlanService, private router: Router) { }
+  constructor(private planService: PlanService, private userStateService: UserStateService, private router: Router) { }
 
 
   incr() {
@@ -151,6 +155,8 @@ export class PlanPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userStateService.currentUser.subscribe(user => this.User = user);
+    // console.log(this.User);
     this.planService.findPlansByUser(this.userId).subscribe((data) => {
       // logs all plans for current user
       //console.log(data.body);
