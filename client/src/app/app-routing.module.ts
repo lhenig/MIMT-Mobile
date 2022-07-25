@@ -4,7 +4,9 @@ import { DevicePageComponent } from './components/device-page/device-page.compon
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PlanPageComponent } from './components/plan-page/plan-page.component';
+import { UserLoginComponent } from './components/user-login/user-login.component';
 import { UserPageComponent } from './components/user-page/user-page.component';
+import { UserSignupComponent } from './components/user-signup/user-signup.component';
 
 
 
@@ -23,6 +25,12 @@ const routes: Routes = [
   },
   {
     path: 'user', component: UserPageComponent
+  },
+  {
+    path: 'login', component: UserLoginComponent
+  },
+  {
+    path: 'signup', component: UserSignupComponent
   },
   //This will handle 404 Errors
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }

@@ -1,26 +1,32 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Plan } from '../models/plan.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlanService {
-  url: string = ""; //dunno yet
+  url: string = environment.apiUrl+"/plans"; //dunno yet
   constructor(private http: HttpClient) { }
 
   findAllPlans(): Observable<HttpResponse<Plan[]>> {
-    return this.http.get<Plan[]>(this.url, {observe: 'response'});
+    return this.http.get<Plan[]>(this.url + "/authed", {observe: 'response', withCredentials: true});
   }
 
-  findOnePlan(id: number): Observable<HttpResponse<Plan>> {
-    return this.http.get<Plan>(this.url, {observe: 'response'});
+  //THIS NEEDS TWEAKING, NEEDS NEW ROUTES ON BACKEND
+  findPlanByUser(userId: number): Observable<HttpResponse<Plan>> {
+    return this.http.get<Plan>(this.url + `/${userId}`, {observe: 'response', withCredentials: true});
+  }
+
+  findPlanById(planId: number): Observable<HttpResponse<Plan>> {
+    return this.http.get<Plan>(this.url + `/${planId}`, {observe: 'response'});
   }
   
   //might not need all CRUD for plans
   savePlan(plan: Plan): Observable<HttpResponse<Plan>> {
-    return this.http.post<Plan>(this.url, plan, {observe: 'response'});
+    return this.http.post<Plan>(this.url + "/newplan", plan, {observe: 'response', withCredentials: true});
   }
 
   updatePlan(plan: Plan): Observable<HttpResponse<Plan>> {

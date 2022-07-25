@@ -1,23 +1,25 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  url: string = "http://localhost:8080/user"; //dunno yet
+  url: string = environment.apiUrl+"/user";
   constructor(private http: HttpClient) { }
 
   //need to worry about user id being leaked
-  findUser(id: number): Observable<HttpResponse<User>> {
-    return this.http.get<User>(this.url + "/" + id, {observe: 'response'});
+  findUser(): Observable<HttpResponse<User>> {
+    return this.http.get<User>(this.url + "/" + localStorage.getItem("name"), {observe: 'response',withCredentials: true});
   }
 
+  
   //might have to tweak the arguments for these
   saveUser(user: User): Observable<HttpResponse<User>> {
-    return this.http.post<User>(this.url, user, {observe: 'response'});
+    return this.http.post<User>(this.url + "/newuser", user, {observe: 'response'});
   }
 
   updateUser(user: User): Observable<HttpResponse<User>> {

@@ -12,9 +12,11 @@ import { PlanService } from 'src/app/services/plan.service';
   styleUrls: ['./plan-page.component.css']
 })
 export class PlanPageComponent implements OnInit {
-  PlanList: Plan[] = [];
+  userId = JSON.parse(localStorage.getItem('userId') || '{}');
+  Plan: Plan = new Plan("noplan", 0, 0.0, this.userId);
   mimtPlan: string = "noplan";
   phones: string[] = [""];
+  
   constructor(private planService: PlanService, private router: Router) { }
 
 
@@ -56,6 +58,9 @@ export class PlanPageComponent implements OnInit {
       while(this.phones.length > 1){
         this.phones.pop();
       }
+      this.Plan.planName = "Minimal";
+      this.Plan.price = 20.99;
+      this.Plan.deviceLimit = 1;
     }
     else{
       plan1?.classList.remove('selected');
@@ -75,6 +80,9 @@ export class PlanPageComponent implements OnInit {
           curPhones.innerHTML = "5";
         }
       }
+      this.Plan.planName = "Basic";
+      this.Plan.price = 60.99;
+      this.Plan.deviceLimit = 5;
     }
     else{
       plan2?.classList.remove('selected');
@@ -89,6 +97,9 @@ export class PlanPageComponent implements OnInit {
         maxPhones.innerHTML = "12";
 
       }
+      this.Plan.planName = "Ultra";
+      this.Plan.price = 110.99;
+      this.Plan.deviceLimit = 12;
     }
     else{
       plan3?.classList.remove('selected');
@@ -118,11 +129,17 @@ export class PlanPageComponent implements OnInit {
       alert('please select a plan');
     }
     else{
+      
       alert(`PlanName: ${this.mimtPlan} \n`)
       for(let i = 0 ; i < phoneNumbers.length; i++){
           alert("Phone Number: " + phoneNumbers[i] + "\n Phonemodel: " + models[i]);
 
       }
+
+      // Saves Plan to database
+      this.planService.savePlan(this.Plan).subscribe(data => {
+        console.log(data.body);
+      });
       //////////////////////////////////////////////////////////////
       //  This is where a new plan request is sent to database    //
       //  plan name is in this.mimtPlan                           //
@@ -134,12 +151,13 @@ export class PlanPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.planService.findAllPlans().subscribe((data) => {
-    //   //console.log("body: " + data.body);
-    //   if (data.body != null) {
-    //     this.PlanList = data.body;
-    //   }
-    // });
+    this.planService.findPlansByUser(this.userId).subscribe((data) => {
+      // logs all plans for current user
+      //console.log(data.body);
+      if (data.body != null) {
+        //this.Plan = data.body;
+      }
+    });
   }
 
 }
