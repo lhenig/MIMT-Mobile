@@ -1,7 +1,9 @@
 import { LiteralMapExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Device } from 'src/app/models/device.model';
 import { Plan } from 'src/app/models/plan.model';
+import { DeviceService } from 'src/app/services/device.service';
 import { PlanService } from 'src/app/services/plan.service';
 
 
@@ -16,24 +18,26 @@ export class PlanPageComponent implements OnInit {
   Plan: Plan = new Plan("noplan", 0, 0.0, this.userId);
   mimtPlan: string = "noplan";
   phones: string[] = [""];
-  
-  constructor(private planService: PlanService, private router: Router) { }
+
+  Devices: Device[] = [];
+
+  constructor(private planService: PlanService, private deviceService: DeviceService, private router: Router) { }
 
 
   incr() {
     let curPhones = document.getElementById("curPhones");
     let maxPhones = document.getElementById("maxPhones");
-    if(curPhones && maxPhones){
-      if(Number(curPhones.innerHTML) < Number(maxPhones.innerHTML)){
+    if (curPhones && maxPhones) {
+      if (Number(curPhones.innerHTML) < Number(maxPhones.innerHTML)) {
         curPhones.innerHTML = String(Number(curPhones.innerHTML) + 1);
         this.phones.push("");
       }
     }
   }
-  decr(){
+  decr() {
     let curPhones = document.getElementById("curPhones");
-    if(curPhones){
-      if(this.phones.length > 1){
+    if (curPhones) {
+      if (this.phones.length > 1) {
         curPhones.innerHTML = String(Number(curPhones.innerHTML) - 1);
         this.phones.pop();
       }
@@ -41,41 +45,39 @@ export class PlanPageComponent implements OnInit {
     }
   }
 
-  selectPlan(p: string){
+  selectPlan(p: string) {
     var plan1 = document.getElementById("plan1");
     var plan2 = document.getElementById("plan2");
-    var plan3 = document.getElementById("plan3");    
-    if(p == 'MINIMAL'){
+    var plan3 = document.getElementById("plan3");
+    if (p == 'MINIMAL') {
       this.mimtPlan = 'MINIMAL';
       plan1?.classList.add('selected');
       let curPhones = document.getElementById("curPhones");
       let maxPhones = document.getElementById("maxPhones");
-      if(curPhones && maxPhones){
+      if (curPhones && maxPhones) {
         maxPhones.innerHTML = "1";
         curPhones.innerHTML = "1";
 
       }
-      while(this.phones.length > 1){
+      while (this.phones.length > 1) {
         this.phones.pop();
       }
       this.Plan.planName = "Minimal";
       this.Plan.price = 20.99;
       this.Plan.deviceLimit = 1;
     }
-    else{
+    else {
       plan1?.classList.remove('selected');
-    } 
-    if(p == 'BASIC'){
+    }
+    if (p == 'BASIC') {
       this.mimtPlan = 'BASIC';
       plan2?.classList.add('selected');
       let curPhones = document.getElementById("curPhones");
       let maxPhones = document.getElementById("maxPhones");
-      if(curPhones && maxPhones){
+      if (curPhones && maxPhones) {
         maxPhones.innerHTML = "5";
 
-
-      
-        while(this.phones.length > 5){
+        while (this.phones.length > 5) {
           this.phones.pop();
           curPhones.innerHTML = "5";
         }
@@ -84,16 +86,16 @@ export class PlanPageComponent implements OnInit {
       this.Plan.price = 60.99;
       this.Plan.deviceLimit = 5;
     }
-    else{
+    else {
       plan2?.classList.remove('selected');
     }
-    if(p == 'ULTRA'){
+    if (p == 'ULTRA') {
       this.mimtPlan = 'ULTRA';
       plan3?.classList.add('selected');
       let curPhones = document.getElementById("curPhones");
       let maxPhones = document.getElementById("maxPhones");
-      if(curPhones && maxPhones){
-        
+      if (curPhones && maxPhones) {
+
         maxPhones.innerHTML = "12";
 
       }
@@ -101,45 +103,64 @@ export class PlanPageComponent implements OnInit {
       this.Plan.price = 110.99;
       this.Plan.deviceLimit = 12;
     }
-    else{
+    else {
       plan3?.classList.remove('selected');
     }
   }
-  submitPlan(){
+  submitPlan() {
     let phoneDiv = document.querySelectorAll('[id=phone]');
     let phoneNumbers = [];
-    console.log(phoneDiv);
-    for(let i = 0 ; i < phoneDiv.length; i++){
-      if((phoneDiv[i] as HTMLInputElement).value == ""){
+    let modelDiv = document.querySelectorAll('[id=model]');
+    let models = [];
+
+    for (let i = 0; i < phoneDiv.length; i++) {
+      if ((phoneDiv[i] as HTMLInputElement).value == "") {
         alert("compleate phone number input");
         return;
       }
       phoneNumbers.push((phoneDiv[i] as HTMLInputElement).value);
-    }
-    let modelDiv = document.querySelectorAll('[id=model]');
-    let models = [];
-    for(let i = 0 ; i < modelDiv.length; i++){
-      if((modelDiv[i] as HTMLInputElement).value == ""){
+
+      if ((modelDiv[i] as HTMLInputElement).value == "") {
         alert("compleate model input");
         return;
       }
       models.push((modelDiv[i] as HTMLInputElement).value);
+
+      this.Devices.push(new Device((modelDiv[i] as HTMLInputElement).value, (phoneDiv[i] as HTMLInputElement).value, this.Plan.id))
     }
-    if(this.mimtPlan == "noplan"){
+
+
+    if (this.mimtPlan == "noplan") {
       alert('please select a plan');
     }
-    else{
-      
+    else {
+
       alert(`PlanName: ${this.mimtPlan} \n`)
-      for(let i = 0 ; i < phoneNumbers.length; i++){
-          alert("Phone Number: " + phoneNumbers[i] + "\n Phonemodel: " + models[i]);
+      for (let i = 0; i < phoneNumbers.length; i++) {
+        alert("Phone Number: " + phoneNumbers[i] + "\n Phonemodel: " + models[i]);
 
       }
 
       // Saves Plan to database
       this.planService.savePlan(this.Plan).subscribe(data => {
-        console.log(data.body);
+        if (data.body != null) {
+          this.Plan = data.body
+        }
+
+        for (let i = 0; i < this.Devices.length; i++) {
+          this.Devices[i].planId = this.Plan.id
+          this.deviceService.saveDevice(this.Devices[i]).subscribe(data => {
+
+          })
+        }
+
       });
+
+      
+
+
+
+
       //////////////////////////////////////////////////////////////
       //  This is where a new plan request is sent to database    //
       //  plan name is in this.mimtPlan                           //
@@ -148,12 +169,13 @@ export class PlanPageComponent implements OnInit {
       //  and making sure a plan is selected                      //
       //////////////////////////////////////////////////////////////
     }
+    
   }
 
   ngOnInit(): void {
-    this.planService.findPlanByUser(this.userId).subscribe((data) => {
+    this.planService.findPlansByUser(this.userId).subscribe((data) => {
       // logs all plans for current user
-      //console.log(data.body);
+      console.log(data.body);
       if (data.body != null) {
         //this.Plan = data.body;
       }

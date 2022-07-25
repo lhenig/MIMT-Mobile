@@ -34,7 +34,9 @@ public class PlanService {
 		repo.delete(findById(planId));
 	}
 
-	public List<Plan> findPlanByUserId(int planId) {
-		return repo.findPlanByUserId(planId);
+	public List<Plan> findPlanByUserId(int userId) {
+		return repo.findPlanByUserId(userId);
 	}
+
+	
 }

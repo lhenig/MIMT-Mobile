@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { from } from 'rxjs';
 import { Device } from 'src/app/models/device.model';
 import { Plan } from 'src/app/models/plan.model';
 import { User } from 'src/app/models/user.model';
@@ -12,8 +13,10 @@ import { PlanService } from 'src/app/services/plan.service';
   styleUrls: ['./users-plans.component.css']
 })
 export class UsersPlansComponent implements OnInit {
-  Plan?: Plan;
+  Plans: Plan[] = [];
   Device?: Device;
+
+  
 
   @Input() User?: User;
 
@@ -21,19 +24,29 @@ export class UsersPlansComponent implements OnInit {
 
   //CHANGE THIS
   ngOnInit(): void {
-    this.planService.findPlanById(2).subscribe((data) => {
+
+    
+    this.planService.findPlansByUser(JSON.parse(localStorage.getItem('userId') || '{}')).subscribe((data) => {
+      
       if (data.body != null) {
-        console.log(data.body);
+        
+        this.Plans = data.body;
+        
         //STUFF WITH DATA HERE
-        this.Plan = data.body;
+        
+        for(let i = 0; i < this.Plans.length; i++) {
+
+          this.deviceService.findDevicesByPlan(this.Plans[i].id).subscribe((data) => {
+            if (data.body != null ) {
+              
+              //STUFF WITH DATA HERE
+              this.Device = data.body;
+              console.log(data.body);
+          }});
+        }
     }});
 
-    this.deviceService.findDeviceById(2).subscribe((data) => {
-      if (data.body != null) {
-        console.log(data.body);
-        //STUFF WITH DATA HERE
-        this.Device = data.body;
-    }});
+    
   };
   
 

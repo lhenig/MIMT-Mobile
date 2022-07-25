@@ -22,69 +22,64 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project2.beans.Plan;
-import com.project2.beans.Plan;
-import com.project2.services.PlanService;
+import com.project2.beans.Device;
+import com.project2.beans.Device;
+import com.project2.services.DeviceService;
 import com.project2.services.UserServiceV1;
 
 @EnableGlobalMethodSecurity(jsr250Enabled = false, prePostEnabled = true, securedEnabled = false)
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController
-@RequestMapping(value = "/plans")
-public class PlanController {
+@RequestMapping(value = "/devices")
+public class DeviceController {
 
   @Autowired
-  PlanService planService;
+  DeviceService deviceService;
   
   // Just for testing
   @GetMapping("/authed")
-  public ResponseEntity<List<Plan>> getUsers(HttpServletResponse response) {
-    List<Plan> planData = planService.findAllPlans();
+  public ResponseEntity<List<Device>> getUsers(HttpServletResponse response) {
+    List<Device> deviceData = deviceService.findAllDevices();
     response.getHeader("cookie");
-    if (!planData.isEmpty()) {
-      return new ResponseEntity<>(planData, HttpStatus.OK);
+    if (!deviceData.isEmpty()) {
+      return new ResponseEntity<>(deviceData, HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
 
-    
   @GetMapping("/{id}")
-  public ResponseEntity<List<Plan>> findById(@PathVariable("id") int id){
+  public ResponseEntity<List<Device>> findById(@PathVariable("id") int id){
 	  
 	  try {
-		  List<Plan> users = planService.findPlanByUserId(id);
+		  List<Device> users = deviceService.findDevicesByPlanId(id);
 		  if(users == null) {
 			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		  }
-		  return new ResponseEntity<List<Plan>>(users, HttpStatus.OK);
+		  return new ResponseEntity<List<Device>>(users, HttpStatus.OK);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	  }
-
   
-
-
-
-  @PostMapping("/newplan")
-  public ResponseEntity<Plan> createUser(@RequestBody Plan plan) {
-    
+  @PostMapping("/newdevice")
+  public ResponseEntity<Device> createUser(@RequestBody Device device) {
+    System.out.println(device);
     try {
-      Plan _plan = planService
-          .add(new Plan(plan.getPlanName(), plan.getDeviceLimit(), plan.getPrice(), plan.getUserId()));
-      return new ResponseEntity<>(_plan, HttpStatus.CREATED);
+      Device _device = deviceService
+          .add(new Device(device.getDeviceName(), device.getPhoneNumber(), device.getPlanId()));
+      return new ResponseEntity<>(_device, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
   
   @PutMapping("/{id}")
-  public ResponseEntity<Plan> updatePlan(@PathVariable("id") int id, @RequestBody Plan plan) {
-    Plan planData = planService.findById(id);
-    if (planData != null) {
-        planData.setPlanName(plan.getPlanName());
-      return new ResponseEntity<>(planService.add(planData), HttpStatus.OK);
+  public ResponseEntity<Device> updateDevice(@PathVariable("id") int id, @RequestBody Device device) {
+    Device deviceData = deviceService.findById(id);
+    if (deviceData != null) {
+        deviceData.setDeviceName(device.getDeviceName());
+      return new ResponseEntity<>(deviceService.add(deviceData), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -93,7 +88,7 @@ public class PlanController {
   @DeleteMapping("/{id}")
   public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") int id) {
     try {
-        planService.delete(id);
+        deviceService.delete(id);
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     } catch (Exception e) {
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

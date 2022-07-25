@@ -32,6 +32,8 @@ export class UserPageComponent implements OnInit {
         
       }
     })
+
+    
     
   }
 

@@ -16,12 +16,16 @@ export class PlanService {
   }
 
   //THIS NEEDS TWEAKING, NEEDS NEW ROUTES ON BACKEND
-  findPlanByUser(userId: number): Observable<HttpResponse<Plan>> {
-    return this.http.get<Plan>(this.url + `/${userId}`, {observe: 'response', withCredentials: true});
+  findPlansByUser(userId: number): Observable<HttpResponse<Plan[]>> {
+    return this.http.get<Plan[]>(this.url + `/${userId}`, {observe: 'response', withCredentials: true});
   }
 
   findPlanById(planId: number): Observable<HttpResponse<Plan>> {
     return this.http.get<Plan>(this.url + `/${planId}`, {observe: 'response'});
+  }
+
+  findLatestPlan(): Observable<HttpResponse<Plan>> {
+    return this.http.get<Plan>(this.url + `/latestplan`, {observe: 'response', withCredentials: true});
   }
   
   //might not need all CRUD for plans

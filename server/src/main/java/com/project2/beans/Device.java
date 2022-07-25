@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Device {
     
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
     @Column(name = "device_name")
@@ -27,12 +27,17 @@ public class Device {
     @Column(name = "plan_id")
     private int planId;
 
+    public Device() {}
+
     public Device( String deviceName, String phoneNumber, int planId) {
         this.deviceName = deviceName;
         this.phoneNumber = phoneNumber;
         this.planId = planId;
     }
 
+    public int getId() {
+        return id;
+    }
     public String getDeviceName() {
         return deviceName;
     }

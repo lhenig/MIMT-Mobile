@@ -8,33 +8,33 @@ import { Device } from '../models/device.model';
   providedIn: 'root'
 })
 export class DeviceService {
-  url: string = environment.apiUrl+"/device"; //dunno yet
+  url: string = environment.apiUrl+"/devices"; //dunno yet
   constructor(private http: HttpClient) { }
 
   findAllDevices(): Observable<HttpResponse<Device[]>> {
-    return this.http.get<Device[]>(this.url, {observe: 'response'});
+    return this.http.get<Device[]>(this.url + "/authed", {observe: 'response', withCredentials: true});
   }
 
   //THIS NEEDS TWEAKING, NEED NEW ROUTES ON BACKEND
   findDevicesByPlan(planId: number): Observable<HttpResponse<Device>> {
-    return this.http.get<Device>(this.url + `/byPlan/${planId}`, {observe: 'response'});
+    return this.http.get<Device>(this.url + `/${planId}`, {observe: 'response', withCredentials: true});
   }
   
   findDeviceById(deviceId: number): Observable<HttpResponse<Device>> {
-    return this.http.get<Device>(this.url + `/${deviceId}`, {observe: 'response'});
+    return this.http.get<Device>(this.url + `/${deviceId}`, {observe: 'response', withCredentials: true});
   }
 
   //might not need all CRUD for devices
   saveDevice(device: Device): Observable<HttpResponse<Device>> {
-    return this.http.post<Device>(this.url, device, {observe: 'response'});
+    return this.http.post<Device>(this.url + "/newdevice", device, {observe: 'response', withCredentials: true});
   }
 
   updateDevice(device: Device): Observable<HttpResponse<Device>> {
-    return this.http.put<Device>(this.url, device, {observe: 'response'});
+    return this.http.put<Device>(this.url, device, {observe: 'response', withCredentials: true});
   }
 
   deleteDevice(id: number): Observable<HttpResponse<Device>> {
-    return this.http.delete<Device>(this.url, {observe: 'response'});
+    return this.http.delete<Device>(this.url, {observe: 'response', withCredentials: true});
   }
 
 }

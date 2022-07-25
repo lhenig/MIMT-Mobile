@@ -25,5 +25,7 @@ public interface PlanRepository extends JpaRepository<Plan, Integer>{
 	@Query( "SELECT p FROM Plan p WHERE p.userId = :id" )
     public List<Plan> findPlanByUserId(@Param("id") int id);
 
+	// @Query("SELECT p FROM Plan p WHERE p.id = (SELECT max(p.id) FROM Plan p)")
+	// public Plan findPlanById();
 	
 }
