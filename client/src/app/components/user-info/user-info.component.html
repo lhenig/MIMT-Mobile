@@ -1,4 +1,4 @@
-<div class="card-container">
+<div *ngIf="User?.userName" class="card-container">
     <div class="card">
         <img src="../../assets/user icon.webp" alt="John" style="width:100%">
         <h1>{{User?.userName}}

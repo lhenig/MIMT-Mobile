@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DevicePageComponent } from './components/device-page/device-page.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PlanPageComponent } from './components/plan-page/plan-page.component';
@@ -20,9 +19,6 @@ const routes: Routes = [
   },
   {
     path: 'planCreation', component: PlanPageComponent
-  },
-  {
-    path: 'device', component: DevicePageComponent
   },
   {
     path: 'user', component: UserPageComponent
