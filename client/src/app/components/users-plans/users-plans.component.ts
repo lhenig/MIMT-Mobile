@@ -12,7 +12,8 @@ import { PlanService } from 'src/app/services/plan.service';
   styleUrls: ['./users-plans.component.css']
 })
 export class UsersPlansComponent implements OnInit {
-  Plan?: Plan;
+  userId = JSON.parse(localStorage.getItem('userId') || '{}');
+  Plans: Plan[] = [];
   Device?: Device;
 
   @Input() User?: User;
@@ -21,19 +22,30 @@ export class UsersPlansComponent implements OnInit {
 
   //CHANGE THIS
   ngOnInit(): void {
-    this.planService.findPlanById(2).subscribe((data) => {
-      if (data.body != null) {
-        console.log(data.body);
-        //STUFF WITH DATA HERE
-        this.Plan = data.body;
-    }});
 
-    this.deviceService.findDeviceById(2).subscribe((data) => {
+    this.planService.findPlansByUser(this.userId).subscribe((data) => {
+      // logs all plans for current user
+      console.log(data.body);
       if (data.body != null) {
-        console.log(data.body);
-        //STUFF WITH DATA HERE
-        this.Device = data.body;
-    }});
+        this.Plans = data.body;
+      }
+    });
+
+
+    // I THINK THIS IS CODE FROM KEVIN
+    // this.planService.findPlanById(2).subscribe((data) => {
+    //   if (data.body != null) {
+    //     console.log(data.body);
+    //     //STUFF WITH DATA HERE
+    //     this.Plan = data.body;
+    // }});
+
+    // this.deviceService.findDeviceById(2).subscribe((data) => {
+    //   if (data.body != null) {
+    //     console.log(data.body);
+    //     //STUFF WITH DATA HERE
+    //     this.Device = data.body;
+    // }});
   };
   
 

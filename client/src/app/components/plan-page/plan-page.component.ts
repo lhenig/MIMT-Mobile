@@ -151,7 +151,7 @@ export class PlanPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.planService.findPlanByUser(this.userId).subscribe((data) => {
+    this.planService.findPlansByUser(this.userId).subscribe((data) => {
       // logs all plans for current user
       //console.log(data.body);
       if (data.body != null) {
