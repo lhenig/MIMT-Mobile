@@ -35,7 +35,7 @@ export class AppComponent implements OnInit{
   //might need to change this later
   logout() {
     this.logoutService.logout().subscribe((data)=>{});
-    this.userStateService.changeUser({id:0,userName:"",email:"",password:""})
+    this.userStateService.resetUser();
     this.router.navigateByUrl('/landing');
   }
 }

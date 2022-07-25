@@ -12,6 +12,10 @@ export class UserStateService {
   
   constructor() { }
 
+  resetUser() {
+    this.UserSource.next({id:0,userName:"",email:"",password:""})
+  }
+
   changeUser(user: User) {
     this.UserSource.next(user);
   }
