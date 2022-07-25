@@ -17,6 +17,7 @@ export class UsersPlansComponent implements OnInit {
   Device?: Device;
 
   @Input() User?: User;
+  TotalCost: number = 0;
 
   constructor(private planService: PlanService, private deviceService: DeviceService, private router: Router) { }
 
@@ -28,6 +29,9 @@ export class UsersPlansComponent implements OnInit {
       console.log(data.body);
       if (data.body != null) {
         this.Plans = data.body;
+      }
+      for(let i = 0 ; i < this.Plans.length; i++){
+        this.TotalCost += this.Plans[i].price;
       }
     });
 
