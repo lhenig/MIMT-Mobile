@@ -25,16 +25,16 @@ public class PlanService {
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Plan add(Plan user) {
-		return repo.save(user);
+	public Plan add(Plan plan) {
+		return repo.save(plan);
 	}
 
 	@Transactional()
-	public void delete(int user_id) {
-		repo.delete(findById(user_id));
+	public void delete(int planId) {
+		repo.delete(findById(planId));
 	}
 
-	public Plan findByName(String planName) {
-		return repo.findByPlanName(planName);
+	public List<Plan> findPlanByUserId(int planId) {
+		return repo.findPlanByUserId(planId);
 	}
 }

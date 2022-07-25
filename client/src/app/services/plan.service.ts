@@ -8,16 +8,16 @@ import { Plan } from '../models/plan.model';
   providedIn: 'root'
 })
 export class PlanService {
-  url: string = environment.apiUrl+"/plan"; //dunno yet
+  url: string = environment.apiUrl+"/plans"; //dunno yet
   constructor(private http: HttpClient) { }
 
   findAllPlans(): Observable<HttpResponse<Plan[]>> {
-    return this.http.get<Plan[]>(this.url, {observe: 'response'});
+    return this.http.get<Plan[]>(this.url + "/authed", {observe: 'response', withCredentials: true});
   }
 
   //THIS NEEDS TWEAKING, NEEDS NEW ROUTES ON BACKEND
-  findPlanByUser(userName: string): Observable<HttpResponse<Plan>> {
-    return this.http.get<Plan>(this.url + `/byUser/${userName}`, {observe: 'response'});
+  findPlanByUser(userId: number): Observable<HttpResponse<Plan>> {
+    return this.http.get<Plan>(this.url + `/${userId}`, {observe: 'response', withCredentials: true});
   }
 
   findPlanById(planId: number): Observable<HttpResponse<Plan>> {

@@ -15,6 +15,7 @@ export class PlanPageComponent implements OnInit {
   PlanList: Plan[] = [];
   mimtPlan: string = "noplan";
   phones: string[] = [""];
+  userId = JSON.parse(localStorage.getItem('userId') || '{}');
   constructor(private planService: PlanService, private router: Router) { }
 
 
@@ -134,12 +135,12 @@ export class PlanPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.planService.findAllPlans().subscribe((data) => {
-    //   //console.log("body: " + data.body);
-    //   if (data.body != null) {
-    //     this.PlanList = data.body;
-    //   }
-    // });
+    this.planService.findPlanByUser(this.userId).subscribe((data) => {
+      console.log(data.body);
+      if (data.body != null) {
+        //this.PlanList = data.body;
+      }
+    });
   }
 
 }
