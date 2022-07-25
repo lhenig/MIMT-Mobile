@@ -23,7 +23,7 @@ export class UserLoginComponent implements OnInit {
     this.app.authenticate(this.credentials).subscribe((data) => {
       // this.app.authenticated = true;
       this.router.navigateByUrl('/user');
-      return this.app;
+      // return this.app;
       // console.log(this.app);
       
     });

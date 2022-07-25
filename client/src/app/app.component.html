@@ -14,10 +14,10 @@
       
       <a class="nav-item nav-link navbar-custom" href="/planCreation">Plans</a>
       <a class="nav-item nav-link navbar-custom" href="/devices">Devices</a>
-      <a  class="nav-item nav-link navbar-custom" href="/user">User</a>
-      <a  class="nav-item nav-link navbar-custom" href="/login">Login</a>
-      <a  class="nav-item nav-link navbar-custom" href="/signup">Signup</a>
-      <button  (click)="logout()">Logout</button>
+      <a *ngIf="this.User?.userName != ''" class="nav-item nav-link navbar-custom" href="/user">{{User?.userName}}</a>
+      <a *ngIf="this.User?.id === 0" class="nav-item nav-link navbar-custom" href="/login">Login</a>
+      <a *ngIf="this.User?.id === 0" class="nav-item nav-link navbar-custom" href="/signup">Signup</a>
+      <button *ngIf="this.User?.userName != ''" (click)="logout()">Logout</button>
     </div>
   </div>
 </nav>

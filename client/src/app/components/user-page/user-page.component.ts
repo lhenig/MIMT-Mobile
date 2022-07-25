@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { UserStateService } from 'src/app/services/user-state.service';
 import { UserService } from 'src/app/services/user.service';
 // import { AppService } from 'src/app/services/app.service';
 
@@ -15,7 +17,7 @@ export class UserPageComponent implements OnInit {
   User?: User;
   // User.id: number;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private userStateService: UserStateService) { }
 
   ngOnInit() {
     this.userService.findUser().subscribe((data)=>{
@@ -23,9 +25,11 @@ export class UserPageComponent implements OnInit {
         console.log(data.body);
         //STUFF WITH DATA HERE
         this.User = data.body;
+        this.userStateService.changeUser(this.User)
       }
+      
+      
     });
-    console.log(this.User);
   }
 
 }

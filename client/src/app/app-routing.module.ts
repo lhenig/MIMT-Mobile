@@ -7,6 +7,7 @@ import { PlanPageComponent } from './components/plan-page/plan-page.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { UserSignupComponent } from './components/user-signup/user-signup.component';
+import { User } from './models/user.model';
 
 
 
