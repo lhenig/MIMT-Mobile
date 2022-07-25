@@ -68,6 +68,7 @@ public class PlanController {
 
   @PostMapping("/newplan")
   public ResponseEntity<Plan> createUser(@RequestBody Plan plan) {
+    System.out.println(plan);
     try {
       Plan _plan = planService
           .add(new Plan(plan.getPlanName(), plan.getDeviceLimit(), plan.getPrice(), plan.getUserId()));

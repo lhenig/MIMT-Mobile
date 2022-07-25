@@ -19,7 +19,6 @@ public interface PlanRepository extends JpaRepository<Plan, Integer>{
 	public List<Plan> findAllPlans();
 
 
-	// Used by CustomUserDetailService
 	public Plan findByPlanName(String planName);
 
 	// Selects plans owned by specific user

@@ -26,7 +26,7 @@ export class PlanService {
   
   //might not need all CRUD for plans
   savePlan(plan: Plan): Observable<HttpResponse<Plan>> {
-    return this.http.post<Plan>(this.url, plan, {observe: 'response'});
+    return this.http.post<Plan>(this.url + "/newplan", plan, {observe: 'response', withCredentials: true});
   }
 
   updatePlan(plan: Plan): Observable<HttpResponse<Plan>> {
