@@ -1,6 +1,7 @@
 package com.project2.data;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.project2.beans.Plan;
@@ -18,8 +19,11 @@ public interface PlanRepository extends JpaRepository<Plan, Integer>{
 	public List<Plan> findAllPlans();
 
 
-	// Used by CustomUserDetailService
 	public Plan findByPlanName(String planName);
+
+	// Selects plans owned by specific user
+	@Query( "SELECT p FROM Plan p WHERE p.userId = :id" )
+    public List<Plan> findPlanByUserId(@Param("id") int id);
 
 	
 }

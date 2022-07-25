@@ -49,15 +49,15 @@ public class PlanController {
   }
 
     
-  @GetMapping("/{name}")
-  public ResponseEntity<Plan> findById(@PathVariable("name") String name){
+  @GetMapping("/{id}")
+  public ResponseEntity<List<Plan>> findById(@PathVariable("id") int id){
 	  
 	  try {
-		  Plan users = planService.findByName(name);
+		  List<Plan> users = planService.findPlanByUserId(id);
 		  if(users == null) {
 			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		  }
-		  return new ResponseEntity<Plan>(users, HttpStatus.OK);
+		  return new ResponseEntity<List<Plan>>(users, HttpStatus.OK);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
@@ -68,6 +68,7 @@ public class PlanController {
 
   @PostMapping("/newplan")
   public ResponseEntity<Plan> createUser(@RequestBody Plan plan) {
+    System.out.println(plan);
     try {
       Plan _plan = planService
           .add(new Plan(plan.getPlanName(), plan.getDeviceLimit(), plan.getPrice(), plan.getUserId()));

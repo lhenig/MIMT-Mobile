@@ -1,23 +1,29 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Device } from '../models/device.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeviceService {
-  url: string = ""; //dunno yet
+  url: string = environment.apiUrl+"/device"; //dunno yet
   constructor(private http: HttpClient) { }
 
   findAllDevices(): Observable<HttpResponse<Device[]>> {
     return this.http.get<Device[]>(this.url, {observe: 'response'});
   }
 
-  findOneDevice(id: number): Observable<HttpResponse<Device>> {
-    return this.http.get<Device>(this.url, {observe: 'response'});
+  //THIS NEEDS TWEAKING, NEED NEW ROUTES ON BACKEND
+  findDevicesByPlan(planId: number): Observable<HttpResponse<Device>> {
+    return this.http.get<Device>(this.url + `/byPlan/${planId}`, {observe: 'response'});
   }
   
+  findDeviceById(deviceId: number): Observable<HttpResponse<Device>> {
+    return this.http.get<Device>(this.url + `/${deviceId}`, {observe: 'response'});
+  }
+
   //might not need all CRUD for devices
   saveDevice(device: Device): Observable<HttpResponse<Device>> {
     return this.http.post<Device>(this.url, device, {observe: 'response'});
