@@ -38,9 +38,9 @@ export class AppComponent implements OnInit{
         // this.app.authenticated = false;
     ).subscribe((data)=>{
       // return this.app;
-      sessionStorage.clear();
+      
       
     });
-    
+    sessionStorage.clear();
   }
 }

@@ -20,7 +20,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-         UserClass _user = repo.findByUserName(userName);
+         UserClass _user = repo.findByEmail(userName);
          
         if (_user == null) {
             throw new UsernameNotFoundException("test");
@@ -28,12 +28,12 @@ public class CustomUserDetailService implements UserDetailsService {
         
         // Have to sign in as Kevin to Delete anything
         else if(_user.getUserName().equals("Kevin")) {
-            UserDetails user = User.withUsername(_user.getUserName()).password(_user.getPassword()).authorities("ADMIN").build();
+            UserDetails user = User.withUsername(_user.getEmail()).password(_user.getPassword()).authorities("ADMIN").build();
             System.out.println(_user.getUserName() + " has attempted to login " + user.getAuthorities());
             return user;
         }
         else{
-            UserDetails user = User.withUsername(_user.getUserName()).password(_user.getPassword()).authorities("USER").build();
+            UserDetails user = User.withUsername(_user.getEmail()).password(_user.getPassword()).authorities("USER").build();
             System.out.println(_user.getUserName() + " has attempted to login " + user.getAuthorities());
             return user;
         }

@@ -40,7 +40,6 @@ public class DeviceController {
   @GetMapping("/authed")
   public ResponseEntity<List<Device>> getUsers(HttpServletResponse response) {
     List<Device> deviceData = deviceService.findAllDevices();
-    response.getHeader("cookie");
     if (!deviceData.isEmpty()) {
       return new ResponseEntity<>(deviceData, HttpStatus.OK);
     } else {
@@ -88,7 +87,7 @@ public class DeviceController {
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") int id) {
+  public ResponseEntity<HttpStatus> deleteDelete(@PathVariable("id") int id) {
     try {
         deviceService.delete(id);
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);

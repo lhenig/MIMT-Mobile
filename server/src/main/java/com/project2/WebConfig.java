@@ -51,7 +51,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 				.cors()
 				.and()
 				.authorizeRequests()
-				.antMatchers("/user/newuser").anonymous()
+				.antMatchers("/user/signup").permitAll()
 				.antMatchers("/**").hasAnyAuthority("USER", "ADMIN")
 				.anyRequest().authenticated()
 				.and()

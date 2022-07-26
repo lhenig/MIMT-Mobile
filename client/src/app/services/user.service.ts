@@ -13,7 +13,7 @@ export class UserService {
 
   //need to worry about user id being leaked
   findUser(): Observable<HttpResponse<User>> {
-    return this.http.get<User>(this.url + "/" + sessionStorage.getItem("name"), {observe: 'response',withCredentials: true});
+    return this.http.get<User>(this.url + "/" + sessionStorage.getItem("email"), {observe: 'response',withCredentials: true});
   }
 
   
@@ -23,11 +23,11 @@ export class UserService {
   }
 
   updateUser(user: User): Observable<HttpResponse<User>> {
-    return this.http.put<User>(this.url, user, {observe: 'response'});
+    return this.http.put<User>(this.url, user, {observe: 'response',withCredentials: true});
   }
 
   deleteUser(id: number): Observable<HttpResponse<User>> {
-    return this.http.delete<User>(this.url, {observe: 'response'});
+    return this.http.delete<User>(this.url, {observe: 'response',withCredentials: true});
   }
 
 }

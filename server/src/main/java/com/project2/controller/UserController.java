@@ -46,11 +46,11 @@ public class UserController {
   }
 
     
-  @GetMapping("/{name}")
-  public ResponseEntity<UserClass> findById(@PathVariable("name") String name){
+  @GetMapping("/{email}")
+  public ResponseEntity<UserClass> findById(@PathVariable("email") String email){
 	  
 	  try {
-		  UserClass users = userService.findByName(name);
+		  UserClass users = userService.findByEmail(email);
 		  if(users == null) {
 			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		  }
@@ -63,7 +63,7 @@ public class UserController {
 
 
 
-  @PostMapping("/newuser")
+  @PostMapping("/signup")
   public ResponseEntity<UserClass> createUser(@RequestBody UserClass user) {
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(7);
     try {
