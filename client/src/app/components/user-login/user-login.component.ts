@@ -10,8 +10,9 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-  credentials = {name: '', password: ''};
+  
   errorMsg?: string;
+  credentials = {email: '', password: ''};
   callback(): void {
     
   }

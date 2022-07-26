@@ -13,7 +13,7 @@ create table plans(
 	id int auto_increment primary key,
     plan_name varchar(45),
     device_limit int,
-    price double,
+    price float,
 	user_id int,
     foreign key (user_id) references users(id)
 );

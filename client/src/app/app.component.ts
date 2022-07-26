@@ -38,7 +38,13 @@ export class AppComponent implements OnInit{
 
   //might need to change this later
   logout() {
+    this.logoutService.logout(
+        // this.app.authenticated = false;
+    ).subscribe((data)=>{
+      // return this.app;
+      
+      
+    });
     sessionStorage.clear();
-    this.logoutService.logout().subscribe((data)=>{});
   }
 }
