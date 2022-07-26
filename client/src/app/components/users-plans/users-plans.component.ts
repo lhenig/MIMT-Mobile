@@ -20,6 +20,7 @@ export class UsersPlansComponent implements OnInit {
 
 
   @Input() User?: User;
+  TotalCost: number = 0;
 
   constructor(private planService: PlanService, private deviceService: DeviceService, private userService: UserService, private router: Router) { }
 

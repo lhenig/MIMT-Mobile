@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Device } from 'src/app/models/device.model';
 import { User } from 'src/app/models/user.model';
+import { UserStateService } from 'src/app/services/user-state.service';
 import { DeviceService } from 'src/app/services/device.service';
 import { PlanService } from 'src/app/services/plan.service';
 import { AppService } from 'src/app/services/app.service';
@@ -26,6 +28,7 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit(): void {
 
+  ngOnInit() {
     this.userService.findUser().subscribe((data)=>{
       if (data.body != null) {
         console.log(data.body);
@@ -33,7 +36,7 @@ export class UserPageComponent implements OnInit {
         sessionStorage.setItem('userId', data.body.id.toString()); 
         //STUFF WITH DATA HERE
         this.User = data.body;
-        
+        this.userStateService.changeUser(this.User)
       }
     })
    

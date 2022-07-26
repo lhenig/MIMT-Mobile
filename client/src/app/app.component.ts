@@ -1,9 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { AfterViewInit, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { OutletContext, Router } from '@angular/router';
 import { AppService } from './services/app.service';
 import { finalize } from 'rxjs/operators'; //'finally' is deprecated
 import { LogoutService } from './services/logout.service';
+import { User } from './models/user.model';
+import { UserService } from './services/user.service';
+import { UserPageComponent } from './components/user-page/user-page.component';
+import { UserStateService } from './services/user-state.service';
+// import { CookieService } from 'ngx-cookie-service';
 
 //login boilerplate from spring.io
 @Component({
@@ -12,16 +17,19 @@ import { LogoutService } from './services/logout.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
   credentials = {name: '', password: ''}
   title = 'Skillstorm-P2';//has to match server
-  constructor(private app: AppService, private logoutService: LogoutService, private http: HttpClient, private router: Router){
+  User?: User;
+  
+  
+
+  constructor(private app: AppService, private userStateService: UserStateService, private logoutService: LogoutService, private http: HttpClient, private router: Router){
     
   }
 
-  authenticated() { 
-    // console.log(this.app.authenticated)
-    // return this.app.authenticated; 
+  ngOnInit(): void {
+      this.userStateService.currentUser.subscribe(user => this.User = user)
   }
 
   //might need to change this later

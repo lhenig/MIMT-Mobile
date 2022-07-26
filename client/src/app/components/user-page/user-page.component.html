@@ -1,6 +1,9 @@
-<h1 class="profile-header">Profile Page Header (dont like this)</h1>
+<h1 *ngIf="User?.userName" class="profile-header">Welcome Back</h1>
+<div *ngIf="!User">
+    <h1  class="profile-header">Uh Oh</h1>
+    <p class="text-center">User Session Error. Please <a href="/login">login</a>.</p>
+</div>
 <div id="user"> 
-    {{User?.userName}} 
 </div>
 <div class="grid-divide">
 

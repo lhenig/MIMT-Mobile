@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { PlanPageComponent } from './components/plan-page/plan-page.component';
-import { DevicePageComponent } from './components/device-page/device-page.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
@@ -16,6 +15,7 @@ import { UserSignupComponent } from './components/user-signup/user-signup.compon
 import { RouterModule, Routes } from '@angular/router';
 import { AppService } from './services/app.service';
 import { ListItemComponent } from './components/list-item/list-item.component';
+import { CookieService } from 'ngx-cookie-service';
 
 //need to override intercept
 @Injectable()
@@ -40,7 +40,6 @@ const routes: Routes = [
     AppComponent,
     UserPageComponent,
     PlanPageComponent,
-    DevicePageComponent,
     LandingPageComponent,
     PageNotFoundComponent,
     UserInfoComponent,
@@ -56,7 +55,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [AppService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
+  providers: [AppService, CookieService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
