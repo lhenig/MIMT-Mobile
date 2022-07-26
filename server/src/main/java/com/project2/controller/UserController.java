@@ -62,7 +62,7 @@ public class UserController {
 
   @PostMapping("/signup")
   public ResponseEntity<UserClass> createUser(@RequestBody UserClass user) {
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(7);
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     try {
       UserClass _user = userService
           .add(new UserClass(user.getUserName(), user.getEmail(), encoder.encode(user.getPassword())));

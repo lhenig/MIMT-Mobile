@@ -71,6 +71,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 				.failureHandler(failureHandler())
 				.and().rememberMe().and()
 				.logout().deleteCookies("JSESSIONID").logoutUrl("/logout").invalidateHttpSession(true) ;
+				
 		http
 				.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(1)
