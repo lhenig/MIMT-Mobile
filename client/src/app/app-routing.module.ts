@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditPageComponent } from './components/edit-page/edit-page.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PlanPageComponent } from './components/plan-page/plan-page.component';
@@ -28,6 +29,9 @@ const routes: Routes = [
   },
   {
     path: 'signup', component: UserSignupComponent
+  },
+  {
+    path: 'update/:id', component: EditPageComponent
   },
   //This will handle 404 Errors
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }

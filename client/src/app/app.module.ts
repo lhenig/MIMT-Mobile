@@ -16,6 +16,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppService } from './services/app.service';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { CookieService } from 'ngx-cookie-service';
+import { EditPageComponent } from './components/edit-page/edit-page.component';
 
 //need to override intercept
 @Injectable()
@@ -46,7 +47,8 @@ const routes: Routes = [
     UsersPlansComponent,
     UserLoginComponent,
     UserSignupComponent,
-    ListItemComponent
+    ListItemComponent,
+    EditPageComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
