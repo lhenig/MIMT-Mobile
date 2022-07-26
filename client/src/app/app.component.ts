@@ -29,10 +29,10 @@ export class AppComponent {
     this.logoutService.logout(
         // this.app.authenticated = false;
     ).subscribe((data)=>{
-      console.log(data);
       // return this.app;
       sessionStorage.clear();
-      this.router.navigateByUrl('/landing');
+      
     });
+    
   }
 }
