@@ -80,6 +80,8 @@ public class UserController {
     UserClass userData = userService.findById(id);
     if (userData != null) {
       userData.setUserName(user.getUserName());
+      userData.setEmail(user.getEmail());
+      userData.setEmail(user.getPassword());
       return new ResponseEntity<>(userService.add(userData), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -79,16 +79,17 @@ public class PlanController {
     }
   }
   
-  @PutMapping("/{id}")
-  public ResponseEntity<Plan> updatePlan(@PathVariable("id") int id, @RequestBody Plan plan) {
-    Plan planData = planService.findById(id);
-    if (planData != null) {
-        planData.setPlanName(plan.getPlanName());
-      return new ResponseEntity<>(planService.add(planData), HttpStatus.OK);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-  }
+  // Not being used. Update Device.plan_id to change the plan devices
+  // @PutMapping("/{id}")
+  // public ResponseEntity<Plan> updatePlan(@PathVariable("id") int id, @RequestBody Plan plan) {
+  //   Plan planData = planService.findById(id);
+  //   if (planData != null) {
+  //       planData.setPlanName(plan.getPlanName());
+  //     return new ResponseEntity<>(planService.add(planData), HttpStatus.OK);
+  //   } else {
+  //     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  //   }
+  // }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") int id) {

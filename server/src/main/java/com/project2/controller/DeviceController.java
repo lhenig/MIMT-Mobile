@@ -79,6 +79,8 @@ public class DeviceController {
     Device deviceData = deviceService.findById(id);
     if (deviceData != null) {
         deviceData.setDeviceName(device.getDeviceName());
+        deviceData.setPhoneNumber(device.getPhoneNumber());
+        deviceData.setPlanId(device.getPlanId());
       return new ResponseEntity<>(deviceService.add(deviceData), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
