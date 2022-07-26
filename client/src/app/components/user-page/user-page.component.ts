@@ -28,7 +28,6 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit(): void {
 
-  ngOnInit() {
     this.userService.findUser().subscribe((data)=>{
       if (data.body != null) {
         console.log(data.body);
@@ -36,12 +35,9 @@ export class UserPageComponent implements OnInit {
         sessionStorage.setItem('userId', data.body.id.toString()); 
         //STUFF WITH DATA HERE
         this.User = data.body;
-        this.userStateService.changeUser(this.User)
+        // this.userStateService.changeUser(this.User)
       }
     })
-   
-    
-    
-  }
 
+}
 }
