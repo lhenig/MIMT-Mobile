@@ -15,7 +15,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UsersPlansComponent implements OnInit {
   Plans: Plan[] = [];
-  Device?: Device;
+  Devices?: Device[] = [];
 
 
 
@@ -40,8 +40,8 @@ export class UsersPlansComponent implements OnInit {
           for (let i = 0; i < this.Plans.length; i++) {
             this.deviceService.findDevicesByPlan(this.Plans[i].id).subscribe((data) => {
               if (data.body != null) {
-                this.Device = data.body;
-                // console.log(data.body);
+                this.Devices = data.body;
+                console.log(data.body);
               }
             });
           }

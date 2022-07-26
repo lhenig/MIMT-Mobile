@@ -34,7 +34,7 @@ public class UserServiceV1 {
 		repo.delete(findById(user_id));
 	}
 
-	public UserClass findByName(String userName) {
-		return repo.findByUserName(userName);
+	public UserClass findByEmail(String email) {
+		return repo.findByEmail(email);
 	}
 }

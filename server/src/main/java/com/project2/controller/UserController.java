@@ -46,11 +46,11 @@ public class UserController {
   }
 
     
-  @GetMapping("/{name}")
-  public ResponseEntity<UserClass> findById(@PathVariable("name") String name){
+  @GetMapping("/{email}")
+  public ResponseEntity<UserClass> findById(@PathVariable("email") String email){
 	  
 	  try {
-		  UserClass users = userService.findByName(name);
+		  UserClass users = userService.findByEmail(email);
 		  if(users == null) {
 			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		  }
@@ -59,13 +59,10 @@ public class UserController {
 	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	  }
-  
 
-
-
-  @PostMapping("/newuser")
+  @PostMapping("/signup")
   public ResponseEntity<UserClass> createUser(@RequestBody UserClass user) {
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(7);
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     try {
       UserClass _user = userService
           .add(new UserClass(user.getUserName(), user.getEmail(), encoder.encode(user.getPassword())));

@@ -38,9 +38,8 @@ public class DeviceController {
   
   // Just for testing
   @GetMapping("/authed")
-  public ResponseEntity<List<Device>> getUsers(HttpServletResponse response) {
+  public ResponseEntity<List<Device>> getDevices(HttpServletResponse response) {
     List<Device> deviceData = deviceService.findAllDevices();
-    response.getHeader("cookie");
     if (!deviceData.isEmpty()) {
       return new ResponseEntity<>(deviceData, HttpStatus.OK);
     } else {
@@ -52,18 +51,18 @@ public class DeviceController {
   public ResponseEntity<List<Device>> findById(@PathVariable("id") int id){
 	  
 	  try {
-		  List<Device> users = deviceService.findDevicesByPlanId(id);
-		  if(users == null) {
+		  List<Device> devices = deviceService.findDevicesByPlanId(id);
+		  if(devices == null) {
 			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		  }
-		  return new ResponseEntity<List<Device>>(users, HttpStatus.OK);
+		  return new ResponseEntity<List<Device>>(devices, HttpStatus.OK);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	  }
   
   @PostMapping("/newdevice")
-  public ResponseEntity<Device> createUser(@RequestBody Device device) {
+  public ResponseEntity<Device> createDevice(@RequestBody Device device) {
     System.out.println(device);
     try {
       Device _device = deviceService
@@ -88,7 +87,7 @@ public class DeviceController {
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") int id) {
+  public ResponseEntity<HttpStatus> deleteDevice(@PathVariable("id") int id) {
     try {
         deviceService.delete(id);
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -62,6 +62,9 @@ public class Device {
         this.planId = planId;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Device [deviceName=" + deviceName + ", id=" + id + ", phoneNumber=" + phoneNumber + ", planId=" + planId + "]";
+    }
 
 }

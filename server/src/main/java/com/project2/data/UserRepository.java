@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<UserClass, Integer>{
 
 
 	// Used by CustomUserDetailService
-	public UserClass findByUserName(String userName);
+	public UserClass findByEmail(String email);
 
 	
 }

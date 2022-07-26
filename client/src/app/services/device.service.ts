@@ -16,8 +16,8 @@ export class DeviceService {
   }
 
   //THIS NEEDS TWEAKING, NEED NEW ROUTES ON BACKEND
-  findDevicesByPlan(planId: number): Observable<HttpResponse<Device>> {
-    return this.http.get<Device>(this.url + `/${planId}`, {observe: 'response', withCredentials: true});
+  findDevicesByPlan(planId: number): Observable<HttpResponse<Device[]>> {
+    return this.http.get<Device[]>(this.url + `/${planId}`, {observe: 'response', withCredentials: true});
   }
   
   findDeviceById(deviceId: number): Observable<HttpResponse<Device>> {
