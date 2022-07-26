@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -39,14 +40,23 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 	UserDetailsService userDetailsService;
 
 	// Keeps track of user session and works with session management in the configure method
+	
 	@Bean
-	public HttpSessionEventPublisher httpSessionEventPublisher() {
-		return new HttpSessionEventPublisher();
-	}
-
+    public ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
+        return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
+    }
+	@Bean
+    public SessionRegistry sessionRegistry( ) {
+        SessionRegistry sessionRegistry = new SessionRegistryImpl( );
+        return sessionRegistry;
+    }
+    @Bean
+    public RegisterSessionAuthenticationStrategy registerSessionAuthStr( ) {
+        return new RegisterSessionAuthenticationStrategy( sessionRegistry( ) );
+    }
 	protected void configure(HttpSecurity http) throws Exception {
 		System.out.println("configuring");
-
+		
 		http
 				.cors()
 				.and()
@@ -59,12 +69,13 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 				.successHandler(successHandler())
 				.defaultSuccessUrl("/user/authed").permitAll()
 				.failureHandler(failureHandler())
-				.and()
-				.logout().deleteCookies("JSESSIONID").logoutUrl("/logout");
+				.and().rememberMe().and()
+				.logout().deleteCookies("JSESSIONID").logoutUrl("/logout").invalidateHttpSession(true) ;
 		http
 				.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(1)
 				.maxSessionsPreventsLogin(true);
+				
 
 		http.csrf().disable();
 	}

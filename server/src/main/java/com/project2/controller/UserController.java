@@ -59,9 +59,6 @@ public class UserController {
 	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	  }
-  
-
-
 
   @PostMapping("/signup")
   public ResponseEntity<UserClass> createUser(@RequestBody UserClass user) {

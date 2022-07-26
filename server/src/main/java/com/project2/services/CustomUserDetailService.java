@@ -26,7 +26,7 @@ public class CustomUserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("test");
         }
         
-        // Have to sign in as Kevin to Delete anything
+        // Have to sign in as Admin to Delete anything
         else if(_user.getUserName().equals("Kevin")) {
             UserDetails user = User.withUsername(_user.getEmail()).password(_user.getPassword()).authorities("ADMIN").build();
             System.out.println(_user.getUserName() + " has attempted to login " + user.getAuthorities());
