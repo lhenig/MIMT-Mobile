@@ -17,7 +17,7 @@ export class AppService {
   authenticate(credentials: { name: any; password: any; }): Observable<HttpResponse<FormData>>{
 
         // Stores name for other components to use. Functions on other components only work if authenticated
-        localStorage.setItem('name', credentials.name);
+        sessionStorage.setItem('name', credentials.name);
         // Format that backend receives login credentials
         const formData = new FormData();
         formData.append('username', credentials.name);

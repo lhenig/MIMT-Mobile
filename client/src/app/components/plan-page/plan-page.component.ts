@@ -14,7 +14,7 @@ import { PlanService } from 'src/app/services/plan.service';
   styleUrls: ['./plan-page.component.css']
 })
 export class PlanPageComponent implements OnInit {
-  userId = JSON.parse(localStorage.getItem('userId') || '{}');
+  userId = JSON.parse(sessionStorage.getItem('userId') || '{}');
   Plan: Plan = new Plan("noplan", 0, 0.0, this.userId);
   mimtPlan: string = "noplan";
   phones: string[] = [""];

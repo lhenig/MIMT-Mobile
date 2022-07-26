@@ -13,7 +13,7 @@ export class UserService {
 
   //need to worry about user id being leaked
   findUser(): Observable<HttpResponse<User>> {
-    return this.http.get<User>(this.url + "/" + localStorage.getItem("name"), {observe: 'response',withCredentials: true});
+    return this.http.get<User>(this.url + "/" + sessionStorage.getItem("name"), {observe: 'response',withCredentials: true});
   }
 
   

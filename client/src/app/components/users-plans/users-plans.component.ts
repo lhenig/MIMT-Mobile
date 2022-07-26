@@ -28,10 +28,9 @@ export class UsersPlansComponent implements OnInit {
 
     this.userService.findUser().subscribe(data => {
       if (data.body != null)
-        localStorage.setItem('userId', data.body?.id.toString());
+      sessionStorage.setItem('userId', data.body?.id.toString());
 
-      this.planService.findPlansByUser(JSON.parse(localStorage.getItem('userId') || '{}')).subscribe((data) => {
-        console.log(localStorage.getItem('userId'))
+      this.planService.findPlansByUser(JSON.parse(sessionStorage.getItem('userId') || '{}')).subscribe((data) => {
         if (data.body != null) {
           this.Plans = data.body;
           for (let i = 0; i < this.Plans.length; i++) {

@@ -29,7 +29,8 @@ export class UserPageComponent implements OnInit {
     this.userService.findUser().subscribe((data)=>{
       if (data.body != null) {
         console.log(data.body);
-        localStorage.setItem('userId', data.body.id.toString()); 
+        
+        sessionStorage.setItem('userId', data.body.id.toString()); 
         //STUFF WITH DATA HERE
         this.User = data.body;
         

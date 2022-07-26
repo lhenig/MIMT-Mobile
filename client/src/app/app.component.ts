@@ -31,7 +31,7 @@ export class AppComponent {
     ).subscribe((data)=>{
       console.log(data);
       // return this.app;
-      localStorage.clear();
+      sessionStorage.clear();
       this.router.navigateByUrl('/landing');
     });
   }
