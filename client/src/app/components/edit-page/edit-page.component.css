@@ -232,3 +232,6 @@
   .no-select{
     background-color: #d4d4d4;
   }
+  .no-margin{
+    margin: 0px;
+  }

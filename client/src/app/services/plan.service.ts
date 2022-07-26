@@ -21,7 +21,7 @@ export class PlanService {
   }
 
   findPlanById(planId: number): Observable<HttpResponse<Plan>> {
-    return this.http.get<Plan>(this.url + `/${planId}`, {observe: 'response'});
+    return this.http.get<Plan>(this.url + `/plan/${planId}`, {observe: 'response', withCredentials: true});
   }
 
   findLatestPlan(): Observable<HttpResponse<Plan>> {
