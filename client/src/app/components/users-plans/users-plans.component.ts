@@ -34,11 +34,14 @@ export class UsersPlansComponent implements OnInit {
       this.planService.findPlansByUser(JSON.parse(sessionStorage.getItem('userId') || '{}')).subscribe((data) => {
         if (data.body != null) {
           this.Plans = data.body;
+          for(let i = 0; i < this.Plans.length; i++){
+            this.TotalCost += this.Plans[i].price;
+          }
           for (let i = 0; i < this.Plans.length; i++) {
             this.deviceService.findDevicesByPlan(this.Plans[i].id).subscribe((data) => {
               if (data.body != null) {
                 this.Device = data.body;
-                console.log(data.body);
+                // console.log(data.body);
               }
             });
           }

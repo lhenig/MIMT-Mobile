@@ -23,7 +23,7 @@ export class UserSignupComponent implements OnInit {
     this.newUser.email = this.credentials.email;
     this.newUser.password = this.credentials.password;
     if (this.newUser.userName.trim() != "" && this.newUser.email != "") {
-      console.log(this.newUser)
+      // console.log(this.newUser)
       //send the forms values
       this.userService.saveUser(this.newUser).subscribe(data => {
         
