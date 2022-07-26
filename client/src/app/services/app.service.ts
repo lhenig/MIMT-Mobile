@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, catchError, Observable, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
 import { User } from "../models/user.model";
 import { UserService } from "./user.service";
@@ -13,7 +13,7 @@ export class AppService {
   // authenticated = false;
   url: string = environment.apiUrl + "/login";
 
-  constructor(private http:HttpClient, private userService: UserService) {}
+  constructor(private http:HttpClient) {}
   User?: User;
   authenticate(credentials: { name: any; password: any; }): Observable<HttpResponse<FormData>>{
 
@@ -25,6 +25,5 @@ export class AppService {
         formData.append('password', credentials.password);
         
         return this.http.post<FormData>(this.url, formData, {observe: 'response', withCredentials: true});
-    }
-
+  }
 }

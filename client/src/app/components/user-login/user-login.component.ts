@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AppService } from 'src/app/services/app.service';
 import { UserService } from 'src/app/services/user.service';
@@ -11,7 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserLoginComponent implements OnInit {
   credentials = {name: '', password: ''};
-  errorMsg?: string;
+  errorMsg: string = '';
+
   callback(): void {
     
   }
@@ -21,8 +23,23 @@ export class UserLoginComponent implements OnInit {
   }
 
   login() {
-    this.app.authenticate(this.credentials).subscribe((data) => {
+    this.app.authenticate(this.credentials)
+    .pipe(catchError(this.handleError))
+    .subscribe((data) => {
       this.router.navigateByUrl('/user');
     });
+    
+  }
+
+  handleError(error:any){
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      msg = 'Unexpected Error';
+    } else {
+      msg = 'User Name/Password not found.'
+    }
+    console.log(msg);
+    this.errorMsg = msg;
+    return msg;
   }
 }
