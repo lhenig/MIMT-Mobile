@@ -33,8 +33,9 @@
                   </form>
             </div>
             <div *ngIf="typeOf(this.userId) != 'number'" class="text-center">
-              <h3>Login to create your own plan!</h3>
+              <h3><a [routerLink]="['/login']">Login</a> to create your own plan!</h3>
               <p>We offer the best prices around.... no seriously! <br/> Pick the plan that best fits your needs.</p>
+              <p class="small">Don't have an account? <a [routerLink]="['/signup']">Make One Here!</a></p>
             </div>
         </div>
         <div class="pin-to-bottom">

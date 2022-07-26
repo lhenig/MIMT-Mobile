@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserLoginComponent implements OnInit {
   credentials = {name: '', password: ''};
+  errorMsg?: string;
   callback(): void {
     
   }
@@ -19,14 +20,9 @@ export class UserLoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(): void{
+  login() {
     this.app.authenticate(this.credentials).subscribe((data) => {
-      // this.app.authenticated = true;
       this.router.navigateByUrl('/user');
-      // return this.app;
-      // console.log(data);
-      
     });
-    
   }
 }

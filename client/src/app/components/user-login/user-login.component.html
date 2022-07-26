@@ -19,6 +19,12 @@
                     <div *ngIf="Password.errors?.['required']">Password is required</div>   
                 </div>
         </div>
+        <div *ngIf="this.errorMsg">
+            {{errorMsg}}
+        </div>
+        <div>
+            No Account yet? <a [routerLink]="['/signup']">Create One</a>
+        </div>
         
         <div>
             <button type="submit" class="btn btn-primary" value="Post">Sign Up</button>
