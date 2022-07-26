@@ -24,7 +24,7 @@ export class UserPageComponent implements OnInit {
   Device: Device | undefined;
   // User.id: number;
 
-  constructor(private userService: UserService, private planService: PlanService,private deviceService: DeviceService, private router: Router) { }
+  constructor(private userService: UserService, private planService: PlanService, private deviceService: DeviceService, private userStateService: UserStateService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -35,7 +35,7 @@ export class UserPageComponent implements OnInit {
         sessionStorage.setItem('userId', data.body.id.toString()); 
         //STUFF WITH DATA HERE
         this.User = data.body;
-        // this.userStateService.changeUser(this.User)
+        this.userStateService.changeUser(this.User)
       }
     })
 

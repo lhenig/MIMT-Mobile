@@ -21,7 +21,7 @@ export class AppComponent implements OnInit{
   credentials = {name: '', password: ''}
   title = 'Skillstorm-P2';//has to match server
   User?: User;
-  
+  userId = JSON.parse(sessionStorage.getItem('userId') || '{}');
   
 
   constructor(private app: AppService, private userStateService: UserStateService, private logoutService: LogoutService, private http: HttpClient, private router: Router){
@@ -29,18 +29,16 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-      this.userStateService.currentUser.subscribe(user => this.User = user)
+    this.userStateService.currentUser.subscribe(user => this.User = user)
+  }
+
+  typeOf(any: any){
+    return typeof(any);
   }
 
   //might need to change this later
   logout() {
-    this.logoutService.logout(
-        // this.app.authenticated = false;
-    ).subscribe((data)=>{
-      // return this.app;
-      sessionStorage.clear();
-      
-    });
-    
+    sessionStorage.clear();
+    this.logoutService.logout().subscribe((data)=>{});
   }
 }

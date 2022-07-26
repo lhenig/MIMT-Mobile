@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Device } from 'src/app/models/device.model';
 import { Plan } from 'src/app/models/plan.model';
+import { User } from 'src/app/models/user.model';
 import { DeviceService } from 'src/app/services/device.service';
 import { PlanService } from 'src/app/services/plan.service';
 import { UserStateService } from 'src/app/services/user-state.service';
@@ -24,6 +25,9 @@ export class PlanPageComponent implements OnInit {
 
   constructor(private planService: PlanService, private deviceService: DeviceService, private router: Router) { }
 
+  typeOf(any: any){
+    return typeof(any);
+  }
 
   incr() {
     let curPhones = document.getElementById("curPhones");

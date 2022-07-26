@@ -5,18 +5,34 @@
 <!-- Nav bar Displayed below and is visible for all pages -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand padding-left" href="#">MIMT MOBLE</a>
+  <a class="navbar-brand padding-left" [routerLink]="['/#']">MIMT MOBLE</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
+    <!-- <div *ngIf="(typeOf(this.userId) === 'number')||(this.User?.id)" class="navbar-nav">
       
-      <a class="nav-item nav-link navbar-custom" href="/planCreation">Plans</a>
-      <a *ngIf="this.User?.userName != ''" class="nav-item nav-link navbar-custom" href="/user">{{User?.userName}}</a>
-      <a *ngIf="this.User?.id === 0" class="nav-item nav-link navbar-custom" href="/login">Login</a>
-      <a *ngIf="this.User?.id === 0" class="nav-item nav-link navbar-custom" href="/signup">Signup</a>
-      <button *ngIf="this.User?.userName != ''" (click)="logout()">Logout</button>
+      <a class="nav-item nav-link navbar-custom" href="/planCreation">Plan Creation</a>
+      <a class="nav-item nav-link navbar-custom" href="/user">Manage Account</a>
+      <a (click)="logout()" class="nav-item nav-link navbar-custom" href="">Logout</a>
+    </div>
+    <div *ngIf="(typeOf(this.userId) != 'number')&&((!this.User?.id)||(this.User?.id===0))" class="navbar-nav">
+      
+      <a class="nav-item nav-link navbar-custom" href="/planCreation">View Our Plans</a>
+      <a class="nav-item nav-link navbar-custom" href="/login">Login</a>
+      <a class="nav-item nav-link navbar-custom" href="/signup">Signup</a>
+    </div> -->
+    <div *ngIf="(typeOf(this.userId) === 'number')||(this.User?.id)" class="navbar-nav">
+      
+      <a class="nav-item nav-link navbar-custom" [routerLink]="['/planCreation']">Plan Creation</a>
+      <a class="nav-item nav-link navbar-custom" [routerLink]="['/user']">Manage Account</a>
+      <a (click)="logout()" class="nav-item nav-link navbar-custom" [routerLink]="['']">Logout</a>
+    </div>
+    <div *ngIf="(typeOf(this.userId) != 'number')&&((!this.User?.id)||(this.User?.id===0))" class="navbar-nav">
+      
+      <a class="nav-item nav-link navbar-custom" [routerLink]="['/planCreation']">View Our Plans</a>
+      <a class="nav-item nav-link navbar-custom" [routerLink]="['/login']">Login</a>
+      <a class="nav-item nav-link navbar-custom" [routerLink]="['/signup']">Signup</a>
     </div>
   </div>
 </nav>

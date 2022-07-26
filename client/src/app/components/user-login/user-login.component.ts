@@ -24,7 +24,7 @@ export class UserLoginComponent implements OnInit {
       // this.app.authenticated = true;
       this.router.navigateByUrl('/user');
       // return this.app;
-      // console.log(this.app);
+      // console.log(data);
       
     });
     

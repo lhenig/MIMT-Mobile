@@ -1,7 +1,10 @@
 <div class="plan-page-container">
-    <h1 class="page-header">
-        Plan Creation
+    <h1 *ngIf="typeOf(this.userId) === 'number'" class="page-header">
+        Create a Plan
     </h1>
+    <h1 *ngIf="typeOf(this.userId) != 'number'" class="page-header">
+      What We Offer
+  </h1>
     <div class="device-creation-container">
             <div class="image-container">
                 <div class="image-item">
@@ -10,7 +13,7 @@
                     </div>
                 </div>
             </div>
-            <div class="devices-info">
+            <div *ngIf="typeOf(this.userId) === 'number'" class="devices-info">
                 <form class="form-inline form-container shadow">
                     <div class="form-item-container">   
                         <div class="form-labels">
@@ -29,9 +32,13 @@
 
                   </form>
             </div>
+            <div *ngIf="typeOf(this.userId) != 'number'" class="text-center">
+              <h3>Login to create your own plan!</h3>
+              <p>We offer the best prices around.... no seriously! <br/> Pick the plan that best fits your needs.</p>
+            </div>
         </div>
         <div class="pin-to-bottom">
-        <div class="num-devices container">
+        <div *ngIf="typeOf(this.userId) === 'number'" class="num-devices container">
             <div class="device-items shadow card">
                 <h2>How many devices do you need?</h2>
                 <div class="center-this">
@@ -71,7 +78,7 @@
                                 <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
                               </ul>
                               <div class="d-grid">
-                                <a (click)="selectPlan('MINIMAL')" class="btn btn-primary text-uppercase">SELECT</a>
+                                <a *ngIf="typeOf(this.userId) === 'number'" (click)="selectPlan('MINIMAL')" class="btn btn-primary text-uppercase">SELECT</a>
                               </div>
                             </div>
                           </div>
@@ -88,7 +95,7 @@
                                   <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
                                 </ul>
                                 <div class="d-grid">
-                                  <a (click)="selectPlan('BASIC')" class="btn btn-primary text-uppercase">SELECT</a>
+                                  <a *ngIf="typeOf(this.userId) === 'number'" (click)="selectPlan('BASIC')" class="btn btn-primary text-uppercase">SELECT</a>
                                 </div>
                               </div>
                             </div>
@@ -105,7 +112,7 @@
                                   <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
                                 </ul>
                                 <div class="d-grid">
-                                  <a (click)="selectPlan('ULTRA')" class="btn btn-primary text-uppercase">SELECT</a>
+                                  <a *ngIf="typeOf(this.userId) === 'number'" (click)="selectPlan('ULTRA')" class="btn btn-primary text-uppercase">SELECT</a>
                                 </div>
                               </div>
                             </div>
@@ -115,7 +122,7 @@
                   </section>
               </div>
             </div>
-            <div class="submit-button">
+            <div *ngIf="typeOf(this.userId) === 'number'" class="submit-button">
                 <button class="button-styling" (click)="submitPlan()">
                   Create Plan
                 </button>
