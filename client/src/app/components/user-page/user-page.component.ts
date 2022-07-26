@@ -6,6 +6,7 @@ import { DeviceService } from 'src/app/services/device.service';
 import { PlanService } from 'src/app/services/plan.service';
 import { AppService } from 'src/app/services/app.service';
 import { UserService } from 'src/app/services/user.service';
+import { Plan } from 'src/app/models/plan.model';
 
 
 @Component({
@@ -16,10 +17,12 @@ import { UserService } from 'src/app/services/user.service';
 export class UserPageComponent implements OnInit {
   //not sure how to do with login so I'm gonna wait on this one
   User?: User;
+  Plans: Plan[] = [];
   Devices?: Device[]=[];
+  Device: Device | undefined;
   // User.id: number;
 
-  constructor(private userService: UserService, private deviceService: DeviceService, private router: Router) { }
+  constructor(private userService: UserService, private planService: PlanService,private deviceService: DeviceService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -32,7 +35,7 @@ export class UserPageComponent implements OnInit {
         
       }
     })
-
+   
     
     
   }

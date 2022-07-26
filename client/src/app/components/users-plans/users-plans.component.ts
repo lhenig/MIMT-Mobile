@@ -6,6 +6,7 @@ import { Plan } from 'src/app/models/plan.model';
 import { User } from 'src/app/models/user.model';
 import { DeviceService } from 'src/app/services/device.service';
 import { PlanService } from 'src/app/services/plan.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-users-plans',
@@ -16,40 +17,40 @@ export class UsersPlansComponent implements OnInit {
   Plans: Plan[] = [];
   Device?: Device;
 
-  
+
 
   @Input() User?: User;
 
-  constructor(private planService: PlanService, private deviceService: DeviceService, private router: Router) { }
+  constructor(private planService: PlanService, private deviceService: DeviceService, private userService: UserService, private router: Router) { }
 
   //CHANGE THIS
   ngOnInit(): void {
 
-    
-    this.planService.findPlansByUser(JSON.parse(localStorage.getItem('userId') || '{}')).subscribe((data) => {
-      
-      if (data.body != null) {
-        
-        this.Plans = data.body;
-        
-        //STUFF WITH DATA HERE
-        
-        for(let i = 0; i < this.Plans.length; i++) {
+    this.userService.findUser().subscribe(data => {
+      if (data.body != null)
+        localStorage.setItem('userId', data.body?.id.toString());
 
-          this.deviceService.findDevicesByPlan(this.Plans[i].id).subscribe((data) => {
-            if (data.body != null ) {
-              
-              //STUFF WITH DATA HERE
-              this.Device = data.body;
-              console.log(data.body);
-          }});
+      this.planService.findPlansByUser(JSON.parse(localStorage.getItem('userId') || '{}')).subscribe((data) => {
+        console.log(localStorage.getItem('userId'))
+        if (data.body != null) {
+          this.Plans = data.body;
+          for (let i = 0; i < this.Plans.length; i++) {
+            this.deviceService.findDevicesByPlan(this.Plans[i].id).subscribe((data) => {
+              if (data.body != null) {
+                this.Device = data.body;
+                console.log(data.body);
+              }
+            });
+          }
         }
-    }});
+      });
+    })
 
-    
+
+
   };
-  
 
-  
 
-  }
+
+
+}

@@ -31,6 +31,7 @@ export class AppComponent {
     ).subscribe((data)=>{
       console.log(data);
       // return this.app;
+      localStorage.clear();
       this.router.navigateByUrl('/landing');
     });
   }
