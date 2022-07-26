@@ -19,7 +19,6 @@ export class PlanPageComponent implements OnInit {
   Plan: Plan = new Plan("noplan", 0, 0.0, this.userId);
   mimtPlan: string = "noplan";
   phones: string[] = [""];
-
   Devices: Device[] = [];
 
   constructor(private planService: PlanService, private deviceService: DeviceService, private router: Router) { }
