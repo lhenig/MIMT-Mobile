@@ -13,7 +13,7 @@ export class UserInfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.User)
+    // console.log(this.User)
   };
 
 }

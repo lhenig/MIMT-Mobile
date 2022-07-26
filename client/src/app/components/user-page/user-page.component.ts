@@ -30,7 +30,7 @@ export class UserPageComponent implements OnInit {
 
     this.userService.findUser().subscribe((data)=>{
       if (data.body != null) {
-        console.log(data.body);
+        // console.log(data.body);
         
         sessionStorage.setItem('userId', data.body.id.toString()); 
         //STUFF WITH DATA HERE
