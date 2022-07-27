@@ -22,6 +22,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
             @UniqueConstraint(columnNames={"email"}))
 public class UserClass {
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

@@ -31,15 +31,27 @@
       </td>
 
       <td>${{plan.price}}</td>
-      <td>
+      <td stlye="text-align: right; ">
         <button
                 type="button"
                 class="btn btn-link btn-rounded btn-sm fw-bold"
                 data-mdb-ripple-color="dark"
                 [routerLink] = "['/update', plan.id]"
+
                 >
                 <a [routerLink] = "['/update', plan.id]">Edit</a>
+
         </button>
+        <button
+                type="button"
+                class="btn btn-link btn-rounded btn-sm fw-bold"
+                data-mdb-ripple-color="dark"
+
+                >
+                <a (click)="deletePlan(plan.id)">Delete</a>
+
+        </button>
+
       </td>
     </tr>
 

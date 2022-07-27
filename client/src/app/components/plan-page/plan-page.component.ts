@@ -145,7 +145,7 @@ export class PlanPageComponent implements OnInit {
       alert('please select a plan');
     }
     else {
-      for (let i = 0; i <= phoneNumbers.length-1; i++) {
+
         if(this.selected === true){
           // Saves Plan to database
           this.planService.savePlan(this.Plan).subscribe(data => {
@@ -161,7 +161,7 @@ export class PlanPageComponent implements OnInit {
 
           });
 
-        }
+
       }
 
       //////////////////////////////////////////////////////////////

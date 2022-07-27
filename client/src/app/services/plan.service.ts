@@ -38,7 +38,7 @@ export class PlanService {
   }
 
   deletePlan(id: number): Observable<HttpResponse<Plan>> {
-    return this.http.delete<Plan>(this.url, {observe: 'response'});
+    return this.http.delete<Plan>(this.url + '/' + id, {observe: 'response', withCredentials: true});
   }
 
 }
