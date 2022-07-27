@@ -35,11 +35,11 @@ public class UserController {
   
   // Just for testing
   @GetMapping("/authed")
-  public ResponseEntity<List<UserClass>> getUsers(HttpServletResponse response) {
+  public ResponseEntity<?> getUsers(HttpServletResponse response) {
     List<UserClass> userData = userService.findAllUsers();
     response.getHeader("cookie");
     if (!userData.isEmpty()) {
-      return new ResponseEntity<>(userData, HttpStatus.OK);
+      return new ResponseEntity<>("userData", HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

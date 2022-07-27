@@ -159,6 +159,7 @@ export class PlanPageComponent implements OnInit {
               })
             }
 
+            setTimeout(() => this.router.navigateByUrl('/user'),2500);
           });
 
 

@@ -61,7 +61,7 @@ export class UsersPlansComponent implements OnInit {
                 this.deviceService.deleteDevice(this.Devices[i].id).subscribe((data) => {});
               }
               this.planService.deletePlan(id).subscribe((data) => {
-
+                window.location.reload();
               });
             }
           });

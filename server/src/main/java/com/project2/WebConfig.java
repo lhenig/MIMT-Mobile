@@ -66,6 +66,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated()
 				.and()
 				.formLogin()
+				.defaultSuccessUrl("/user/authed")
 				.successHandler(successHandler())
 				.failureHandler(failureHandler())
 				.and().rememberMe().and()
