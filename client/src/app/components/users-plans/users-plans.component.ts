@@ -48,12 +48,10 @@ export class UsersPlansComponent implements OnInit {
         }
       });
     })
-
-
-
   };
 
-
-
+  redirect() {
+    this.router.navigateByUrl('/planCreation');
+  }
 
 }
