@@ -22,6 +22,8 @@ export class PlanPageComponent implements OnInit {
   phones: string[] = [""];
   Devices: Device[] = [];
 
+  selected: boolean = false;
+
   constructor(private planService: PlanService, private deviceService: DeviceService, private router: Router) { }
 
   typeOf(any: any){
@@ -56,6 +58,7 @@ export class PlanPageComponent implements OnInit {
     if (p == 'MINIMAL') {
       this.mimtPlan = 'MINIMAL';
       plan1?.classList.add('selected');
+      this.selected = true;
       let curPhones = document.getElementById("curPhones");
       let maxPhones = document.getElementById("maxPhones");
       if (curPhones && maxPhones) {
@@ -76,6 +79,7 @@ export class PlanPageComponent implements OnInit {
     if (p == 'BASIC') {
       this.mimtPlan = 'BASIC';
       plan2?.classList.add('selected');
+      this.selected = true;
       let curPhones = document.getElementById("curPhones");
       let maxPhones = document.getElementById("maxPhones");
       if (curPhones && maxPhones) {
@@ -96,6 +100,7 @@ export class PlanPageComponent implements OnInit {
     if (p == 'ULTRA') {
       this.mimtPlan = 'ULTRA';
       plan3?.classList.add('selected');
+      this.selected = true;
       let curPhones = document.getElementById("curPhones");
       let maxPhones = document.getElementById("maxPhones");
       if (curPhones && maxPhones) {
@@ -110,6 +115,8 @@ export class PlanPageComponent implements OnInit {
     else {
       plan3?.classList.remove('selected');
     }
+
+    this.selected = true;
   }
   submitPlan() {
     let phoneDiv = document.querySelectorAll('[id=phone]');
@@ -138,32 +145,24 @@ export class PlanPageComponent implements OnInit {
       alert('please select a plan');
     }
     else {
+      for (let i = 0; i <= phoneNumbers.length-1; i++) {
+        if(this.selected === true){
+          // Saves Plan to database
+          this.planService.savePlan(this.Plan).subscribe(data => {
+            if (data.body != null) {
+              this.Plan = data.body
+            }
+            for (let i = 0; i < this.Devices.length; i++) {
+              this.Devices[i].planId = this.Plan.id
+              this.deviceService.saveDevice(this.Devices[i]).subscribe(data => {
 
-      alert(`PlanName: ${this.mimtPlan} \n`)
-      for (let i = 0; i < phoneNumbers.length; i++) {
-        alert("Phone Number: " + phoneNumbers[i] + "\n Phonemodel: " + models[i]);
+              })
+            }
 
+          });
+
+        }
       }
-
-      // Saves Plan to database
-      this.planService.savePlan(this.Plan).subscribe(data => {
-        if (data.body != null) {
-          this.Plan = data.body
-        }
-
-        for (let i = 0; i < this.Devices.length; i++) {
-          this.Devices[i].planId = this.Plan.id
-          this.deviceService.saveDevice(this.Devices[i]).subscribe(data => {
-
-          })
-        }
-
-      });
-
-      
-
-
-
 
       //////////////////////////////////////////////////////////////
       //  This is where a new plan request is sent to database    //
@@ -173,7 +172,8 @@ export class PlanPageComponent implements OnInit {
       //  and making sure a plan is selected                      //
       //////////////////////////////////////////////////////////////
     }
-    
+
+
   }
 
   ngOnInit(): void {

@@ -73,7 +73,7 @@ public class DeviceController {
     }
   }
   
-  @PutMapping("/{id}")
+  @PutMapping("/update/{id}")
   public ResponseEntity<Device> updateDevice(@PathVariable("id") int id, @RequestBody Device device) {
     Device deviceData = deviceService.findById(id);
     if (deviceData != null) {

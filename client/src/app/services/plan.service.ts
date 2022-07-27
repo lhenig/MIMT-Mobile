@@ -21,7 +21,7 @@ export class PlanService {
   }
 
   findPlanById(planId: number): Observable<HttpResponse<Plan>> {
-    return this.http.get<Plan>(this.url + `/update/${planId}`, {observe: 'response', withCredentials: true});
+    return this.http.get<Plan>(this.url + `/plan/${planId}`, {observe: 'response', withCredentials: true});
   }
 
   findLatestPlan(): Observable<HttpResponse<Plan>> {
@@ -34,7 +34,7 @@ export class PlanService {
   }
 
   updatePlan(plan: Plan): Observable<HttpResponse<Plan>> {
-    return this.http.put<Plan>(this.url, plan, {observe: 'response'});
+    return this.http.put<Plan>(this.url + `/update/${plan.id}`, plan, {observe: 'response', withCredentials: true});
   }
 
   deletePlan(id: number): Observable<HttpResponse<Plan>> {

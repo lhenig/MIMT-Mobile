@@ -62,7 +62,7 @@ public class PlanController {
 	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	  }
-    @GetMapping("/update/{id}")
+    @GetMapping("/plan/{id}")
   public ResponseEntity<Plan> findByPlanId(@PathVariable("id") int id){
 	  
 	  try {
@@ -71,6 +71,23 @@ public class PlanController {
 			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		  }
 		  return new ResponseEntity<Plan>(plans, HttpStatus.OK);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
+
+    @PutMapping("/update/{id}")
+  public ResponseEntity<Plan> updateByPlanId(@PathVariable("id") int id, @RequestBody Plan plan){
+	  
+	  try {
+		  Plan newPlan = planService.findById(id);
+		  if(newPlan == null) {
+			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		  }
+      newPlan.setPlanName(plan.getPlanName());
+      newPlan.setPrice(plan.getPrice());
+      newPlan.setDeviceLimit(plan.getDeviceLimit());
+		  return new ResponseEntity<Plan>(newPlan, HttpStatus.OK);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }

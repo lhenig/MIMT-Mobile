@@ -12,7 +12,7 @@
             </div>
             <div class="devices-info">
                 <form class="form-inline form-container shadow">
-                    <div class="form-item-container">   
+                    <div class="form-item-container">
                         <div class="form-labels">
                             <div>
                                 Phone Number:
@@ -22,13 +22,14 @@
                             </div>
                         </div>
                         <form id="my-form">
-                          <div class="form-item-container no-margin" *ngFor="let dev of Devices">   
+                          <div class="form-item-container no-margin" *ngFor="let dev of Devices; let i = index">
                             <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber" value={{dev.phoneNumber}}>
                             <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel" value={{dev.deviceName}} >
+                            <button id="delete" (click)="deleteDevice(dev.id, i)">Delete</button>
                         </div>
                         </form>
                     </div>
-                    
+
 
                   </form>
             </div>
@@ -39,7 +40,7 @@
                 <h2>How many devices do you need?</h2>
                 <div class="center-this">
                     <div>
-                        <span class="minus-button" (click)="decr()">-</span>
+
                         <span id="curPhones">1</span>
                         <span class="plus-button" (click)="incr()">+</span>
                     </div>
@@ -53,7 +54,7 @@
                       <span>
                         )
                       </span>
-                        
+
                     </div>
                 </div>
             </div>
@@ -89,7 +90,7 @@
                                 </ul>
                               </div>
                             </div>
-                          </div>                        
+                          </div>
                         <!-- Free Tier -->
                         <div class="col-lg-4">
                             <div class="card mb-5 mb-lg-0">
@@ -104,7 +105,7 @@
 
                               </div>
                             </div>
-                          </div>                        
+                          </div>
                       </div>
                     </div>
                   </section>

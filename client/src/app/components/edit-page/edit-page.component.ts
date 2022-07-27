@@ -19,19 +19,21 @@ export class EditPageComponent implements OnInit {
   phones: string[] = [""];
   Plan: Plan | undefined;
   Devices: Device[] = [];
-  NewDevices: Device[] = [];
+
 
 
   constructor(private planService: PlanService, private deviceService: DeviceService, private route: ActivatedRoute, private router: Router) {
   }
 
   updatePlan(){
-    this.route.params.subscribe(params=>{
-      let phoneDiv = document.querySelectorAll('[id=phone]');
+    let phoneDiv = document.querySelectorAll('[id=phone]');
       let phoneNumbers = [];
       let modelDiv = document.querySelectorAll('[id=model]');
       let models = [];
-      let NewDevices = [];
+
+    let NewDevices: Device[] = [];
+    this.route.params.subscribe(params=>{
+
       for (let i = 0; i < phoneDiv.length; i++) {
         if ((phoneDiv[i] as HTMLInputElement).value == "") {
           alert("compleate phone number input");
@@ -47,10 +49,17 @@ export class EditPageComponent implements OnInit {
 
         NewDevices.push(new Device((modelDiv[i] as HTMLInputElement).value, (phoneDiv[i] as HTMLInputElement).value, params['id']))
       }
-        for (let i = 0; i < phoneNumbers.length; i++) {
-          alert("Phone Number: " + this.Devices[i].phoneNumber + "\n Phonemodel: " + this.Devices[i].deviceName + "\nPlan ID: " + this.Devices[i].planId);
-        }
 
+        for (let i = 0; i <= this.Devices.length - 1; i++) {
+          //alert("Phone Number: " + this.Devices[i].phoneNumber + "\n Phonemodel: " + this.Devices[i].deviceName + "\nPlan ID: " + this.Devices[i].planId);
+          if(this.Devices[i].phoneNumber == ''){
+            this.deviceService.saveDevice(NewDevices[i]).subscribe(data => {});
+          }
+          else {
+            this.deviceService.updateDevice(NewDevices[i], this.Devices[i].id).subscribe(data => {});
+          }
+
+        }
 
         //UPDATE DEVICES HERE
         // the plan ID is tied to params['id']
@@ -60,8 +69,25 @@ export class EditPageComponent implements OnInit {
       });
   }
 
+  deleteDevice(deviceId: number, indexOf: number): void{
+    let curPhones = document.getElementById("curPhones");
+
+    if(deviceId){
+      this.deviceService.deleteDevice(deviceId).subscribe(data => {
+        this.Devices.splice(indexOf, 1);
+      });
+    }
+    else {
+      this.Devices.splice(indexOf, 1);
+    }
+    if(curPhones)
+      curPhones.innerHTML = String(Number(curPhones.innerHTML) - 1)
+
+  }
+
 
   planType(planName: string){
+
     if(planName == "Minimal"){
       var plan1 = document.getElementById("plan1");
       plan1?.classList.add('selected');
@@ -113,22 +139,15 @@ export class EditPageComponent implements OnInit {
       }
     }
   }
-  decr(){
-    let curPhones = document.getElementById("curPhones");
-    if(curPhones){
-      if(this.Devices.length > 1){
-        curPhones.innerHTML = String(Number(curPhones.innerHTML) - 1);
-        this.Devices.pop();
-      }
 
-    }
-  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params=>{
       let id = params['id'];
       this.planService.findPlanById(id).subscribe((data) => {
+
         if(data.body != null){
+          this.Plan = data.body;
           this.planType(data.body.planName);
           this.deviceService.findDevicesByPlan(id).subscribe((data) => {
             if (data.body != null) {
