@@ -1,5 +1,5 @@
 import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { PlanService } from 'src/app/services/plan.service';
 import { DeviceService } from 'src/app/services/device.service';
 import { Plan } from 'src/app/models/plan.model';
@@ -22,7 +22,7 @@ export class EditPageComponent implements OnInit {
   NewDevices: Device[] = [];
 
 
-  constructor(private planService: PlanService, private deviceService: DeviceService, private route: ActivatedRoute) {
+  constructor(private planService: PlanService, private deviceService: DeviceService, private route: ActivatedRoute, private router: Router) {
   }
 
   updatePlan(){
@@ -56,7 +56,7 @@ export class EditPageComponent implements OnInit {
         // the plan ID is tied to params['id']
         // and the updated list of devices is in NewDevices
 
-
+        this.router.navigateByUrl('/user');
       });
   }
 
@@ -156,7 +156,6 @@ export class EditPageComponent implements OnInit {
       });
     });
   }
-
 
 
 }
