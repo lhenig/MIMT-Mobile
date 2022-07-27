@@ -129,7 +129,6 @@ export class EditPageComponent implements OnInit {
       let id = params['id'];
       this.planService.findPlanById(id).subscribe((data) => {
         if(data.body != null){
-          console.log(data.body);
           this.planType(data.body.planName);
           this.deviceService.findDevicesByPlan(id).subscribe((data) => {
             if (data.body != null) {

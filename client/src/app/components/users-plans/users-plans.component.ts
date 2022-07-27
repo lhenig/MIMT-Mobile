@@ -41,7 +41,6 @@ export class UsersPlansComponent implements OnInit {
             this.deviceService.findDevicesByPlan(this.Plans[i].id).subscribe((data) => {
               if (data.body != null) {
                 this.Devices = data.body;
-                console.log(data.body);
               }
             });
           }
