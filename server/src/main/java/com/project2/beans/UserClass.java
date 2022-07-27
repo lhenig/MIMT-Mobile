@@ -9,13 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 @EnableGlobalMethodSecurity(jsr250Enabled = false, prePostEnabled = true, securedEnabled = false)
 @Entity
-@Table(name = "users")
+@Table(
+	name = "users",
+	uniqueConstraints=
+            @UniqueConstraint(columnNames={"email"}))
 public class UserClass {
 	
 	@Id
@@ -24,7 +28,7 @@ public class UserClass {
 	
 	@Column(name = "userName")
 	private String userName;
-
+	
 	@Column(name = "email")
 	private String email;
 	
