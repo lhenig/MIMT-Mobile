@@ -28,7 +28,7 @@
         </div>
 
         <br/>
-        <div *ngIf="this.errorMsg" >
+        <div *ngIf="this.errorMsg == 'User Name/Password not found.'" class="alert alert-danger" role="alert">
           {{errorMsg}}
         </div>
         <br/>

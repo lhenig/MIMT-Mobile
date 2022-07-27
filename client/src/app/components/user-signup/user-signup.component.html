@@ -39,13 +39,16 @@
           <div *ngIf="Password.errors?.['required']" ><span style="color: red">Password is required</span></div>
       </div>
       <br />
+      <div *ngIf="this.errorMsg" class="alert alert-danger" role="alert">
+        {{errorMsg}}
+      </div>
+      <br />
         <div>
             <button type="submit" class="btn btn-primary" value="Save">Sign Up</button>
         </div>
+
         <br />
-      <div *ngIf="this.errorMsg">
-        {{errorMsg}}
-      </div>
+
         <div>
           Already Have an account? Login  <a [routerLink]="['/login']">here</a>
       </div>
