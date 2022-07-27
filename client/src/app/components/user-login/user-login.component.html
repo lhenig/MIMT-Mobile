@@ -9,9 +9,9 @@
     <form (ngSubmit)="login(); userForm.reset()" #userForm>
     <div class="m-3">
         <div class="control-label form-group row" style="justify-content: center; margin-right: 13%;">
-            <label for="UserName" class="col-sm-2 col-form-label"><span style="font-weight: bold">Username:</span> </label>
+            <label for="Email" class="col-sm-2 col-form-label"><span style="font-weight: bold">Email:</span> </label>
 
-                <input [(ngModel)]="credentials.email" type="UserName" name="UserName" class="form-control" required #UserName="ngModel" style="max-width: 400px; "/>
+                <input [(ngModel)]="credentials.email" type="Email" name="Email" class="form-control" required #Email="ngModel" style="max-width: 400px; "/>
 
         </div>
          <br/>
