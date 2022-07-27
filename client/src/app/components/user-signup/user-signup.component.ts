@@ -11,7 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 export class UserSignupComponent implements OnInit {
   credentials = {name: '', email: '', password: ''};
   newUser: User = new User (this.credentials.name, this.credentials.email, this.credentials.password); 
-  
+  errorMsg: string = '';
+
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -31,7 +32,21 @@ export class UserSignupComponent implements OnInit {
         if (route) {
           this.router.navigateByUrl('/login');
         }
+      }, (error:Error)=>{
+        this.errorMsg = this.handleError(error);
       });
     }
+  }
+
+  handleError(error:any) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      msg = 'Unexpected Error';
+    } else {
+      msg = 'Email already tied to an account.'
+    }
+    console.log(msg);
+    this.errorMsg! = msg;
+    return msg;
   }
 }
