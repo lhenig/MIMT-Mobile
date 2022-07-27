@@ -62,6 +62,19 @@ public class PlanController {
 	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	  }
+    @GetMapping("/update/{id}")
+  public ResponseEntity<Plan> findByPlanId(@PathVariable("id") int id){
+	  
+	  try {
+		  Plan plans = planService.findById(id);
+		  if(plans == null) {
+			  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		  }
+		  return new ResponseEntity<Plan>(plans, HttpStatus.OK);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
 
 
   @PostMapping("/newplan")
