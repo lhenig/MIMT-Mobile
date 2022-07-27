@@ -22,7 +22,10 @@
                             </div>
                         </div>
                         <form id="my-form">
-                          <app-list-item *ngFor="let phone of phones"></app-list-item>
+                          <div class="form-item-container no-margin" *ngFor="let dev of Devices">   
+                            <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber" value={{dev.phoneNumber}}>
+                            <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel" value={{dev.deviceName}} >
+                        </div>
                         </form>
                     </div>
                     

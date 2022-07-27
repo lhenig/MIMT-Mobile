@@ -31,7 +31,7 @@ const routes: Routes = [
     path: 'signup', component: UserSignupComponent
   },
   {
-    path: 'editplan', component: EditPageComponent
+    path: 'update/:id', component: EditPageComponent
   },
   //This will handle 404 Errors
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
