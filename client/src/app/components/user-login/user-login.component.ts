@@ -11,8 +11,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-  credentials = {name: '', password: ''};
-  errorMsg: string = '';
+  credentials = {email: '', password: ''};
+  errorMsg: string = 'Enter youre Email and Password to log in  :)';
 
   callback(): void {
     
@@ -24,14 +24,16 @@ export class UserLoginComponent implements OnInit {
 
   login() {
     this.app.authenticate(this.credentials)
-    .pipe(catchError(this.handleError))
+    // .pipe(catchError(this.handleError))
     .subscribe((data) => {
       this.router.navigateByUrl('/user');
+    }, (error:Error)=>{
+      this.errorMsg = this.handleError(error);
     });
     
   }
 
-  handleError(error:any){
+  handleError(error:any) {
     let msg = '';
     if (error.error instanceof ErrorEvent) {
       msg = 'Unexpected Error';
@@ -39,7 +41,7 @@ export class UserLoginComponent implements OnInit {
       msg = 'User Name/Password not found.'
     }
     console.log(msg);
-    this.errorMsg = msg;
+    this.errorMsg! = msg;
     return msg;
   }
 }
