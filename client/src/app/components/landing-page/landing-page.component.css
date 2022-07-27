@@ -1,6 +1,6 @@
 .landing-page-container{
     background-image: linear-gradient(176deg, #ffffff 70%, #00b7ff calc(70% + 2px));
-    height: 130vh;
+    height: 140vh;
 }
 .landing-header{
 display: flex;
@@ -33,19 +33,19 @@ justify-content: center;
 .image-container{
     display: flex;
     justify-content: flex-end;
- 
-    
+
+
 }
 .image-left{
     border-radius: 20px;
-    border:solid; 
+    border:solid;
     border-width: 1px;
     border-color: #7e7e7e;
     width: 550px;
 }
 .image-right{
     border-radius: 20px;
-    border:solid; 
+    border:solid;
     border-width: 1px;
     border-color: #7e7e7e;
     width: 550px;
@@ -53,7 +53,7 @@ justify-content: center;
 .text-container{
     background-color: #ffffff;
     border-radius: 20px;
-    border:solid; 
+    border:solid;
     border-width: 1px;
     border-color: #7e7e7e;
     width: 400px;

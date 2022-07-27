@@ -27,9 +27,9 @@ export class UserSignupComponent implements OnInit {
       //send the forms values
       this.userService.saveUser(this.newUser).subscribe(data => {
         
-        let route = this.router.config.find(r => r.path === 'users');
+        let route = this.router.config.find(r => r.path === 'login');
         if (route) {
-          this.router.navigateByUrl('/users');
+          this.router.navigateByUrl('/login');
         }
       });
     }

@@ -9,7 +9,7 @@ import { UserService } from "./user.service";
     providedIn: 'root'
   })
 export class AppService {
-    
+
   // authenticated = false;
   url: string = environment.apiUrl + "/login";
 
@@ -23,7 +23,7 @@ export class AppService {
         const formData = new FormData();
         formData.append('username', credentials.email);
         formData.append('password', credentials.password);
-        
+
         return this.http.post<FormData>(this.url, formData, {observe: 'response', withCredentials: true});
   }
 }

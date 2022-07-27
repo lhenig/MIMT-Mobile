@@ -15,7 +15,7 @@ export class UserLoginComponent implements OnInit {
   errorMsg: string = 'Enter youre Email and Password to log in  :)';
 
   callback(): void {
-    
+
   }
   constructor(private app: AppService, private router: Router) { }
 
@@ -30,7 +30,7 @@ export class UserLoginComponent implements OnInit {
     }, (error:Error)=>{
       this.errorMsg = this.handleError(error);
     });
-    
+
   }
 
   handleError(error:any) {

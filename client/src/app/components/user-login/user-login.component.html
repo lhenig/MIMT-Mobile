@@ -1,33 +1,41 @@
 <div class="container text-center">
+  <br/>
     <div>
         <h1>Login</h1>
     </div>
+
+    <br/>
+
     <form (ngSubmit)="login(); userForm.reset()" #userForm>
-    <div class="m-3">        
-        <div class="control-label form-group row">
-            <label for="UserName" class="col-4 col-form-label">Email: </label>
-            
-                <input [(ngModel)]="credentials.email" type="UserName" name="UserName" class="form-control" required #UserName="ngModel"/>
-            
+    <div class="m-3">
+        <div class="control-label form-group row" style="justify-content: center; margin-right: 6%;">
+            <label for="UserName" class="col-1 col-form-label"><span style="font-weight: bold">Username:</span> </label>
+
+                <input [(ngModel)]="credentials.email" type="UserName" name="UserName" class="form-control" required #UserName="ngModel" style="max-width: 400px; "/>
+
         </div>
-         
-        <div class="control-label form-group row">
-            <label for="Password" class="col-4 col-form-label">Password: </label>
-            
-                <input [(ngModel)]="credentials.password" type="password" class="form-control" name="Password" id="Password" required minlength="6" maxlength="20" #Password="ngModel"/>
-                <div *ngIf="Password.invalid && (Password.dirty || Password.touched)"> 
-                    <div *ngIf="Password.errors?.['required']">Password is required</div>   
-                </div>
+         <br/>
+        <div class="control-label form-group row" style="justify-content: center; margin-right: 6%;">
+            <label for="Password" class="col-1 col-form-label"><span style="font-weight: bold">Password:</span> </label>
+
+                <input [(ngModel)]="credentials.password" type="password" class="form-control" name="Password" id="Password" required minlength="6" maxlength="20" #Password="ngModel"
+                style="max-width: 400px; "/>
+
+        </div>
+        <div  *ngIf="Password.invalid && (Password.dirty || Password.touched)" >
+            <div *ngIf="Password.errors?.['required']" ><span style="color: red" >Password is required</span></div>
         </div>
         <div *ngIf="this.errorMsg">
-            {{errorMsg}}
+          {{errorMsg}}
         </div>
-        <div>
-            No Account yet? <a [routerLink]="['/signup']">Create One</a>
-        </div>
-        
+        <br/>
+
         <div>
             <button type="submit" class="btn btn-primary" value="Post">Login</button>
+        </div>
+        <br/>
+        <div>
+            No Account yet? <a [routerLink]="['/signup']">Create One</a>
         </div>
         <!-- <div class="alert alert-danger" [hidden]="!error">
             There was a problem logging in. Please try again.

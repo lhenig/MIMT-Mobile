@@ -19,7 +19,7 @@ export class UserService {
   
   //might have to tweak the arguments for these
   saveUser(user: User): Observable<HttpResponse<User>> {
-    return this.http.post<User>(this.url + "/newuser", user, {observe: 'response'});
+    return this.http.post<User>(this.url + "/signup", user, {observe: 'response'});
   }
 
   updateUser(user: User): Observable<HttpResponse<User>> {

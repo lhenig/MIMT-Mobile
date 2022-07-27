@@ -47,8 +47,6 @@
 		   <version>1.70</version>
 		</dependency>
  
-  
- 
    <dependency>
      <groupId>io.gs2</groupId>
      <artifactId>gs2-java-sdk-auth</artifactId>

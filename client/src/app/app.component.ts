@@ -18,14 +18,14 @@ import { UserStateService } from './services/user-state.service';
 })
 
 export class AppComponent implements OnInit{
-  credentials = {name: '', password: ''}
+  credentials = {email: '', password: ''}
   title = 'Skillstorm-P2';//has to match server
   User?: User;
   userId = JSON.parse(sessionStorage.getItem('userId') || '{}');
-  
+
 
   constructor(private app: AppService, private userStateService: UserStateService, private logoutService: LogoutService, private http: HttpClient, private router: Router){
-    
+
   }
 
   ngOnInit(): void {
@@ -42,8 +42,8 @@ export class AppComponent implements OnInit{
         // this.app.authenticated = false;
     ).subscribe((data)=>{
       // return this.app;
-      
-      
+
+
     });
     sessionStorage.clear();
   }
