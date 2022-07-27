@@ -1,4 +1,7 @@
+<div class="background-border">
+</div>
 <div class="plan-page-container">
+  <div>
     <h1 *ngIf="typeOf(this.userId) === 'number'" class="page-header">
         Create a Plan
     </h1>
@@ -6,131 +9,127 @@
       What We Offer
   </h1>
     <div class="device-creation-container">
-            <div class="image-container">
-                <div class="image-item">
-                    <div class="image-text">
-                        Mimt MOBLE: call with confidence!
-                    </div>
-                </div>
-            </div>
-            <div *ngIf="typeOf(this.userId) === 'number'" class="devices-info">
-                <form class="form-inline form-container shadow">
-                    <div class="form-item-container">
-                        <div class="form-labels">
-                            <div>
-                                Phone Number:
-                            </div>
-                            <div>
-                                Phone Model:
-                            </div>
+            <div>
+              <div *ngIf="typeOf(this.userId) === 'number'" class="num-devices container">
+                <div class="device-items shadow card">
+                    <h2>How many devices do you need?</h2>
+                    <div class="center-this">
+                        <div>
+                            <span class="minus-button" (click)="decr()">-</span>
+                            <span id="curPhones">1</span>
+                            <span class="plus-button" (click)="incr()">+</span>
                         </div>
-                        <form id="my-form">
-                          <app-list-item *ngFor="let phone of phones"></app-list-item>
-                        </form>
-                    </div>
-
-
-                  </form>
-            </div>
-            <div *ngIf="typeOf(this.userId) != 'number'" class="text-center">
-              <h3><a [routerLink]="['/login']">Login</a> to create your own plan!</h3>
-              <p>We offer the best prices around.... no seriously! <br/> Pick the plan that best fits your needs.</p>
-              <p class="small">Don't have an account? <a [routerLink]="['/signup']">Make One Here!</a></p>
-            </div>
-        </div>
-        <div class="pin-to-bottom">
-        <div *ngIf="typeOf(this.userId) === 'number'" class="num-devices container">
-            <div class="device-items shadow card">
-                <h2>How many devices do you need?</h2>
-                <div class="center-this">
-                    <div>
-                        <span class="minus-button" (click)="decr()">-</span>
-                        <span id="curPhones">1</span>
-                        <span class="plus-button" (click)="incr()">+</span>
-                    </div>
-                    <div>
-                      <span>
-                        &nbsp; Max of (
-                      </span>
-                      <span id="maxPhones">
-                        1
-                      </span>
-                      <span>
-                        )
-                      </span>
-
+                        <div>
+                          <span>
+                            &nbsp; Max of (
+                          </span>
+                          <span id="maxPhones">
+                            1
+                          </span>
+                          <span>
+                            )
+                          </span>
+    
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
             <div class="plan-card-container">
-                <section class="pricing">
-                    <div class="container">
-                      <div class="row">
-                        <!-- Free Tier -->
-                        <div class="col-lg-4">
-                          <div class="card mb-5 mb-lg-0">
-                            <div class="card-body" id="plan1">
-                              <h5 class="card-title text-muted text-uppercase text-center">Mimt MINIMAL</h5>
-                              <h6 class="card-price text-center">$20.99<span class="period">/month</span></h6>
-                              <hr>
-                              <ul class="fa-ul">
-                                <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>One Device Max</strong></li>
-                                <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
-                              </ul>
-                              <div class="d-grid">
-                                <a *ngIf="typeOf(this.userId) === 'number'" (click)="selectPlan('MINIMAL')" class="btn btn-primary text-uppercase">SELECT</a>
-                              </div>
-                            </div>
+              <section class="pricing">
+                <div class="container">
+                  <div class="row">
+                    <!-- Free Tier -->
+                    <div class="col-lg-4">
+                      <div class="card ">
+                        <div class="card-body" id="plan1">
+                          <h5 class="card-title text-muted text-uppercase text-center">Mimt MINIMAL</h5>
+                          <h6 class="card-price text-center">$20.99<span class="period">/month</span></h6>
+                          <hr>
+                          <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>One Device Max</strong></li>
+                            <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
+                          </ul>
+                          <div class="d-grid">
+                            <a *ngIf="typeOf(this.userId) === 'number'" (click)="selectPlan('MINIMAL')" class="btn btn-primary text-uppercase">SELECT</a>
                           </div>
                         </div>
-                        <!-- Free Tier -->
-                        <div class="col-lg-4">
-                            <div class="card mb-5 mb-lg-0">
-                              <div class="card-body" id="plan2">
-                                <h5 class="card-title text-muted text-uppercase text-center">Mimt Basic</h5>
-                                <h6 class="card-price text-center">$60.99<span class="period">/month</span></h6>
-                                <hr>
-                                <ul class="fa-ul">
-                                  <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Five Devices Max</strong></li>
-                                  <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
-                                </ul>
-                                <div class="d-grid">
-                                  <a *ngIf="typeOf(this.userId) === 'number'" (click)="selectPlan('BASIC')" class="btn btn-primary text-uppercase">SELECT</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        <!-- Free Tier -->
-                        <div class="col-lg-4">
-                            <div class="card mb-5 mb-lg-0">
-                              <div class="card-body" id="plan3">
-                                <h5 class="card-title text-muted text-uppercase text-center">Mimt Ultra</h5>
-                                <h6 class="card-price text-center">$110.99<span class="period">/month</span></h6>
-                                <hr>
-                                <ul class="fa-ul">
-                                  <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Twelve Device Max</strong></li>
-                                  <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
-                                </ul>
-                                <div class="d-grid">
-                                  <a *ngIf="typeOf(this.userId) === 'number'" (click)="selectPlan('ULTRA')" class="btn btn-primary text-uppercase">SELECT</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
                       </div>
                     </div>
-                  </section>
-              </div>
-            </div>
-            <div *ngIf="typeOf(this.userId) === 'number'" class="submit-button">
-                <button class="button-styling" (click)="submitPlan()">
-                  Create Plan
-                </button>
-            </div>
+                  
+                    <div class="col-lg-4">
+                      <div class="card ">
+                        <div class="card-body" id="plan2">
+                          <h5 class="card-title text-muted text-uppercase text-center">Mimt Basic</h5>
+                          <h6 class="card-price text-center">$60.99<span class="period">/month</span></h6>
+                          <hr>
+                          <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Five Devices Max</strong></li>
+                            <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
+                          </ul>
+                          <div class="d-grid">
+                            <a *ngIf="typeOf(this.userId) === 'number'" (click)="selectPlan('BASIC')" class="btn btn-primary text-uppercase">SELECT</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                      <div class="card ">
+                        <div class="card-body" id="plan3">
+                          <h5 class="card-title text-muted text-uppercase text-center">Mimt Ultra</h5>
+                          <h6 class="card-price text-center">$110.99<span class="period">/month</span></h6>
+                          <hr>
+                          <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Twelve Device Max</strong></li>
+                            <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
+                          </ul>
+                          <div class="d-grid">
+                            <a *ngIf="typeOf(this.userId) === 'number'" (click)="selectPlan('ULTRA')" class="btn btn-primary text-uppercase">SELECT</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div> 
 
-    <div id="plans">
-        <!-- {{Plan}} -->
-    </div>
-</div>
+          </div>
+          <div *ngIf="typeOf(this.userId) === 'number'" class="devices-info">
+            <form class="form-inline form-container shadow form-bg">
+              <div class="form-item-container">
+                <div class="form-labels">
+                  <div>
+                      Phone Number:
+                  </div>
+                  <div>
+                      Phone Model:
+                  </div>
+                </div>
+                <form id="my-form">
+                  <app-list-item *ngFor="let phone of phones"></app-list-item>
+                </form>
+              </div>
+            </form>
+          </div>
+          <div *ngIf="typeOf(this.userId) != 'number'" class="text-center">
+            <h3><a [routerLink]="['/login']">Login</a> to create your own plan!</h3>
+            <p>We offer the best prices around.... no seriously! <br/> Pick the plan that best fits your needs.</p>
+            <p class="small">Don't have an account? <a [routerLink]="['/signup']">Make One Here!</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-container-plan">
+        <div *ngIf="typeOf(this.userId) === 'number'" class="submit-button">
+          <button class="button-styling" (click)="submitPlan()">
+            Create Plan
+          </button>
+        </div>
+      </div>  
+    </div>      
+
+      
+            
+
 
