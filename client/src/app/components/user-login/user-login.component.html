@@ -8,28 +8,30 @@
 
     <form (ngSubmit)="login(); userForm.reset()" #userForm>
     <div class="m-3">
-        <div class="control-label form-group row" style="justify-content: center; margin-right: 6%;">
-            <label for="UserName" class="col-1 col-form-label"><span style="font-weight: bold">Username:</span> </label>
+        <div class="control-label form-group row" style="justify-content: center; margin-right: 13%;">
+            <label for="UserName" class="col-sm-2 col-form-label"><span style="font-weight: bold">Username:</span> </label>
 
                 <input [(ngModel)]="credentials.email" type="UserName" name="UserName" class="form-control" required #UserName="ngModel" style="max-width: 400px; "/>
 
         </div>
          <br/>
-        <div class="control-label form-group row" style="justify-content: center; margin-right: 6%;">
-            <label for="Password" class="col-1 col-form-label"><span style="font-weight: bold">Password:</span> </label>
+        <div class="control-label form-group row" style="justify-content: center; margin-right: 13%;">
+            <label for="Password" class="col-sm-2 col-form-label"><span style="font-weight: bold">Password:</span> </label>
 
                 <input [(ngModel)]="credentials.password" type="password" class="form-control" name="Password" id="Password" required minlength="6" maxlength="20" #Password="ngModel"
                 style="max-width: 400px; "/>
 
         </div>
+
         <div  *ngIf="Password.invalid && (Password.dirty || Password.touched)" >
             <div *ngIf="Password.errors?.['required']" ><span style="color: red" >Password is required</span></div>
         </div>
-        <div *ngIf="this.errorMsg">
+
+        <br/>
+        <div *ngIf="this.errorMsg" >
           {{errorMsg}}
         </div>
         <br/>
-
         <div>
             <button type="submit" class="btn btn-primary" value="Post">Login</button>
         </div>

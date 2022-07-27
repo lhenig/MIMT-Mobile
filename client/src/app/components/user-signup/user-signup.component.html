@@ -6,8 +6,8 @@
     <br/>
     <form (ngSubmit)="create(); userForm.reset()"  #userForm>
     <div class="m-3">
-        <div class="form-group row" style="justify-content: center; margin-right: 6%;">
-            <label for="Name" class="col-1 col-form-label" ><span style="font-weight: bold">Name:</span> </label>
+        <div class="form-group row" style="justify-content: center; margin-right: 13%;">
+            <label for="Name" class="col-sm-2 col-form-label " ><span style="font-weight: bold; ">Name:</span> </label>
 
                 <input [(ngModel)]="credentials.name" type="text" class="form-control" name="Name" id="Name" required minlength="0" maxlength="50" #Name="ngModel"
                 style="max-width: 400px; "/>
@@ -18,8 +18,8 @@
           <div *ngIf="Name.errors?.['required']"><span style="color: red">Name is required</span></div>
       </div>
         <br/>
-        <div class="control-label form-group row" style="justify-content: center; margin-right: 6%;">
-            <label for="Email" class="col-1 col-form-label"><span style="font-weight: bold">Email:</span> </label>
+        <div class="control-label form-group row" style="justify-content: center; margin-right: 13%;">
+            <label for="Email" class="col-sm-2 col-form-label"><span style="font-weight: bold">Email:</span> </label>
 
                 <input [(ngModel)]="credentials.email" type="Email" name="Email" class="form-control" required #Email="ngModel" style="max-width: 400px; "/>
 
@@ -28,8 +28,8 @@
           <div *ngIf="Email.errors?.['required']"><span style="color: red">Email is required</span></div>
       </div>
         <br/>
-        <div class="control-label form-group row" style="justify-content: center; margin-right: 6%;">
-            <label for="Password" class="col-1 col-form-label"><span style="font-weight: bold">Password:</span> </label>
+        <div class="control-label form-group row" style="justify-content: center; margin-right: 13%;">
+            <label for="Password" class="col-sm-2 col-form-label"><span style="font-weight: bold">Password:</span> </label>
 
                 <input [(ngModel)]="credentials.password" type="password" class="form-control" name="Password" id="Password" required minlength="6" maxlength="20" #Password="ngModel"
                 style="max-width: 400px; "/>
