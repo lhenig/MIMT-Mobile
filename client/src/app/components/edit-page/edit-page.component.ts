@@ -21,7 +21,7 @@ export class EditPageComponent implements OnInit {
   Devices: Device[] = [];
   NewDevices: Device[] = [];
 
-  
+
   constructor(private planService: PlanService, private deviceService: DeviceService, private route: ActivatedRoute) {
   }
 
@@ -54,7 +54,7 @@ export class EditPageComponent implements OnInit {
 
         //UPDATE DEVICES HERE
         // the plan ID is tied to params['id']
-        // and the updated list of devices is in NewDevices 
+        // and the updated list of devices is in NewDevices
 
 
       });
@@ -128,7 +128,8 @@ export class EditPageComponent implements OnInit {
     this.route.params.subscribe(params=>{
       let id = params['id'];
       this.planService.findPlanById(id).subscribe((data) => {
-        if(data.body){
+        if(data.body != null){
+          console.log(data.body);
           this.planType(data.body.planName);
           this.deviceService.findDevicesByPlan(id).subscribe((data) => {
             if (data.body != null) {

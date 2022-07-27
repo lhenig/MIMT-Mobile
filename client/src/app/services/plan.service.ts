@@ -21,13 +21,13 @@ export class PlanService {
   }
 
   findPlanById(planId: number): Observable<HttpResponse<Plan>> {
-    return this.http.get<Plan>(this.url + `/plan/${planId}`, {observe: 'response', withCredentials: true});
+    return this.http.get<Plan>(this.url + `/update/${planId}`, {observe: 'response', withCredentials: true});
   }
 
   findLatestPlan(): Observable<HttpResponse<Plan>> {
     return this.http.get<Plan>(this.url + `/latestplan`, {observe: 'response', withCredentials: true});
   }
-  
+
   //might not need all CRUD for plans
   savePlan(plan: Plan): Observable<HttpResponse<Plan>> {
     return this.http.post<Plan>(this.url + "/newplan", plan, {observe: 'response', withCredentials: true});
