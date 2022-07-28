@@ -23,8 +23,8 @@
                         </div>
                         <form id="my-form">
                           <div class="form-item-container no-margin" *ngFor="let dev of Devices; let i = index">
-                            <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber" value={{dev.phoneNumber}}>
-                            <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel" value={{dev.deviceName}} >
+                            <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber" value={{dev.phoneNumber}} (change)="changeHandler()">
+                            <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel" value={{dev.deviceName}} (change)="changeHandler()">
                             <button id="delete" (click)="deleteDevice(dev.id, i)">Delete</button>
                         </div>
                         </form>
@@ -111,13 +111,14 @@
                   </section>
               </div>
             </div>
+            <p *ngIf="this.warningMsg" class="text-center alert alert-danger " role="alert">{{warningMsg}}</p>
             <div class="submit-button">
-                <button class="button-styling" (click)="updatePlan()">
+                <button *ngIf="!this.warningMsg" class="button-styling" (click)="updatePlan()">
                   Update Plan
                 </button>
-            </div>
-            <div *ngIf="this.errorMsg">
-              {{this.errorMsg}}
+                <button *ngIf="this.warningMsg" class="button-styling">
+                  ERROR
+                </button>
             </div>
 </div>
 

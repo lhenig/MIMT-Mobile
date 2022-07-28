@@ -20,12 +20,14 @@ export class EditPageComponent implements OnInit {
   Plan: Plan | undefined;
   Devices: Device[] = [];
   errorMsg: string ='';
-
+  warningMsg: string = '';
+  dup: boolean = false;
 
   constructor(private planService: PlanService, private deviceService: DeviceService, private route: ActivatedRoute, private router: Router) {
   }
 
   updatePlan(){
+    if (!this.dup){
     let phoneDiv = document.querySelectorAll('[id=phone]');
       let phoneNumbers = [];
       let modelDiv = document.querySelectorAll('[id=model]');
@@ -72,8 +74,8 @@ export class EditPageComponent implements OnInit {
         //UPDATE DEVICES HERE
         // the plan ID is tied to params['id']
         // and the updated list of devices is in NewDevices
-
-      });
+      
+      })};
   }
 
   deleteDevice(deviceId: number, indexOf: number): void{
@@ -187,11 +189,34 @@ export class EditPageComponent implements OnInit {
     if (error.error instanceof ErrorEvent) {
       msg = 'Unexpected Error';
     } else {
-      msg = 'Phone number(s) already tied to a different plan.'
+      msg = 'ERROR: Phone number(s) already tied to a different plan.'
     }
     console.log(msg);
     this.errorMsg! = msg;
     return msg;
+  }
+
+  changeHandler() {
+    let phoneDiv = document.querySelectorAll('[id=phone]');
+    let phoneNumbers: string[] = [];
+
+    for (let i = 0; i < phoneDiv.length; i++) {
+      if ((phoneDiv[i] as HTMLInputElement).value != ''){
+        phoneNumbers.push((phoneDiv[i] as HTMLInputElement).value);
+      }
+    }
+    
+    let dup = false;
+    dup = phoneNumbers.some((element, index)=>{
+      return phoneNumbers.indexOf(element) !== index
+    });
+    if (dup) {
+      this.warningMsg = 'ERROR: Duplicate numbers';
+      this.dup = true;
+    } else {
+      this.warningMsg = '';
+      this.dup = false;
+    }
   }
 
 }

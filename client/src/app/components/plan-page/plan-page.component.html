@@ -107,7 +107,7 @@
                   </div>
                 </div>
                 <form id="my-form">
-                  <app-list-item *ngFor="let phone of phones"></app-list-item>
+                  <app-list-item *ngFor="let phone of phones" (change)="changeHandler()"></app-list-item>
                 </form>
               </div>
             </form>
@@ -119,11 +119,17 @@
           </div>
         </div>
       </div>
-
+      <p *ngIf="this.warningMsg" class="text-center alert alert-danger " role="alert">{{warningMsg}}</p>
+      <div *ngIf="this.errorMsg" class="text-center alert alert-danger " role="alert">
+        {{this.errorMsg}}
+      </div>
       <div class="button-container-plan">
         <div *ngIf="typeOf(this.userId) === 'number'" class="submit-button">
-          <button class="button-styling" (click)="submitPlan()" >
+          <button *ngIf="!this.warningMsg" class="button-styling" (click)="submitPlan()" >
             Create Plan
+          </button>
+          <button *ngIf="this.warningMsg" class="button-styling" >
+            ERROR
           </button>
         </div>
       </div>

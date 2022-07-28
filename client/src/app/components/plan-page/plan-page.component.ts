@@ -21,6 +21,9 @@ export class PlanPageComponent implements OnInit {
   mimtPlan: string = "noplan";
   phones: string[] = [""];
   Devices: Device[] = [];
+  errorMsg: string ='';
+  dup: boolean = false;
+  warningMsg: string = '';
 
   selected: boolean = false;
 
@@ -119,6 +122,7 @@ export class PlanPageComponent implements OnInit {
     this.selected = true;
   }
   submitPlan() {
+    if (!this.dup) {
     let phoneDiv = document.querySelectorAll('[id=phone]');
     let phoneNumbers = [];
     let modelDiv = document.querySelectorAll('[id=model]');
@@ -155,15 +159,17 @@ export class PlanPageComponent implements OnInit {
             for (let i = 0; i < this.Devices.length; i++) {
               this.Devices[i].planId = this.Plan.id
               this.deviceService.saveDevice(this.Devices[i]).subscribe(data => {
-
+                setTimeout(() => this.router.navigateByUrl('/user'),2500);
+              }, (error:Error)=>{
+                this.errorMsg = this.handleError(error);
               })
             }
 
-            setTimeout(() => this.router.navigateByUrl('/user'),2500);
+            
           });
 
 
-      }
+        }
 
       //////////////////////////////////////////////////////////////
       //  This is where a new plan request is sent to database    //
@@ -175,7 +181,7 @@ export class PlanPageComponent implements OnInit {
     }
 
 
-  }
+  }}
 
   ngOnInit(): void {
     this.planService.findPlansByUser(this.userId).subscribe((data) => {
@@ -185,6 +191,41 @@ export class PlanPageComponent implements OnInit {
         //this.Plan = data.body;
       }
     });
+  }
+
+  handleError(error:any) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      msg = 'Unexpected Error';
+    } else {
+      msg = 'ERROR: Phone number(s) already tied to a different plan.'
+    }
+    console.log(msg);
+    this.errorMsg! = msg;
+    return msg;
+  }
+
+  changeHandler() {
+    let phoneDiv = document.querySelectorAll('[id=phone]');
+    let phoneNumbers: string[] = [];
+
+    for (let i = 0; i < phoneDiv.length; i++) {
+      if ((phoneDiv[i] as HTMLInputElement).value != ''){
+        phoneNumbers.push((phoneDiv[i] as HTMLInputElement).value);
+      }
+    }
+    
+    let dup = false;
+    dup = phoneNumbers.some((element, index)=>{
+      return phoneNumbers.indexOf(element) !== index
+    });
+    if (dup) {
+      this.warningMsg = 'ERROR: Duplicate numbers';
+      this.dup = true;
+    } else {
+      this.warningMsg = '';
+      this.dup = false;
+    }
   }
 
 }
