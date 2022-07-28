@@ -16,6 +16,7 @@ create table plans(
     price float,
 	user_id int,
     foreign key (user_id) references users(id)
+    on delete cascade
 );
 
 create table devices(
@@ -24,6 +25,7 @@ create table devices(
     phone_number varchar(15) unique,
     plan_id int,
     foreign key (plan_id) references plans(id)
+    on delete cascade
 );
 
 insert into users(user_name, email, pass_key)

@@ -4,7 +4,6 @@ import { catchError, throwError } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AppService } from 'src/app/services/app.service';
 import { UserService } from 'src/app/services/user.service';
-
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',

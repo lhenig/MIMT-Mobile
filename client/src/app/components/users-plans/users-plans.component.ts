@@ -44,32 +44,20 @@ export class UsersPlansComponent implements OnInit {
               }
             });
           }
+
         }
+
       });
+
     })
   };
 
   deletePlan(id: number): void {
-    let plan = new Plan('', 0, 0, -1)
-    this.planService.findPlanById(id).subscribe((data) => {
-      if (data.body != null) {
-        plan = data.body;
-          this.deviceService.findDevicesByPlan(plan.id).subscribe((data) => {
-            if (data.body != null) {
-              this.Devices = data.body;
-              for(let i = 0; i < this.Devices.length; i++){
-                this.deviceService.deleteDevice(this.Devices[i].id).subscribe((data) => {});
-              }
-              this.planService.deletePlan(id).subscribe((data) => {
-                window.location.reload();
-              });
-            }
-          });
-      }
+    this.planService.deletePlan(id).subscribe((data) => {
+      this.router.navigateByUrl('/landing', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/user']);
     });
-
-
-
+    });
   }
 
   redirect() {
