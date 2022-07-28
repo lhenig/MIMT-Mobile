@@ -46,5 +46,8 @@ export class AppComponent implements OnInit{
 
     });
     sessionStorage.clear();
+    this.router.navigateByUrl('/landing', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/login']);
+  });
   }
 }

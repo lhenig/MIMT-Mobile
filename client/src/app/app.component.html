@@ -11,25 +11,25 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <!-- <div *ngIf="(typeOf(this.userId) === 'number')||(this.User?.id)" class="navbar-nav">
-      
+
       <a class="nav-item nav-link navbar-custom" href="/planCreation">Plan Creation</a>
       <a class="nav-item nav-link navbar-custom" href="/user">Manage Account</a>
       <a (click)="logout()" class="nav-item nav-link navbar-custom" href="">Logout</a>
     </div>
     <div *ngIf="(typeOf(this.userId) != 'number')&&((!this.User?.id)||(this.User?.id===0))" class="navbar-nav">
-      
+
       <a class="nav-item nav-link navbar-custom" href="/planCreation">View Our Plans</a>
       <a class="nav-item nav-link navbar-custom" href="/login">Login</a>
       <a class="nav-item nav-link navbar-custom" href="/signup">Signup</a>
     </div> -->
     <div *ngIf="(typeOf(this.userId) === 'number')||(this.User?.id)" class="navbar-nav">
-      
+
       <a class="nav-item nav-link navbar-custom" [routerLink]="['/planCreation']">Plan Creation</a>
       <a class="nav-item nav-link navbar-custom" [routerLink]="['/user']">Manage Account</a>
-      <a (click)="logout()" class="nav-item nav-link navbar-custom" [routerLink]="['']">Logout</a>
+      <a (click)="logout()" class="nav-item nav-link navbar-custom" >Logout</a>
     </div>
     <div *ngIf="(typeOf(this.userId) != 'number')&&((!this.User?.id)||(this.User?.id===0))" class="navbar-nav">
-      
+
       <a class="nav-item nav-link navbar-custom" [routerLink]="['/planCreation']">View Our Plans</a>
       <a class="nav-item nav-link navbar-custom" [routerLink]="['/login']">Login</a>
       <a class="nav-item nav-link navbar-custom" [routerLink]="['/signup']">Signup</a>
