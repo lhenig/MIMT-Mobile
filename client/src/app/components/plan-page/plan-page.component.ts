@@ -139,6 +139,9 @@ export class PlanPageComponent implements OnInit {
           alert("compleate model input");
           return;
         }
+        models.push((modelDiv[i] as HTMLInputElement).value);
+        Devices.push(new Device((modelDiv[i] as HTMLInputElement).value, (phoneDiv[i] as HTMLInputElement).value, this.Plan.id))
+      }
         if (this.mimtPlan == "noplan") {
           alert('please select a plan');
         }
@@ -152,8 +155,7 @@ export class PlanPageComponent implements OnInit {
                 if (data.body != null || data.body != undefined) {
                   this.Plan = data.body
                 }
-                models.push((modelDiv[i] as HTMLInputElement).value);
-                Devices.push(new Device((modelDiv[i] as HTMLInputElement).value, (phoneDiv[i] as HTMLInputElement).value, this.Plan.id))
+
                 for (let i = 0; i < Devices.length; i++) {
                   Devices[i].planId = this.Plan.id
                   this.deviceService.saveDevice(Devices[i]).subscribe(data => {
@@ -185,7 +187,7 @@ export class PlanPageComponent implements OnInit {
         //  there is no validation other than checking for ""       //
         //  and making sure a plan is selected                      //
         //////////////////////////////////////////////////////////////
-      }
+
 
 
     }
