@@ -1,117 +1,121 @@
+<div class="background-border">
+</div>
 <div class="plan-page-container">
+  <div>
     <h1 class="page-header">
-        Update Creation
+        Update a Plan
     </h1>
+
     <div class="device-creation-container">
-            <div class="image-container">
-                <div class="image-item">
-                    <div class="image-text">
-                        Mimt MOBLE: call with confidence!
+            <div>
+              <div class="num-devices container">
+                <div class="device-items shadow card">
+                    <h2>How many devices do you need?</h2>
+                    <div class="center-this">
+                        <div>
+
+                            <span id="curPhones">1</span>
+                            <span class="plus-button" (click)="incr()">+</span>
+                        </div>
+                        <div>
+                          <span>
+                            &nbsp; Max of (
+                          </span>
+                          <span id="maxPhones">
+                            1
+                          </span>
+                          <span>
+                            )
+                          </span>
+
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="devices-info">
-                <form class="form-inline form-container shadow">
-                    <div class="form-item-container">
-                        <div class="form-labels">
-                            <div>
-                                Phone Number:
-                            </div>
-                            <div>
-                                Phone Model:
-                            </div>
-                        </div>
-                        <form id="my-form">
-                          <div class="form-item-container no-margin" *ngFor="let dev of Devices; let i = index">
-                            <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber" value={{dev.phoneNumber}} (change)="changeHandler()">
-                            <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel" value={{dev.deviceName}} (change)="changeHandler()">
-                            <button id="delete" (click)="deleteDevice(dev.id, i)">Delete</button>
-                        </div>
-                        </form>
-                    </div>
-
-
-                  </form>
-            </div>
-        </div>
-        <div class="pin-to-bottom">
-        <div class="num-devices container">
-            <div class="device-items shadow card">
-                <h2>How many devices do you need?</h2>
-                <div class="center-this">
-                    <div>
-
-                        <span id="curPhones">1</span>
-                        <span class="plus-button" (click)="incr()">+</span>
-                    </div>
-                    <div>
-                      <span>
-                        &nbsp; Max of (
-                      </span>
-                      <span id="maxPhones">
-                        1
-                      </span>
-                      <span>
-                        )
-                      </span>
-
-                    </div>
-                </div>
-            </div>
-        </div>
             <div class="plan-card-container">
-                <section class="pricing">
-                    <div class="container">
-                      <div class="row">
-                        <!-- Free Tier -->
-                        <div class="col-lg-4">
-                          <div class="card mb-5 mb-lg-0">
-                            <div class="card-body" id="plan1">
-                              <h5 class="card-title text-muted text-uppercase text-center">Mimt MINIMAL</h5>
-                              <h6 class="card-price text-center">$20.99<span class="period">/month</span></h6>
-                              <hr>
-                              <ul class="fa-ul">
-                                <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>One Device Max</strong></li>
-                                <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- Free Tier -->
-                        <div class="col-lg-4 ">
-                            <div class="card mb-5 mb-lg-0 ">
-                              <div class="card-body" id="plan2">
-                                <h5 class="card-title text-muted text-uppercase text-center">Mimt Basic</h5>
-                                <h6 class="card-price text-center">$60.99<span class="period">/month</span></h6>
-                                <hr>
-                                <ul class="fa-ul">
-                                  <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Five Devices Max</strong></li>
-                                  <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        <!-- Free Tier -->
-                        <div class="col-lg-4">
-                            <div class="card mb-5 mb-lg-0">
-                              <div class="card-body" id="plan3">
-                                <h5 class="card-title text-muted text-uppercase text-center">Mimt Ultra</h5>
-                                <h6 class="card-price text-center">$110.99<span class="period">/month</span></h6>
-                                <hr>
-                                <ul class="fa-ul">
-                                  <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Twelve Device Max</strong></li>
-                                  <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
-                                </ul>
+              <section class="pricing">
+                <div class="container">
+                  <div class="row">
+                    <!-- Free Tier -->
+                    <div class="col-lg-4">
+                      <div class="card ">
+                        <div class="card-body" id="plan1">
+                          <h5 class="card-title text-muted text-uppercase text-center">Mimt MINIMAL</h5>
+                          <h6 class="card-price text-center">$20.99<span class="period">/month</span></h6>
+                          <hr>
+                          <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>One Device Max</strong></li>
+                            <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
+                          </ul>
 
-                              </div>
-                            </div>
-                          </div>
+                        </div>
                       </div>
                     </div>
-                  </section>
-              </div>
+
+                    <div class="col-lg-4">
+                      <div class="card ">
+                        <div class="card-body" id="plan2">
+                          <h5 class="card-title text-muted text-uppercase text-center">Mimt Basic</h5>
+                          <h6 class="card-price text-center">$60.99<span class="period">/month</span></h6>
+                          <hr>
+                          <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Five Devices Max</strong></li>
+                            <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
+                          </ul>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <div class="card ">
+                        <div class="card-body" id="plan3">
+                          <h5 class="card-title text-muted text-uppercase text-center">Mimt Ultra</h5>
+                          <h6 class="card-price text-center">$110.99<span class="period">/month</span></h6>
+                          <hr>
+                          <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Twelve Device Max</strong></li>
+                            <li><span class="fa-li"><i class="fas fa-check"></i></span>5G Data</li>
+                          </ul>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
-            <p *ngIf="this.warningMsg" class="text-center alert alert-danger " role="alert">{{warningMsg}}</p>
+
+          </div>
+          <div class="devices-info">
+            <form class="form-inline form-container shadow form-bg">
+              <div class="form-item-container">
+                <div class="form-labels">
+                  <div>
+                      Phone Number:
+                  </div>
+                  <div>
+                      Phone Model:
+                  </div>
+                </div>
+                <form id="my-form">
+                  <div class="form-item-container no-margin" *ngFor="let dev of Devices; let i = index">
+                    <input class="form-item" type="tel" id="phone" placeholder="Phone Number" name="phoneNumber" value={{dev.phoneNumber}} (change)="changeHandler()">
+                    <input class="form-item" type="text" id="model" placeholder="Phone Model" name="PhoneModel" value={{dev.deviceName}} (change)="changeHandler()">
+                    <button id="delete" (click)="deleteDevice(dev.id, i)">Delete</button>
+                </div>
+                </form>
+              </div>
+            </form>
+
+
+      </div>
+        </div>
+      </div>
+      <br>
+      <p *ngIf="this.warningMsg" class="text-center alert alert-danger " role="alert">{{warningMsg}}</p>
+      <div class="button-container-plan">
+
             <div class="submit-button">
                 <button *ngIf="!this.warningMsg" class="button-styling" (click)="updatePlan()">
                   Update Plan
@@ -119,6 +123,19 @@
                 <button *ngIf="this.warningMsg" class="button-styling">
                   ERROR
                 </button>
+      </div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+            <div *ngIf="this.errorMsg">
+              {{this.errorMsg}}
             </div>
-</div>
+
 

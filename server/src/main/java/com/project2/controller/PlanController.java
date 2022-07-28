@@ -96,10 +96,12 @@ public class PlanController {
 
   @PostMapping("/newplan")
   public ResponseEntity<Plan> createPlan(@RequestBody Plan plan) {
-    
+    Plan _plan = planService.findById(plan.getId());
     try {
-      Plan _plan = planService
-          .add(new Plan(plan.getPlanName(), plan.getDeviceLimit(), plan.getPrice(), plan.getUserId()));
+      if(_plan == null) {
+        _plan = planService.add(new Plan(plan.getPlanName(), plan.getDeviceLimit(), plan.getPrice(), plan.getUserId()));
+      }
+          
       return new ResponseEntity<>(_plan, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

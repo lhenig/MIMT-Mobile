@@ -63,11 +63,17 @@ public class DeviceController {
   
   @PostMapping("/newdevice")
   public ResponseEntity<Device> createDevice(@RequestBody Device device) {
-    System.out.println(device);
+    
+    Device _device = deviceService.findById(device.getId());
     try {
-      Device _device = deviceService
-          .add(new Device(device.getDeviceName(), device.getPhoneNumber(), device.getPlanId()));
-      return new ResponseEntity<>(_device, HttpStatus.CREATED);
+      if(_device == null){
+        _device = deviceService.add(new Device(device.getDeviceName(), device.getPhoneNumber(), device.getPlanId()));
+        return new ResponseEntity<>(_device, HttpStatus.CREATED);
+      }
+      else{
+        return new ResponseEntity<>(_device, HttpStatus.BAD_REQUEST);
+      }
+       
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }

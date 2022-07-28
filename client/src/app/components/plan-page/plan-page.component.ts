@@ -20,8 +20,7 @@ export class PlanPageComponent implements OnInit {
   Plan: Plan = new Plan("noplan", 0, 0.0, this.userId);
   mimtPlan: string = "noplan";
   phones: string[] = [""];
-  Devices: Device[] = [];
-  errorMsg: string ='';
+  errorMsg: string = '';
   dup: boolean = false;
   warningMsg: string = '';
 
@@ -29,8 +28,8 @@ export class PlanPageComponent implements OnInit {
 
   constructor(private planService: PlanService, private deviceService: DeviceService, private router: Router) { }
 
-  typeOf(any: any){
-    return typeof(any);
+  typeOf(any: any) {
+    return typeof (any);
   }
 
   incr() {
@@ -122,66 +121,75 @@ export class PlanPageComponent implements OnInit {
     this.selected = true;
   }
   submitPlan() {
+    let Devices: Device[] = [];
     if (!this.dup) {
-    let phoneDiv = document.querySelectorAll('[id=phone]');
-    let phoneNumbers = [];
-    let modelDiv = document.querySelectorAll('[id=model]');
-    let models = [];
+      let phoneDiv = document.querySelectorAll('[id=phone]');
+      let phoneNumbers = [];
+      let modelDiv = document.querySelectorAll('[id=model]');
+      let models = [];
 
-    for (let i = 0; i < phoneDiv.length; i++) {
-      if ((phoneDiv[i] as HTMLInputElement).value == "") {
-        alert("compleate phone number input");
-        return;
-      }
-      phoneNumbers.push((phoneDiv[i] as HTMLInputElement).value);
+      for (let i = 0; i < phoneDiv.length; i++) {
+        if ((phoneDiv[i] as HTMLInputElement).value == "") {
+          alert("compleate phone number input");
+          return;
+        }
+        phoneNumbers.push((phoneDiv[i] as HTMLInputElement).value);
 
-      if ((modelDiv[i] as HTMLInputElement).value == "") {
-        alert("compleate model input");
-        return;
-      }
-      models.push((modelDiv[i] as HTMLInputElement).value);
+        if ((modelDiv[i] as HTMLInputElement).value == "") {
+          alert("compleate model input");
+          return;
+        }
+        if (this.mimtPlan == "noplan") {
+          alert('please select a plan');
+        }
+        else {
 
-      this.Devices.push(new Device((modelDiv[i] as HTMLInputElement).value, (phoneDiv[i] as HTMLInputElement).value, this.Plan.id))
-    }
+          if (this.selected === true) {
+
+            // Saves Plan to database
+            try {
+              this.planService.savePlan(this.Plan).subscribe(data => {
+                if (data.body != null || data.body != undefined) {
+                  this.Plan = data.body
+                }
+                models.push((modelDiv[i] as HTMLInputElement).value);
+                Devices.push(new Device((modelDiv[i] as HTMLInputElement).value, (phoneDiv[i] as HTMLInputElement).value, this.Plan.id))
+                for (let i = 0; i < Devices.length; i++) {
+                  Devices[i].planId = this.Plan.id
+                  this.deviceService.saveDevice(Devices[i]).subscribe(data => {
+                    setTimeout(() => this.router.navigateByUrl('/user'), 2500);
+                  }, (error: Error) => {
+                    this.errorMsg = this.handleError(error);
+                  })
+                }
 
 
-    if (this.mimtPlan == "noplan") {
-      alert('please select a plan');
-    }
-    else {
-
-        if(this.selected === true){
-          // Saves Plan to database
-          this.planService.savePlan(this.Plan).subscribe(data => {
-            if (data.body != null) {
-              this.Plan = data.body
+              });
+            } catch (e) {
+              console.log("error")
             }
-            for (let i = 0; i < this.Devices.length; i++) {
-              this.Devices[i].planId = this.Plan.id
-              this.deviceService.saveDevice(this.Devices[i]).subscribe(data => {
-                setTimeout(() => this.router.navigateByUrl('/user'),2500);
-              }, (error:Error)=>{
-                this.errorMsg = this.handleError(error);
-              })
-            }
 
-            
-          });
 
+
+          }
 
         }
 
-      //////////////////////////////////////////////////////////////
-      //  This is where a new plan request is sent to database    //
-      //  plan name is in this.mimtPlan                           //
-      //  phone nums and phone models are in parallel arrays      //
-      //  there is no validation other than checking for ""       //
-      //  and making sure a plan is selected                      //
-      //////////////////////////////////////////////////////////////
+
+
+
+        //////////////////////////////////////////////////////////////
+        //  This is where a new plan request is sent to database    //
+        //  plan name is in this.mimtPlan                           //
+        //  phone nums and phone models are in parallel arrays      //
+        //  there is no validation other than checking for ""       //
+        //  and making sure a plan is selected                      //
+        //////////////////////////////////////////////////////////////
+      }
+
+
     }
-
-
-  }}
+  }
 
   ngOnInit(): void {
     this.planService.findPlansByUser(this.userId).subscribe((data) => {
@@ -193,7 +201,7 @@ export class PlanPageComponent implements OnInit {
     });
   }
 
-  handleError(error:any) {
+  handleError(error: any) {
     let msg = '';
     if (error.error instanceof ErrorEvent) {
       msg = 'Unexpected Error';
@@ -210,13 +218,13 @@ export class PlanPageComponent implements OnInit {
     let phoneNumbers: string[] = [];
 
     for (let i = 0; i < phoneDiv.length; i++) {
-      if ((phoneDiv[i] as HTMLInputElement).value != ''){
+      if ((phoneDiv[i] as HTMLInputElement).value != '') {
         phoneNumbers.push((phoneDiv[i] as HTMLInputElement).value);
       }
     }
-    
+
     let dup = false;
-    dup = phoneNumbers.some((element, index)=>{
+    dup = phoneNumbers.some((element, index) => {
       return phoneNumbers.indexOf(element) !== index
     });
     if (dup) {

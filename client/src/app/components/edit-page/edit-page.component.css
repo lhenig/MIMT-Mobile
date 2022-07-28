@@ -1,3 +1,14 @@
+.background-border{
+  background-image: linear-gradient(176deg, #ffffff 70%, #00b7ff calc(70% + 2px));
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 70vh;
+  text-align: center;
+  z-index: -1;
+
+}
 .image-item{
     background-image: url("../../../../src/assets/guyWithPhone.jpg");
     height: 350px;
@@ -35,16 +46,17 @@
     justify-content: center;
 }
 .plan-page-container{
-    background-image: linear-gradient(176deg, #ffffff 70%, #00b7ff calc(70% + 2px));
-    height: 94.4vh;
+
 }
 .device-creation-container{
-    display: grid;
-    grid-template-columns: 50vw 50vw;
+  margin-top:10vh;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 
 }
 .num-devices{
-    padding-top: 4vh;
+    padding-top: .5vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -83,6 +95,17 @@
     border-style: solid;
     border-width: 1px;
 }
+.form-bg{
+  background-color: #ffffff;
+
+}
+.form-container{
+  padding: 10px;
+  border-radius: 10px;
+  border:rgb(212, 212, 212);
+  border-style: solid;
+  border-width: 1px;
+}
 .form-item{
     margin-left: 10px;
     margin-right: 10px;
@@ -97,10 +120,11 @@
     border-color: rgb(196, 196, 196);;
 }
 .plan-card-container{
-    margin-top: 2vh;
-    display: flex;
-    justify-content: space-around;
-    width:1000;
+  margin-top: 2vh;
+  display: flex;
+  justify-content: space-around;
+  width:1000;
+  flex-direction: column;
 }
 
   .pricing .card {
@@ -109,36 +133,36 @@
     transition: all 0.2s;
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
   }
-  
+
   .pricing hr {
     margin: 1.5rem 0;
   }
-  
+
   .pricing .card-title {
     margin: 0.5rem 0;
     font-size: 0.9rem;
     letter-spacing: .1rem;
     font-weight: bold;
   }
-  
+
   .pricing .card-price {
     font-size: 2.5rem;
     margin: 0;
     width: 250px;
   }
-  
+
   .pricing .card-price .period {
     font-size: 0.8rem;
   }
-  
+
   .pricing ul li {
     margin-bottom: 1rem;
   }
-  
+
   .pricing .text-muted {
     opacity: 0.7;
   }
-  
+
   .pricing .btn {
     font-size: 80%;
     border-radius: 5rem;
@@ -148,16 +172,16 @@
     opacity: 0.7;
     transition: all 0.2s;
   }
-  
+
   /* Hover Effects on Card */
-  
+
   @media (min-width: 992px) {
     .pricing .card:hover {
       margin-top: -.25rem;
       margin-bottom: .25rem;
       box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
     }
-  
+
     .pricing .card:hover .btn {
       opacity: 1;
     }
@@ -173,9 +197,9 @@
     border-color: rgb(64, 185, 255);
   }
   .pin-to-bottom{
-    position:absolute;
-    left:25%;
-    bottom: 35px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
 
   .minus-button{
@@ -214,11 +238,7 @@
   .plus-button:hover{
     background-color: #5dd1ff;
   }
-  .submit-button{
-    position: absolute;
-    right: 230px;
-    bottom: 50%;
-  }
+
   .button-styling{
     background-color: #00b7ff;
     color: white;
@@ -234,4 +254,9 @@
   }
   .no-margin{
     margin: 0px;
+  }
+  .button-container-plan{
+    margin-top: 10vh;
+    display:flex;
+    justify-content: center;
   }
