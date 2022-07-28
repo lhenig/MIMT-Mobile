@@ -187,7 +187,7 @@ export class EditPageComponent implements OnInit {
     if (error.error instanceof ErrorEvent) {
       msg = 'Unexpected Error';
     } else {
-      msg = 'Phone number already tied to a different plan.'
+      msg = 'Phone number(s) already tied to a different plan.'
     }
     console.log(msg);
     this.errorMsg! = msg;
