@@ -19,7 +19,7 @@ export class EditPageComponent implements OnInit {
   phones: string[] = [""];
   Plan: Plan | undefined;
   Devices: Device[] = [];
-
+  errorMsg: string ='';
 
 
   constructor(private planService: PlanService, private deviceService: DeviceService, private route: ActivatedRoute, private router: Router) {
@@ -53,10 +53,18 @@ export class EditPageComponent implements OnInit {
         for (let i = 0; i <= this.Devices.length - 1; i++) {
           //alert("Phone Number: " + this.Devices[i].phoneNumber + "\n Phonemodel: " + this.Devices[i].deviceName + "\nPlan ID: " + this.Devices[i].planId);
           if(this.Devices[i].phoneNumber == ''){
-            this.deviceService.saveDevice(NewDevices[i]).subscribe(data => {});
+            this.deviceService.saveDevice(NewDevices[i]).subscribe(data => {
+              this.router.navigateByUrl('/user');
+            }, (error:Error)=>{
+              this.errorMsg = this.handleError(error);
+            });
           }
           else {
-            this.deviceService.updateDevice(NewDevices[i], this.Devices[i].id).subscribe(data => {});
+            this.deviceService.updateDevice(NewDevices[i], this.Devices[i].id).subscribe(data => {
+              this.router.navigateByUrl('/user');
+            }, (error:Error)=>{
+              this.errorMsg = this.handleError(error);
+            });
           }
 
         }
@@ -65,7 +73,6 @@ export class EditPageComponent implements OnInit {
         // the plan ID is tied to params['id']
         // and the updated list of devices is in NewDevices
 
-        this.router.navigateByUrl('/user');
       });
   }
 
@@ -175,5 +182,16 @@ export class EditPageComponent implements OnInit {
     });
   }
 
+  handleError(error:any) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      msg = 'Unexpected Error';
+    } else {
+      msg = 'Phone number already tied to a different plan.'
+    }
+    console.log(msg);
+    this.errorMsg! = msg;
+    return msg;
+  }
 
 }
