@@ -23,6 +23,7 @@ To start the app:
 >
 >> this must be run in a java environment.
 
-> MySQL workbench can be used to view table
+> to create local database in MySQL Workbench, copy and run the schema.sql file found in server/src/main/resources
 >
->> View server/src/main/resources/application.properties to match parameters
+>> Also view application.properties to match parameters
+>> 
