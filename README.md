@@ -15,8 +15,12 @@ Java-MEAN-Project2
   
 ## Usage
 To start the app:
---cd into client, run "ng serve -o" in the command line
---alternatively, run "ng serve" in the command line and visit URL 'http://localhost:4200/'
---cd into server, run "./mvnw spring-boot:run"
---this must be run in a java environment.
---MySQL workbench
+> cd into client, run "ng serve -o" in the command line
+>
+>> alternatively, run "ng serve" in the command line and visit URL 'http://localhost:4200/'
+
+> cd into server, run "./mvnw spring-boot:run"
+>
+>> this must be run in a java environment.
+
+> MySQL workbench can be used to view table
