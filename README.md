@@ -27,3 +27,5 @@ To start the app:
 >
 >> Also view application.properties to match parameters
 >> 
+
+Creating a new user will take you back to the login page. Login using credentials and click on the "Add Plan" button to view the options. Choose the right plan for you and add mobile numbers and device names as necessary.
