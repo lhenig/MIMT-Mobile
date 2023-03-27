@@ -21,7 +21,7 @@ To start the app:
 
 > cd into server, run "./mvnw spring-boot:run"
 >
->> this must be run in a java environment.
+>> this must be run in a java environment and Maven installed and configured.
 
 > to create local database in MySQL Workbench, copy and run the schema.sql file found in server/src/main/resources
 >
